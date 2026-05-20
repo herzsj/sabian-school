@@ -9,20 +9,21 @@
 
   <style>
     :root {
-      /* Exact Green Color Sampled Directly From Your Uploaded Logo */
-      --sabian-primary: #076b43;     /* The precise green from your emblem */
-      --sabian-menu-bg: #eaf6f0;     /* Soft mint green accent belt for navigation */
-      --sabian-menu-hover: #cee6da;  /* Darker soft green for menu selection */
-      --accent-link: #0b74de;        /* Crisp interaction blue for buttons/links */
-      --bg: #f6f8fb;
+      /* Exact Color Palettes Sampled From Your Updated Shield Emblem */
+      --sabian-primary: #0d3a24;     /* Rich deep forest green from the outer rings */
+      --sabian-accent: #e5b455;      /* Elegant golden yellow from the leaves and stars */
+      --sabian-menu-bg: #f2f6f3;     /* Sophisticated muted cream-green menu belt */
+      --sabian-menu-hover: #dce7e1;  /* Balanced green tint for smooth selection indicators */
+      --accent-link: #1066b7;        /* Clean, high-contrast operational action blue */
+      --bg: #f6f9f7;
       --card: #ffffff;
-      --text-dark: #111111;
-      --muted: #6b6b6b;
+      --text-dark: #111111;          /* Ground zero black value for text tags */
+      --muted: #556b5c;
       font-family: 'Times New Roman', Inter, system-ui, sans-serif;
     }
 
     html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text-dark); }
-    a { text-decoration: none; transition: color 0.2s, background 0.2s; }
+    a { text-decoration: none; transition: color 0.2s, background 0.2s, padding-left: 0.2s; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; box-sizing: border-box; }
 
     /* 1. TOP BAR AREA */
@@ -31,10 +32,11 @@
       color: #ffffff;
       font-size: 13px;
       padding: 10px 0;
+      border-bottom: 2px solid var(--sabian-accent);
     }
     .top-bar-inner { display: flex; justify-content: space-between; align-items: center; }
     .top-bar-links a { color: #ffffff; margin-right: 16px; font-weight: 600; }
-    .top-bar-links a:hover { color: var(--sabian-menu-hover); }
+    .top-bar-links a:hover { color: var(--sabian-accent); }
 
     /* 2. MAIN BRAND IDENTIFIER SECTION */
     .brand-banner-area {
@@ -42,18 +44,17 @@
       padding: 18px 0;
       border-bottom: 1px solid rgba(0,0,0,0.06);
     }
-    .brand-flex { display: flex; align-items: center; gap: 18px; }
+    .brand-flex { display: flex; align-items: center; gap: 20px; }
     
-    /* Matches your local file name exactly now */
     .school-logo { 
-      width: 75px; 
-      height: 75px; 
+      width: 110px; 
+      height: 110px; 
       object-fit: contain; 
       border-radius: 50%; 
     }
     
-    .brand-titles h1 { margin: 0; font-size: 26px; color: var(--sabian-primary); font-weight: 700; }
-    .brand-titles p { margin: 4px 0 0; font-size: 14px; color: var(--muted); letter-spacing: 0.5px; }
+    .brand-titles h1 { margin: 0; font-size: 32px; color: var(--sabian-primary); font-weight: 700; letter-spacing: -0.5px; }
+    .brand-titles p { margin: 4px 0 0; font-size: 22px; color: var(--sabian-primary); font-weight: 600; }
 
     /* 3. STICKY MENU AREA */
     .menu-area {
@@ -66,19 +67,18 @@
     }
     .menu-inner { display: flex; align-items: center; justify-content: space-between; position: relative; }
     
-    /* Navigation List Framework */
     .nav-menu { display: flex; list-style: none; margin: 0; padding: 0; }
     .nav-menu > li { position: relative; }
+    
     .nav-menu > li > a { 
       display: block; 
       padding: 14px 20px; 
-      color: var(--sabian-primary); 
+      color: var(--text-dark); 
       font-weight: 700; 
       font-size: 15px;
     }
-    .nav-menu > li:hover > a { background-color: var(--sabian-menu-hover); }
+    .nav-menu > li:hover > a { background-color: var(--sabian-menu-hover); color: var(--sabian-primary); }
 
-    /* Dropdowns Architecture modeled from institutional source structure */
     .nav-menu ul {
       display: none;
       position: absolute;
@@ -89,7 +89,7 @@
       list-style: none;
       padding: 0;
       margin: 0;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
       border-top: 3px solid var(--sabian-primary);
     }
     .nav-menu ul li a {
@@ -100,40 +100,111 @@
       font-weight: 600;
       border-bottom: 1px solid #f0f0f0;
     }
-    .nav-menu ul li a:hover { background-color: #f5f5f5; color: var(--accent-link); padding-left: 22px; }
+    .nav-menu ul li a:hover { background-color: var(--sabian-menu-bg); color: var(--sabian-primary); padding-left: 22px; }
     .nav-menu li:hover > ul { display: block; }
 
-    /* Mobile Menu Toggle button */
     .menu-toggle { display: none; background: transparent; border: 0; font-size: 24px; cursor: pointer; padding: 10px; color: var(--sabian-primary); }
 
-    /* GRAPHIC BANNER AREA */
+    /* AUTOMATED SLIDESHOW HERO CORE WITH INTERACTIVE MANIFOLDS */
     .hero {
-      position: relative; height: 360px; margin-top: 4px;
-      background-image: url('header1.jpg'); 
-      background-size: cover; background-position: center; display: flex; align-items: center; color: #fff;
+      position: relative; 
+      height: 550px; 
+      margin-top: 4px;
+      overflow: hidden;
+      background-color: var(--sabian-primary); /* Safe emergency solid backdrop fallback */
     }
-    .hero::after { content:""; position: absolute; inset:0; background: rgba(7, 107, 67, 0.65); z-index: 1; }
-    .hero-container { position: relative; z-index: 2; max-width: 700px; padding: 0 20px; }
-    .hero-container h2 { font-size: 32px; margin: 0 0 12px; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-
-    /* CONTENT LAYOUT STYLING */
-    .content-section { padding: 40px 0; }
-    .section-title { font-size: 24px; color: var(--sabian-primary); margin-bottom: 20px; border-left: 4px solid var(--sabian-menu-hover); padding-left: 10px; }
-    .announcements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
-    .card { background: var(--card); border-radius: 6px; padding: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); border-top: 3px solid var(--sabian-primary); }
-    .card-date { font-size: 12px; color: var(--muted); font-weight: bold; }
-    .card-title { margin: 8px 0; font-size: 16px; color: var(--sabian-primary); }
     
-    footer { background: #222; color: #bbb; padding: 30px 0; text-align: center; font-size: 14px; margin-top: 40px; }
-    footer a { color: var(--sabian-menu-hover); }
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+      z-index: 1;
+    }
+    
+    .slide.active {
+      opacity: 1;
+      z-index: 2;
+    }
+    
+    /* Absolute relative local mapping paths */
+    .slide:nth-of-type(1) { background-image: url("header1.jpg"); }
+    .slide:nth-of-type(2) { background-image: url("header2.jpg"); }
 
-    /* MEDIA BREAKPOINTS FOR RESPONSIVE PHONES */
+    /* Darker forest overlay mask shield layer */
+    .slide::after { 
+      content: ""; 
+      position: absolute; 
+      inset: 0; 
+      background: linear-gradient(135deg, rgba(13, 58, 36, 0.85) 0%, rgba(20, 40, 30, 0.65) 100%); 
+      z-index: 1; 
+    }
+    
+    .hero-container { 
+      position: relative; 
+      z-index: 3; 
+      max-width: 700px; 
+      padding: 0 60px; 
+    }
+    .hero-container h2 { font-size: 38px; margin: 0 0 12px; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); color: #ffffff; }
+    .hero-container p { font-size: 18px; line-height: 1.5; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); color: #ffffff; }
+
+    /* INTERACTIVE SLIDE DIRECTIONAL CONTROLS */
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(13, 58, 36, 0.4);
+      border: 2px solid var(--sabian-accent); 
+      color: var(--sabian-accent);            
+      font-size: 24px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s, color 0.3s;
+    }
+    .slider-btn:hover {
+      background: var(--sabian-accent);
+      color: var(--sabian-primary); 
+    }
+    .slider-btn.prev { left: 20px; }
+    .slider-btn.next { right: 20px; }
+
+    /* LAYOUT PATTERNS */
+    .content-section { padding: 50px 0; }
+    .section-title { font-size: 26px; color: var(--sabian-primary); margin-bottom: 25px; border-left: 5px solid var(--sabian-accent); padding-left: 12px; font-weight: 700; }
+    .announcements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+    .card { background: var(--card); border-radius: 8px; padding: 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.03); border-top: 4px solid var(--sabian-primary); border-bottom: 1px solid #e2e8e4; }
+    .card-date { font-size: 12px; color: var(--muted); font-weight: bold; letter-spacing: 0.5px; }
+    .card-title { margin: 10px 0; font-size: 18px; color: var(--sabian-primary); font-weight: 700; }
+    .card p { color: #333333; line-height: 1.5; }
+    
+    footer { background: var(--sabian-primary); color: #d0ded6; padding: 35px 0; text-align: center; font-size: 14px; margin-top: 50px; border-top: 4px solid var(--sabian-accent); }
+    footer a { color: var(--sabian-accent); font-weight: bold; }
+    footer strong { color: white; font-size: 16px; }
+
+    /* PHONE INTERFACES */
     @media (max-width: 880px) {
       .menu-toggle { display: block; }
       .nav-menu { display: none; flex-direction: column; width: 100%; background: var(--sabian-menu-bg); position: absolute; top: 100%; left: 0; }
       .nav-menu.show { display: flex; }
       .nav-menu ul { position: relative; width: 100%; box-shadow: none; }
-      .brand-flex { flex-direction: column; text-align: center; }
+      .brand-flex { flex-direction: column; text-align: center; gap: 10px; }
+      .brand-titles h1 { font-size: 26px; }
+      .brand-titles p { font-size: 18px; }
+      .slider-btn { width: 40px; height: 40px; font-size: 18px; }
+      .hero-container { padding: 0 45px; }
     }
   </style>
 </head>
@@ -143,7 +214,7 @@
     <div class="container top-bar-inner">
       <div class="top-bar-links">
         <a href="https://t.me/DireSabian2011" target="_blank">Official Telegram Portal</a>
-        <a href="#">Digital Student Library</a>
+        <a href="library.html">Digital Student Library</a>
         <a href="#">eLearning Platform</a>
       </div>
       <div class="top-bar-location">Dire Dawa, Ethiopia</div>
@@ -152,10 +223,10 @@
 
   <div class="brand-banner-area">
     <div class="container brand-flex">
-      <img src="logo1.jpg" alt="Sabian Secondary School Logo" class="school-logo">
+      <img src="logo2.jpg" alt="Sabian Secondary & Preparatory School Shield" class="school-logo">
       <div class="brand-titles">
         <h1>Sabian Secondary & Preparatory School</h1>
-        <p>ሳቢያ ሁለተኛ ደረጃ ትምህርት ቤት </p>
+        <p>ሳ\ሁ\ደ\ት\ቤት</p>
       </div>
     </div>
   </div>
@@ -174,7 +245,6 @@
             <li><a href="#">Vision & Mission</a></li>
             <li><a href="#">Director's Message</a></li>
             <li><a href="#">Contact Details</a></li>
-
           </ul>
         </li>
 
@@ -198,18 +268,38 @@
             <li><a href="#">Top Scorers Wall</a></li>
           </ul>
         </li>
-
-        <li><a href="#">Vacancies & Bids</a></li>
+       
+        <li>
+          <a href="#">Administration</a>
+          <ul>
+            <li><a href="#">Teachers Association</a></li>
+            <li><a href="#">Staff Matrix</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
 
   <main>
-    <section class="hero" aria-label="Welcome Banner Image">
-      <div class="container hero-container">
-        <h2>Developing Future Global Innovators</h2>
-        <p>Access official school board operational notices, regional placement parameters, and assignment tracking matrices.</p>
+    <section class="hero" aria-label="Welcome Banner Slideshow">
+      
+      <button class="slider-btn prev" id="prevSlideBtn" aria-label="Previous Slide">❮</button>
+      <button class="slider-btn next" id="nextSlideBtn" aria-label="Next Slide">❯</button>
+
+      <div class="slide active">
+        <div class="container hero-container">
+          <h2>Developing Future Generations</h2>
+          <p>Access official school board operational notices, regional placement parameters, and assignment tracking matrices.</p>
+        </div>
       </div>
+
+      <div class="slide">
+        <div class="container hero-container">
+          <h2>Empowering Science & Tech Exploration</h2>
+          <p>Explore specialized natural science modules and interactive digital resources inside our student library.</p>
+        </div>
+      </div>
+
     </section>
 
     <div class="container content-section">
@@ -241,7 +331,6 @@
   </footer>
 
   <script>
-    // Responsive hamburger navigation code for small windows
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
 
@@ -251,12 +340,59 @@
         navMenu.classList.toggle('show');
       });
 
-      // Close menu when clicking away
       document.addEventListener('click', (e) => {
         if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
           navMenu.classList.remove('show');
         }
       });
+    }
+
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevSlideBtn');
+    const nextBtn = document.getElementById('nextSlideBtn');
+    
+    let currentSlideIndex = 0;
+    let slideTimer = null;
+    const changeIntervalTime = 5000; 
+
+    function updateCarouselDisplay(nextIndex) {
+      slides[currentSlideIndex].classList.remove('active');
+      currentSlideIndex = nextIndex;
+      slides[currentSlideIndex].classList.add('active');
+    }
+
+    function navigateForward() {
+      const computedIndex = (currentSlideIndex + 1) % slides.length;
+      updateCarouselDisplay(computedIndex);
+    }
+
+    function navigateBackward() {
+      const computedIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+      updateCarouselDisplay(computedIndex);
+    }
+
+    function resetAutomationClock() {
+      clearInterval(slideTimer);
+      slideTimer = setInterval(navigateForward, changeIntervalTime);
+    }
+
+    if(slides.length > 1) {
+      slideTimer = setInterval(navigateForward, changeIntervalTime);
+
+      nextBtn.addEventListener('click', () => {
+        navigateForward();
+        resetAutomationClock();
+      });
+
+      prevBtn.addEventListener('click', () => {
+        navigateBackward();
+        resetAutomationClock();
+      });
+    } else {
+      if(prevBtn && nextBtn) {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+      }
     }
   </script>
 </body>
