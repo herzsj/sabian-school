@@ -112,7 +112,7 @@
       height: 600px; 
       margin-top: 4px;
       overflow: hidden;
-      background-color: var(--sabian-primary); /* Safe emergency solid backdrop fallback */
+      background-color: var(--sabian-primary); 
     }
     
     .slide {
@@ -127,6 +127,7 @@
       align-items: center;
       color: #ffffff;
       z-index: 1;
+      filter: brightness(1.15);
     }
     
     .slide.active {
@@ -134,18 +135,15 @@
       z-index: 2;
     }
     
-    /* Absolute relative local mapping paths */
+    /* Sequential mapping paths for background banners */
     .slide:nth-of-type(1) { background-image: url("header1.jpg"); }
     .slide:nth-of-type(2) { background-image: url("header2.jpg"); }
-
-    /* Darker forest overlay mask shield layer */
-    .slide::after { 
-      content: ""; 
-      position: absolute; 
-      inset: 0; 
-      background: linear-gradient(135deg, rgba(13, 58, 36, 0.85) 0%, rgba(20, 40, 30, 0.65) 100%); 
-      z-index: 1; 
-    }
+    .slide:nth-of-type(3) { background-image: url("header3.jpeg"); }
+    .slide:nth-of-type(4) { background-image: url("header4.jpeg"); }
+    .slide:nth-of-type(5) { background-image: url("header5.jpeg"); }
+    .slide:nth-of-type(6) { background-image: url("header6.jpeg"); }
+    .slide:nth-of-type(7) { background-image: url("header7.jpeg"); }
+    .slide:nth-of-type(8) { background-image: url("header8.jpeg"); }
     
     .hero-container { 
       position: relative; 
@@ -153,15 +151,58 @@
       max-width: 700px; 
       padding: 0 60px; 
     }
-    .hero-container h2 { font-size: 25px; margin: 0 0 12px; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); color: #ffffff; }
-    .hero-container p { font-size: 18px; line-height: 1.5; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); color: #ffffff; }
+
+    /* --- DYNAMIC TEXT ENTRY ANIMATIONS --- */
+    /* Keep text hidden initially until the slide becomes active */
+    .slide .hero-container h2,
+    .slide .hero-container p {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: none;
+    }
+
+    /* Triggered smooth sequence entries as soon as slide switches */
+    .slide.active .hero-container h2 {
+      animation: textRevealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 0.4s; /* Delays text until the image finishes fading in */
+    }
+
+    .slide.active .hero-container p {
+      animation: textRevealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 0.6s; /* Staggers paragraph slightly behind heading */
+    }
+
+    @keyframes textRevealUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-container h2 { 
+      font-size: 25px; 
+      margin: 0 0 12px; 
+      font-weight: 800; 
+      color: #ffffff; 
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.85), -1px -1px 0 rgba(0,0,0,0.4), 1px -1px 0 rgba(0,0,0,0.4), -1px 1px 0 rgba(0,0,0,0.4), 1px 1px 0 rgba(0,0,0,0.4);
+    }
+    .hero-container p { 
+      font-size: 18px; 
+      line-height: 1.5; 
+      color: #ffffff; 
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.85), -1px -1px 0 rgba(0,0,0,0.4), 1px -1px 0 rgba(0,0,0,0.4), -1px 1px 0 rgba(0,0,0,0.4), 1px 1px 0 rgba(0,0,0,0.4);
+    }
 
     /* INTERACTIVE SLIDE DIRECTIONAL CONTROLS */
     .slider-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(13, 58, 36, 0.4);
+      background: rgba(13, 58, 36, 0.7); 
       border: 2px solid var(--sabian-accent); 
       color: var(--sabian-accent);            
       font-size: 24px;
@@ -198,7 +239,7 @@
     /* PHONE INTERFACES */
     @media (max-width: 880px) {
       .menu-toggle { display: block; }
-      .nav-menu { display: none; flex-direction: column; width: 100%; background:   color: var(--sabian-accent);position: absolute; top: 100%; left: 0; }
+      .nav-menu { display: none; flex-direction: column; width: 100%; background-color: var(--sabian-menu-bg); position: absolute; top: 100%; left: 0; }
       .nav-menu.show { display: flex; }
       .nav-menu ul { position: relative; width: 100%; box-shadow: none; }
       .brand-flex { flex-direction: column; text-align: center; gap: 10px; }
@@ -264,7 +305,6 @@
         <li>
           <a href="#">Students ▾</a>
           <ul>
-            <li><a href="#">Student Council Union</a></li>
             <li><a href="#">Clubs & Mini-Media Lab</a></li>
             <li><a href="#">Top Scorers Wall</a></li>
           </ul>
@@ -296,9 +336,50 @@
 
       <div class="slide">
         <div class="container hero-container">
-          <h2>የመማር ማስተማር ሂደቱን የተሻለ ለማድረግ እና በስነምግባር የታነፀ ትውልድን ለመፍጠር የጋራ ትብብር እንደሚያስፈልግ ተገለፀ
-          <p>
-           </p>
+          <h2>የመማር ማስተማር ሂደቱን የተሻለ ለማድረግ እና በስነምግባር የታነፀ ትውልድን ለመፍጠር የጋራ ትብብር እንደሚያስፈልግ ተገለፀ</h2>
+          <p></p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="container hero-container">
+          <h2>ኩረጃን የሚየፍና የታነፀ ትውልድ በመገንባት ሀገራዊ እድገቱን ማሰቀጠል እንደሚገባ ተገለፀ</h2>
+          <p></p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="container hero-container">
+          <h2>ለተሻለ ነገ እንተጋለን</h2>
+          <p></p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="container hero-container">
+          <h2></h2>
+          <p></p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="container hero-container">
+          <h2>የድሬዳዋ አሰተዳደር ትምህርት ቤት ቢሮ ምክትል ኃላፈ በ ሳቢያን 2ኛ ደረጃ ት/ቤት እየተሰጠ ያለውን የማጠናከሪያ ትምህርት ምልከታ አደርጉ</h2>
+          <p></p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="container hero-container">
+          <h2></h2>
+          <p></p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="container hero-container">
+          <h2></h2>
+          <p></p>
         </div>
       </div>
 
