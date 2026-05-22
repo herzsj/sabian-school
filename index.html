@@ -7,6 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Sabian Secondary School — official announcements and resources." />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Ethiopic:wght@400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
       /* Exact Color Palettes Sampled From Your Updated Shield Emblem */
@@ -19,7 +23,9 @@
       --card: #ffffff;
       --text-dark: #111111;          /* Ground zero black value for text tags */
       --muted: #556b5c;
-      font-family: 'Times New Roman', Inter, system-ui, sans-serif;
+      
+      /* Prioritized Noto Sans Ethiopic across the engine for complete system safety */
+      font-family: 'Noto Sans Ethiopic', 'Times New Roman', Inter, system-ui, sans-serif;
     }
 
     html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text-dark); }
@@ -80,6 +86,28 @@
     }
     .nav-menu > li:hover > a { background-color: var(--sabian-menu-hover); color: var(--sabian-primary); }
 
+    /* PURE CSS BULLETPROOF DROPDOWN ARROWS FOR LEGACY OS SETUPS */
+    .has-dropdown > a {
+      display: flex !important;
+      align-items: center;
+      gap: 6px;
+    }
+    .has-dropdown > a::after {
+      content: "";
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid var(--text-dark);
+      margin-top: 2px;
+      transition: transform 0.2s ease, border-top-color 0.2s;
+    }
+    .has-dropdown:hover > a::after {
+      border-top-color: var(--sabian-primary);
+      transform: rotate(180deg);
+    }
+
     .nav-menu ul {
       display: none;
       position: absolute;
@@ -104,7 +132,7 @@
     .nav-menu ul li a:hover { background-color: var(--sabian-menu-bg); color: var(--sabian-primary); padding-left: 22px; }
     .nav-menu li:hover > ul { display: block; }
 
-    .menu-toggle { display: none; background: transparent; border: 0; font-size: 24px; cursor: pointer; padding: 10px; color: var(--sabian-primary); }
+    .menu-toggle { display: none; background: transparent; border: 0; font-size: 24px; cursor: pointer; padding: 10px; color: var(--sabian-primary); font-family: sans-serif; }
 
     /* AUTOMATED SLIDESHOW HERO CORE WITH INTERACTIVE MANIFOLDS */
     .hero {
@@ -139,11 +167,13 @@
     .slide:nth-of-type(1) { background-image: url("header1.jpg"); }
     .slide:nth-of-type(2) { background-image: url("header2.jpg"); }
     .slide:nth-of-type(3) { background-image: url("header3.jpeg"); }
-    .slide:nth-of-type(4) { background-image: url("header4.jpeg"); }
-    .slide:nth-of-type(5) { background-image: url("header5.jpeg"); }
-    .slide:nth-of-type(6) { background-image: url("header6.jpeg"); }
+    .slide:nth-of-type(4) { background-image: url("header4.jpg"); }
+    .slide:nth-of-type(5) { background-image: url("header5.jpg"); }
+    .slide:nth-of-type(6) { background-image: url("header6.jpg"); }
     .slide:nth-of-type(7) { background-image: url("header7.jpeg"); }
-    .slide:nth-of-type(8) { background-image: url("header8.jpeg"); }
+    .slide:nth-of-type(8) { background-image: url("header8.jpg"); }
+    .slide:nth-of-type(9) { background-image: url("header9.jpg"); }
+    .slide:nth-of-type(10) { background-image: url("header10.jpg"); }
     
     .hero-container { 
       position: relative; 
@@ -153,7 +183,6 @@
     }
 
     /* --- DYNAMIC TEXT ENTRY ANIMATIONS --- */
-    /* Keep text hidden initially until the slide becomes active */
     .slide .hero-container h2,
     .slide .hero-container p {
       opacity: 0;
@@ -164,12 +193,12 @@
     /* Triggered smooth sequence entries as soon as slide switches */
     .slide.active .hero-container h2 {
       animation: textRevealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      animation-delay: 0.4s; /* Delays text until the image finishes fading in */
+      animation-delay: 0.4s;
     }
 
     .slide.active .hero-container p {
       animation: textRevealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      animation-delay: 0.6s; /* Staggers paragraph slightly behind heading */
+      animation-delay: 0.6s;
     }
 
     @keyframes textRevealUp {
@@ -215,6 +244,7 @@
       align-items: center;
       justify-content: center;
       transition: background 0.3s, color 0.3s;
+      font-family: Arial, sans-serif; /* Explicit clean stack to prevent arrow breakage */
     }
     .slider-btn:hover {
       background: var(--sabian-accent);
@@ -222,6 +252,90 @@
     }
     .slider-btn.prev { left: 20px; }
     .slider-btn.next { right: 20px; }
+
+    /* ==========================================================
+       🆕 DDU-STYLE SPLIT ABOUT LAYOUT PROFILE SECTION 
+       ========================================================== */
+    .ddu-about-section {
+      background-color: #ffffff;
+      padding: 60px 0;
+      border-bottom: 1px solid #eef3f0;
+    }
+    .about-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Exact equal 50/50 block layout like DDU */
+      gap: 40px;
+      align-items: center;
+    }
+    .about-image-frame {
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+    }
+    .about-image-frame img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+    }
+    
+    /* 🛠️ FIXXED: Removed the overlay box outline framework border from image stack here */
+    
+    .about-text-content h2 {
+      font-size: 28px;
+      color: var(--sabian-primary);
+      margin: 0 0 18px 0;
+      font-weight: 700;
+      position: relative;
+    }
+    .about-text-content h2::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 3px;
+      background-color: var(--sabian-accent);
+      margin-top: 10px;
+    }
+    .about-text-content p {
+      color: #333333;
+      font-size: 16px;
+      line-height: 1.7;
+      margin: 0 0 24px 0;
+    }
+    
+    /* SYSTEM-SAFE READ MORE BUTTON BLOCK */
+    .ddu-readmore-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: var(--sabian-primary);
+      color: #ffffff !important;
+      padding: 12px 24px;
+      font-weight: 700;
+      font-size: 14px;
+      border-radius: 4px;
+      border: 1px solid var(--sabian-primary);
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+    /* Sharp geometric right-facing custom CSS accent pointer triangle */
+    .ddu-readmore-btn::after {
+      content: "";
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 6px solid var(--sabian-accent);
+      transition: transform 0.2s ease;
+    }
+    .ddu-readmore-btn:hover {
+      background-color: #061f13;
+      border-color: #061f13;
+    }
+    .ddu-readmore-btn:hover::after {
+      transform: translateX(4px);
+    }
 
     /* LAYOUT PATTERNS */
     .content-section { padding: 50px 0; }
@@ -247,6 +361,10 @@
       .brand-titles p { font-size: 18px; }
       .slider-btn { width: 40px; height: 40px; font-size: 18px; }
       .hero-container { padding: 0 45px; }
+      
+      /* Mobile stack configuration parameters */
+      .about-split-grid { grid-template-columns: 1fr; gap: 25px; }
+      .about-image-frame img { height: 280px; }
     }
   </style>
 </head>
@@ -275,13 +393,13 @@
 
   <div id="strickymenu" class="menu-area">
     <div class="container menu-inner">
-      <button class="menu-toggle" id="menuToggle" aria-label="Open Navigation Options">☰ Menu</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open Navigation Options">☰</button>
       
       <ul class="nav-menu" id="navMenu">
         <li><a href="index.html">Home</a></li>
         
-        <li>
-          <a href="#">About Us ▾</a>
+        <li class="has-dropdown">
+          <a href="#">About Us</a>
           <ul>
             <li><a href="#">School Background</a></li>
             <li><a href="#">Vision & Mission</a></li>
@@ -290,8 +408,8 @@
           </ul>
         </li>
 
-        <li>
-          <a href="#">Academics ▾</a>
+        <li class="has-dropdown">
+          <a href="#">Academics</a>
           <ul>
             <li><a href="#">Natural Science Streams</a></li>
             <li><a href="#">Social Science Streams</a></li>
@@ -302,15 +420,15 @@
           </ul>
         </li>
 
-        <li>
-          <a href="#">Students ▾</a>
+        <li class="has-dropdown">
+          <a href="#">Students</a>
           <ul>
             <li><a href="#">Clubs & Mini-Media Lab</a></li>
             <li><a href="#">Top Scorers Wall</a></li>
           </ul>
         </li>
        
-        <li>
+        <li class="has-dropdown">
           <a href="#">Administration</a>
           <ul>
             <li><a href="#">Teachers Association</a></li>
@@ -357,7 +475,7 @@
 
       <div class="slide">
         <div class="container hero-container">
-          <h2></h2>
+          <h2>ትምህርት ለውጥ ነው</h2>
           <p></p>
         </div>
       </div>
@@ -378,11 +496,49 @@
 
       <div class="slide">
         <div class="container hero-container">
+          <h2>ለሀገር እድገት እንተጋለን</h2>
+          <p></p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="container hero-container">
           <h2></h2>
           <p></p>
         </div>
       </div>
 
+      <div class="slide">
+        <div class="container hero-container">
+          <h2>ትምህርት ቤቱ የተማሪዎችን ውጤት ለማሻሻል የያዘውን ዕቅድ አፈጻጸም ለመገምገምና ለመምህራንና ተማሪዎች ሞራል ለመስጠት ያለመ ነው</h2>
+          <p></p>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="ddu-about-section">
+      <div class="container">
+        <div class="about-split-grid">
+          
+          <div class="about-image-frame">
+            <img src="sabiansc.jpeg" alt="Sabian Secondary School Main Campus Block">
+          </div>
+          
+          <div class="about-text-content">
+            <h2>Welcome to Sabian Secondary School</h2>
+            <p>
+              ሳቢያን ሁለተኛ ደረጃ ትምህርት ቤት በድሬዳዋ አስተዳደር ውስጥ ከሚገኙ ቀዳሚ የትምህርት ተቋማት አንዱ ነው። ተቋማችን ተማሪዎችን በምግባር የታነጹ፣ በዕውቀት የጎለበቱ እና ለሀገር እድገት የበኩላቸውን አስተዋጽኦ የሚያበረክቱ የነገ መሪዎችን ለማፍራት በቁርጠኝነት እየሰራ ይገኛል። በዘመናዊ የዲጂታል ቤተ-መጻሕፍት እና በተሟሉ የሳይንስ ላብራቶሪዎች የታገዘ ጥራት ያለው ትምህርት ለሁሉም ተማሪዎቻችን እናቀርባለን።
+            </p>
+            <p>
+              Our institution is deeply committed to academic excellence, innovative technological exposure, and nurturing student pathways toward higher achievements within the modern educational horizon.
+            </p>
+            
+            <a href="about.html" class="ddu-readmore-btn">Read More</a>
+          </div>
+
+        </div>
+      </div>
     </section>
 
     <div class="container content-section">
