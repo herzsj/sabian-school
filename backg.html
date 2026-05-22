@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Background - Sabian Secondary School</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The history and background of Sabian Secondary School in Dire Dawa." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Ethiopic:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* 0. LEGACY HTML5 ELEMENT PATCHING FOR OLD IE ENGINES */
+    main, section, article, header, footer, nav, aside {
+      display: block;
+    }
+
+    :root {
+      --sabian-primary: #0d3a24;     
+      --sabian-accent: #e5b455;      
+      --sabian-menu-bg: #f2f6f3;     
+      --sabian-menu-hover: #dce7e1;  
+      --accent-link: #1066b7;        
+      --bg: #f6f9f7;
+      --card: #ffffff;
+      --text-dark: #111111;          
+      --muted: #556b5c;
+    }
+
+    html, body { 
+      height: 100%; 
+      margin: 0; 
+      background-color: #f6f9f7; 
+      color: #111111; 
+      font-family: 'Noto Sans Ethiopic', 'Nyala', 'Abyssinica SIL', 'Segoe UI', 'Times New Roman', Arial, sans-serif;
+    }
+    a { text-decoration: none; -webkit-transition: color 0.2s, background 0.2s, padding-left 0.2s; transition: color 0.2s, background 0.2s, padding-left 0.2s; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; box-sizing: border-box; }
+    
+    /* Clearfix for older float-based rendering engines */
+    .container::after, .menu-inner::after, .top-bar-inner::after, .brand-flex::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* 1. TOP BAR AREA */
+    .site-top-bar {
+      background-color: #0d3a24; 
+      color: #ffffff;
+      font-size: 13px;
+      padding: 10px 0;
+      border-bottom: 2px solid #e5b455; 
+    }
+    .top-bar-inner { 
+      display: block;
+      display: -webkit-box; display: -ms-flexbox; display: flex; 
+      -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; 
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center; 
+    }
+    .top-bar-links { float: left; }
+    .top-bar-links a { color: #ffffff; margin-right: 16px; font-weight: 600; display: inline-block; }
+    .top-bar-links a:hover { color: #e5b455; }
+    .top-bar-location { float: right; font-weight: 600; }
+
+    /* 2. MAIN BRAND IDENTIFIER SECTION */
+    .brand-banner-area {
+      background: #ffffff;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .brand-flex { 
+      display: block;
+      display: -webkit-box; display: -ms-flexbox; display: flex; 
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center; 
+    }
+    .school-logo { 
+      float: left;
+      width: 110px; 
+      height: 110px; 
+      object-fit: contain; 
+      border-radius: 50%; 
+      margin-right: 20px;
+    }
+    .brand-titles { float: left; }
+    .brand-titles h1 { margin: 0; font-size: 32px; color: #0d3a24; font-weight: 700; letter-spacing: -0.5px; font-family: 'Noto Sans Ethiopic', 'Nyala', 'Segoe UI', sans-serif; }
+    .brand-titles p { margin: 4px 0 0; font-size: 22px; color: #0d3a24; font-weight: 600; font-family: 'Noto Sans Ethiopic', 'Nyala', sans-serif; }
+
+    /* 3. STICKY MENU AREA WITH LEGACY FALLBACKS */
+    .menu-area {
+      background-color: #ffc61b;
+      position: relative; /* Fallback for older Win7 Browsers */
+      position: -webkit-sticky; 
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .menu-inner { 
+      display: block;
+      display: -webkit-box; display: -ms-flexbox; display: flex; 
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center; 
+      -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; 
+      position: relative; 
+    }
+    .nav-menu { display: block; display: -webkit-box; display: -ms-flexbox; display: flex; list-style: none; margin: 0; padding: 0; float: left; }
+    .nav-menu > li { position: relative; float: left; }
+    .nav-menu > li > a { 
+      display: block; 
+      padding: 14px 20px; 
+      color: #111111; 
+      font-weight: 700; 
+      font-size: 15px;
+    }
+    .nav-menu > li:hover > a { background-color: #dce7e1; color: #0d3a24; }
+
+    /* DROPDOWN ARROWS WITH WIN7 RE-ENGINEERING */
+    .has-dropdown > a {
+      display: block;
+      display: -webkit-box !important; display: -ms-flexbox !important; display: flex !important;
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center;
+    }
+    .has-dropdown > a::after {
+      content: "";
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid #111111;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .has-dropdown:hover > a::after {
+      border-top-color: #0d3a24;
+    }
+
+    /* Absolute positioning reliability fix for older engines */
+    .nav-menu ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #ffffff;
+      min-width: 240px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      border-top: 3px solid #0d3a24;
+      z-index: 9999;
+    }
+    .nav-menu ul li {
+      float: none;
+      width: 100%;
+    }
+    .nav-menu ul li a {
+      display: block;
+      padding: 11px 16px;
+      color: #111111;
+      font-size: 14px;
+      font-weight: 600;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .nav-menu ul li a:hover { background-color: #f2f6f3; color: #0d3a24; padding-left: 22px; }
+    .nav-menu li:hover > ul { display: block; }
+
+    .menu-toggle { display: none; background: transparent; border: 0; font-size: 24px; cursor: pointer; padding: 10px; color: #0d3a24; font-family: Arial, sans-serif; float: right; }
+
+    /* 4. BACKGROUND CONTENT STYLING */
+    .history-section {
+      padding: 60px 0;
+      background-color: #ffffff;
+      clear: both;
+    }
+    .history-layout {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .history-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .history-header h2 {
+      font-size: 32px;
+      color: #0d3a24;
+      margin: 0 0 10px 0;
+      font-weight: 800;
+    }
+    .history-header .divider {
+      width: 80px;
+      height: 4px;
+      background-color: #e5b455;
+      margin: 0 auto;
+      border-radius: 2px;
+    }
+    .history-body p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #333333;
+      margin-bottom: 24px;
+      text-align: justify;
+    }
+    
+    /* Highlight block for important years */
+    .milestone-box {
+      background-color: #f2f6f3;
+      border-left: 5px solid #e5b455;
+      padding: 20px;
+      margin: 30px 0;
+      border-radius: 0 6px 6px 0;
+    }
+    .milestone-box h3 {
+      margin: 0 0 8px 0;
+      color: #0d3a24;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .milestone-box p {
+      margin: 0;
+      font-style: italic;
+      color: #444444;
+    }
+
+    footer { background: #0d3a24; color: #d0ded6; padding: 35px 0; text-align: center; font-size: 14px; margin-top: 50px; border-top: 4px solid #e5b455; clear: both; }
+    footer a { color: #e5b455; font-weight: bold; }
+    footer strong { color: white; font-size: 16px; }
+
+    /* RESPONSIVE LAYOUTS */
+    @media (max-width: 880px) {
+      .menu-toggle { display: block; }
+      .nav-menu { display: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; width: 100%; background-color: #f2f6f3; position: absolute; top: 100%; left: 0; float: none; }
+      .nav-menu.show { display: block; display: -webkit-box; display: -ms-flexbox; display: flex; }
+      .nav-menu > li { float: none; width: 100%; }
+      .nav-menu ul { position: relative; width: 100%; box-shadow: none; }
+      .brand-flex { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; text-align: center; }
+      .school-logo { margin-right: 0; margin-bottom: 10px; float: none; }
+      .brand-titles { float: none; }
+      .brand-titles h1 { font-size: 26px; }
+      .brand-titles p { font-size: 18px; }
+      .top-bar-inner { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 8px; text-align: center; }
+      .top-bar-links { float: none; }
+      .top-bar-links a { margin: 0 8px; }
+      .top-bar-location { float: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-links">
+        <a href="https://t.me/DireSabian2011" target="_blank">Official Telegram Portal</a>
+        <a href="library.html">Digital Student Library</a>
+        <a href="#">eLearning Platform</a>
+      </div>
+      <div class="top-bar-location">Dire Dawa, Ethiopia</div>
+    </div>
+  </div>
+
+  <div class="brand-banner-area">
+    <div class="container brand-flex">
+      <img src="logo2.jpg" alt="Sabian Secondary & Preparatory School Shield" class="school-logo">
+      <div class="brand-titles">
+        <h1>Sabian Secondary School</h1>
+        <p>ሳ/ሁ/ደ/ት/ቤት</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="strickymenu" class="menu-area">
+    <div class="container menu-inner">
+      <button class="menu-toggle" id="menuToggle" aria-label="Open Navigation Options">☰</button>
+      
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        
+        <li class="has-dropdown">
+          <a href="#">About Us</a>
+          <ul>
+            <li><a href="backg.html">Background</a></li>
+            <li><a href="vimi.html">Vision & Mission</a></li>
+            <li><a href="#">Director's Message</a></li>
+            <li><a href="#">Contact Details</a></li>
+          </ul>
+        </li>
+
+        <li class="has-dropdown">
+          <a href="#">Academics</a>
+          <ul>
+            <li><a href="#">Natural Science</a></li>
+            <li><a href="#">Social Science</a></li>
+            <li><a href="#">Grade 9 & 10 Classrooms</a></li>
+            <li><a href="#">Academic Calendar</a></li>
+            <li><a href="library.html">Digital Student Library</a></li>
+            <li><a href="#">Latest Notice Feed</a></li>    
+          </ul>
+        </li>
+
+        <li class="has-dropdown">
+          <a href="#">Students</a>
+          <ul>
+            <li><a href="#">Clubs & Mini-Media Lab</a></li>
+            <li><a href="#">Top Scorers Wall</a></li>
+          </ul>
+        </li>
+       
+        <li class="has-dropdown">
+          <a href="#">Administration</a>
+          <ul>
+            <li><a href="#">Teachers Association</a></li>
+            <li><a href="#">Staff </a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <main class="history-section">
+    <div class="container history-layout">
+      
+      <div class="history-header">
+        <h2>Our History & Background</h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="history-body">
+        <p>
+          Sabian Secondary School stands as one of the cornerstone educational institutions in the Dire Dawa chartered city administration. For decades, the school has been dedicated to cultivating academic excellence, fostering strong ethical values, and empowering generations of students to contribute meaningfully to society.
+        </p>
+
+        <p>
+          Serving a diverse and vibrant student body, Sabian has consistently adapted its educational frameworks to align with national standards while maintaining an environment that emphasizes scientific curiosity, community leadership, and social development.
+        </p>
+
+        <div class="milestone-box">
+          <h3>The Turning Point: 1994 E.C. (የ1994 ዓ.ም. ታሪካዊ ምዕራፍ)</h3>
+          <p>
+            The year 1994 E.C. remains etched in our school's history as a transformative period of institutional rebirth and infrastructural expansion. During this pivotal year, Sabian underwent an intensive modernization process, expanding classroom capacities, upgrading laboratory learning spaces, and welcoming an influx of dedicated educators to meet the shifting demands of modern secondary education in the region.
+          </p>
+        </div>
+
+        <p>
+          Following the foundational upgrades established in 1994 E.C., the school continued to ascend, building a reputation for producing outstanding results in regional and national examinations. Today, the school seamlessly integrates traditional scholastic values with modern resources, including our emerging digital student libraries and community engagement portals.
+        </p>
+
+        <p>
+          As we look towards the future, Sabian Secondary School remains committed to its historical legacy—acting as a beacon of knowledge, diversity, and intellectual triumph right here in the heart of Dire Dawa.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Copyright &copy; 2026 Sabian Secondary School. All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    var menuToggle = document.getElementById('menuToggle');
+    var navMenu = document.getElementById('navMenu');
+
+    if(menuToggle && navMenu) {
+      menuToggle.addEventListener('click', function(e) {
+        if (e.stopPropagation) {
+          e.stopPropagation();
+        } else {
+          e.cancelBubble = true;
+        }
+        if (navMenu.className.indexOf('show') === -1) {
+          navMenu.className += ' show';
+        } else {
+          navMenu.className = navMenu.className.replace(' show', '');
+        }
+      });
+
+      document.addEventListener('click', function(e) {
+        var target = e.target || e.srcElement;
+        if (!navMenu.contains(target) && !menuToggle.contains(target)) {
+          navMenu.className = navMenu.className.replace(' show', '');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
