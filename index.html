@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Sabian Secondary School — High School</title>
+  <title>Sabian Secondary School</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Sabian Secondary School — official announcements and resources." />
 
@@ -13,7 +13,7 @@
 
   <style>
     /* 0. LEGACY HTML5 ELEMENT PATCHING FOR OLD IE ENGINES */
-    main, section, article, header, footer, nav {
+    main, section, article, header, footer, nav, aside {
       display: block;
     }
 
@@ -27,18 +27,14 @@
       --card: #ffffff;
       --text-dark: #111111;          
       --muted: #556b5c;
-      
-      font-family: 'Noto Sans Ethiopic', 'Times New Roman', Inter, system-ui, sans-serif;
     }
 
     html, body { 
       height: 100%; 
       margin: 0; 
       background-color: #f6f9f7; 
-      background-color: var(--bg); 
       color: #111111; 
-      color: var(--text-dark); 
-      font-family: 'Noto Sans Ethiopic', 'Times New Roman', Arial, sans-serif;
+      font-family: 'Noto Sans Ethiopic', 'Nyala', 'Abyssinica SIL', 'Segoe UI', 'Times New Roman', Arial, sans-serif;
     }
     a { text-decoration: none; -webkit-transition: color 0.2s, background 0.2s, padding-left 0.2s; transition: color 0.2s, background 0.2s, padding-left 0.2s; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; box-sizing: border-box; }
@@ -46,12 +42,10 @@
     /* 1. TOP BAR AREA */
     .site-top-bar {
       background-color: #0d3a24; 
-      background-color: var(--sabian-primary);
       color: #ffffff;
       font-size: 13px;
       padding: 10px 0;
       border-bottom: 2px solid #e5b455; 
-      border-bottom: 2px solid var(--sabian-accent);
     }
     .top-bar-inner { 
       display: -webkit-box; display: -ms-flexbox; display: flex; 
@@ -59,7 +53,7 @@
       -webkit-box-align: center; -ms-flex-align: center; align-items: center; 
     }
     .top-bar-links a { color: #ffffff; margin-right: 16px; font-weight: 600; }
-    .top-bar-links a:hover { color: #e5b455; color: var(--sabian-accent); }
+    .top-bar-links a:hover { color: #e5b455; }
     .top-bar-location { font-weight: 600; }
 
     /* 2. MAIN BRAND IDENTIFIER SECTION */
@@ -77,10 +71,10 @@
       height: 110px; 
       object-fit: contain; 
       border-radius: 50%; 
-      margin-right: 20px; /* Safe alternative fallback for gap */
+      margin-right: 20px;
     }
-    .brand-titles h1 { margin: 0; font-size: 32px; color: #0d3a24; color: var(--sabian-primary); font-weight: 700; letter-spacing: -0.5px; }
-    .brand-titles p { margin: 4px 0 0; font-size: 22px; color: #0d3a24; color: var(--sabian-primary); font-weight: 600; }
+    .brand-titles h1 { margin: 0; font-size: 32px; color: #0d3a24; font-weight: 700; letter-spacing: -0.5px; font-family: 'Noto Sans Ethiopic', 'Nyala', 'Segoe UI', sans-serif; }
+    .brand-titles p { margin: 4px 0 0; font-size: 22px; color: #0d3a24; font-weight: 600; font-family: 'Noto Sans Ethiopic', 'Nyala', sans-serif; }
 
     /* 3. STICKY MENU AREA */
     .menu-area {
@@ -103,13 +97,13 @@
     .nav-menu > li > a { 
       display: block; 
       padding: 14px 20px; 
-      color: #111111; color: var(--text-dark); 
+      color: #111111; 
       font-weight: 700; 
       font-size: 15px;
     }
-    .nav-menu > li:hover > a { background-color: #dce7e1; background-color: var(--sabian-menu-hover); color: #0d3a24; color: var(--sabian-primary); }
+    .nav-menu > li:hover > a { background-color: #dce7e1; color: #0d3a24; }
 
-    /* PURE CSS BULLETPROOF DROPDOWN ARROWS FOR LEGACY OS SETUPS */
+    /* DROPDOWN ARROWS WITH WIN7 FALLBACKS */
     .has-dropdown > a {
       display: -webkit-box !important; display: -ms-flexbox !important; display: flex !important;
       -webkit-box-align: center; -ms-flex-align: center; align-items: center;
@@ -122,7 +116,6 @@
       border-left: 4px solid transparent;
       border-right: 4px solid transparent;
       border-top: 5px solid #111111;
-      border-top: 5px solid var(--text-dark);
       margin-left: 6px;
       margin-top: 2px;
       -webkit-transition: -webkit-transform 0.2s ease, border-top-color 0.2s;
@@ -130,7 +123,6 @@
     }
     .has-dropdown:hover > a::after {
       border-top-color: #0d3a24;
-      border-top-color: var(--sabian-primary);
       -webkit-transform: rotate(180deg); transform: rotate(180deg);
     }
 
@@ -146,20 +138,19 @@
       margin: 0;
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
       border-top: 3px solid #0d3a24;
-      border-top: 3px solid var(--sabian-primary);
     }
     .nav-menu ul li a {
       display: block;
       padding: 11px 16px;
-      color: #111111; color: var(--text-dark);
+      color: #111111;
       font-size: 14px;
       font-weight: 600;
       border-bottom: 1px solid #f0f0f0;
     }
-    .nav-menu ul li a:hover { background-color: #f2f6f3; background-color: var(--sabian-menu-bg); color: #0d3a24; color: var(--sabian-primary); padding-left: 22px; }
+    .nav-menu ul li a:hover { background-color: #f2f6f3; color: #0d3a24; padding-left: 22px; }
     .nav-menu li:hover > ul { display: block; }
 
-    .menu-toggle { display: none; background: transparent; border: 0; font-size: 24px; cursor: pointer; padding: 10px; color: #0d3a24; color: var(--sabian-primary); font-family: sans-serif; }
+    .menu-toggle { display: none; background: transparent; border: 0; font-size: 24px; cursor: pointer; padding: 10px; color: #0d3a24; font-family: Arial, sans-serif; }
 
     /* CAROUSEL CONTROLS MATRIX */
     .hero {
@@ -168,7 +159,6 @@
       margin-top: 4px;
       overflow: hidden;
       background-color: #0d3a24; 
-      background-color: var(--sabian-primary); 
     }
     .slide {
       position: absolute;
@@ -207,7 +197,6 @@
       padding: 0 60px; 
     }
 
-    /* TEXT ENTRY REVEALS PRESETS */
     .slide .hero-container h2,
     .slide .hero-container p {
       opacity: 0;
@@ -240,6 +229,7 @@
       font-weight: 800; 
       color: #ffffff; 
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.85), -1px -1px 0 rgba(0,0,0,0.4), 1px -1px 0 rgba(0,0,0,0.4), -1px 1px 0 rgba(0,0,0,0.4), 1px 1px 0 rgba(0,0,0,0.4);
+      font-family: 'Noto Sans Ethiopic', 'Nyala', 'Segoe UI', sans-serif;
     }
     .hero-container p { 
       font-size: 18px; 
@@ -253,8 +243,8 @@
       top: 50%;
       -webkit-transform: translateY(-50%); transform: translateY(-50%);
       background: #0d3a24; background: rgba(13, 58, 36, 0.7); 
-      border: 2px solid #e5b455; border: 2px solid var(--sabian-accent); 
-      color: #e5b455; color: var(--sabian-accent);            
+      border: 2px solid #e5b455; 
+      color: #e5b455;             
       font-size: 24px;
       width: 50px;
       height: 50px;
@@ -268,13 +258,13 @@
       font-family: Arial, sans-serif; 
     }
     .slider-btn:hover {
-      background: #e5b455; background: var(--sabian-accent);
-      color: #0d3a24; color: var(--sabian-primary); 
+      background: #e5b455; 
+      color: #0d3a24; 
     }
     .slider-btn.prev { left: 20px; }
     .slider-btn.next { right: 20px; }
 
-    /* SPLIT SECTION WITH SYSTEM FALLBACKS */
+    /* SPLIT SECTION */
     .ddu-about-section {
       background-color: #ffffff;
       padding: 60px 0;
@@ -312,7 +302,7 @@
     }
     .about-text-content h2 {
       font-size: 28px;
-      color: #0d3a24; color: var(--sabian-primary);
+      color: #0d3a24; 
       margin: 0 0 18px 0;
       font-weight: 700;
     }
@@ -321,7 +311,7 @@
       display: block;
       width: 60px;
       height: 3px;
-      background-color: #e5b455; background-color: var(--sabian-accent);
+      background-color: #e5b455; 
       margin-top: 10px;
     }
     .about-text-content p {
@@ -333,13 +323,13 @@
     
     .ddu-readmore-btn {
       display: inline-block;
-      background-color: #0d3a24; background-color: var(--sabian-primary);
+      background-color: #0d3a24; 
       color: #ffffff !important;
       padding: 12px 24px;
       font-weight: 700;
       font-size: 14px;
       border-radius: 4px;
-      border: 1px solid #0d3a24; border: 1px solid var(--sabian-primary);
+      border: 1px solid #0d3a24; 
       -webkit-transition: background-color 0.2s, border-color 0.2s; transition: background-color 0.2s, border-color 0.2s;
     }
     .ddu-readmore-btn:hover {
@@ -347,47 +337,79 @@
       border-color: #061f13;
     }
 
-    /* GRID ARCHITECTURE FALLBACKS */
+    /* GRID ARCHITECTURE AND DASHBOARD LAYOUT */
     .content-section { padding: 50px 0; }
-    .section-title { font-size: 26px; color: #0d3a24; color: var(--sabian-primary); margin-bottom: 25px; border-left: 5px solid #e5b455; border-left: 5px solid var(--sabian-accent); padding-left: 12px; font-weight: 700; }
+    .section-title { font-size: 26px; color: #0d3a24; margin-bottom: 25px; border-left: 5px solid #e5b455; padding-left: 12px; font-weight: 700; }
     
-    .announcements-grid { 
-      display: -webkit-box; display: -ms-flexbox; display: flex; 
-      -ms-flex-wrap: wrap; flex-wrap: wrap; 
+    .dashboard-layout {
+      display: -webkit-box; display: -ms-flexbox; display: flex;
+      -ms-flex-wrap: wrap; flex-wrap: wrap;
     }
-    .card { 
-      -webkit-box-flex: 1; -ms-flex: 1 1 320px; flex: 1 1 320px; 
-      background: #ffffff; background: var(--card); 
-      border-radius: 8px; 
-      padding: 20px; 
-      box-shadow: 0 4px 14px rgba(0,0,0,0.03); 
-      border-top: 4px solid #0d3a24; border-top: 4px solid var(--sabian-primary); 
-      border-bottom: 1px solid #e2e8e4; 
-      box-sizing: border-box;
+    .dashboard-column-left {
+      -webkit-box-flex: 1; -ms-flex: 1 1 280px; flex: 1 1 280px;
+      margin: 10px;
+    }
+    .dashboard-column-right {
+      -webkit-box-flex: 2; -ms-flex: 2 1 600px; flex: 2 1 600px;
       margin: 10px;
     }
     @supports (display: grid) {
-      .announcements-grid {
+      .dashboard-layout {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        grid-gap: 24px;
-        margin: 0;
+        grid-template-columns: 300px 1fr;
+        grid-gap: 30px;
       }
-      .card { flex: none; margin: 0; }
+      .dashboard-column-left, .dashboard-column-right { flex: none; margin: 0; }
     }
 
-    .card-date { font-size: 12px; color: #556b5c; color: var(--muted); font-weight: bold; letter-spacing: 0.5px; }
-    .card-title { margin: 10px 0; font-size: 18px; color: #0d3a24; color: var(--sabian-primary); font-weight: 700; }
-    .card p { color: #333333; line-height: 1.5; }
-    
-    footer { background: #0d3a24; background: var(--sabian-primary); color: #d0ded6; padding: 35px 0; text-align: center; font-size: 14px; margin-top: 50px; border-top: 4px solid #e5b455; border-top: 4px solid var(--sabian-accent); }
-    footer a { color: #e5b455; color: var(--sabian-accent); font-weight: bold; }
+    /* PORTALS / QUICK LINKS VIEWSET */
+    .resource-list { list-style: none; padding: 0; margin: 0; }
+    .resource-item { margin-bottom: 12px; }
+    .resource-link {
+      display: -webkit-box; display: -ms-flexbox; display: flex;
+      -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between;
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center;
+      background: #ffffff; 
+      padding: 14px 18px;
+      border-radius: 6px;
+      color: #111111; 
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      border-left: 4px solid #e5b455; 
+    }
+    .resource-link:hover {
+      background: #0d3a24; 
+      color: #ffffff;
+      padding-left: 24px;
+    }
+    .resource-link:hover .arrow-icon { color: #e5b455; }
+    .arrow-icon { color: #556b5c; -webkit-transition: color 0.2s; transition: color 0.2s; }
+
+    /* LATEST NEWS DEEP ARCHITECTURE */
+    .news-stack { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 20px; }
+    .news-card {
+      display: -webkit-box; display: -ms-flexbox; display: flex;
+      background: #ffffff; 
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      border-bottom: 1px solid #e2e8e4;
+    }
+    .news-img-frame { -webkit-box-flex: 0; -ms-flex: 0 0 220px; flex: 0 0 220px; background-color: #eaeaea; }
+    .news-img-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .news-detail-pane { padding: 20px; -webkit-box-flex: 1; -ms-flex: 1; flex: 1; }
+    .news-meta-date { font-size: 11px; color: #556b5c; font-weight: bold; letter-spacing: 0.5px; margin-bottom: 6px; }
+    .news-headline { margin: 0 0 10px 0; font-size: 18px; color: #0d3a24; font-weight: 700; line-height: 1.4; font-family: 'Noto Sans Ethiopic', 'Nyala', 'Segoe UI', sans-serif; }
+    .news-desc { color: #444444; line-height: 1.6; font-size: 14px; margin: 0; }
+
+    footer { background: #0d3a24; color: #d0ded6; padding: 35px 0; text-align: center; font-size: 14px; margin-top: 50px; border-top: 4px solid #e5b455; }
+    footer a { color: #e5b455; font-weight: bold; }
     footer strong { color: white; font-size: 16px; }
 
     /* RESPONSIVE LAYOUTS */
     @media (max-width: 880px) {
       .menu-toggle { display: block; }
-      .nav-menu { display: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; width: 100%; background-color: #f2f6f3; background-color: var(--sabian-menu-bg); position: absolute; top: 100%; left: 0; }
+      .nav-menu { display: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; width: 100%; background-color: #f2f6f3; position: absolute; top: 100%; left: 0; }
       .nav-menu.show { display: -webkit-box; display: -ms-flexbox; display: flex; }
       .nav-menu ul { position: relative; width: 100%; box-shadow: none; }
       .brand-flex { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; text-align: center; }
@@ -401,6 +423,10 @@
       .about-image-frame img { height: 280px; }
       .top-bar-inner { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 8px; text-align: center; }
       .top-bar-links a { margin: 0 8px; }
+      
+      .dashboard-layout { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
+      .news-card { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
+      .news-img-frame { -webkit-box-flex: 0; -ms-flex: none; flex: none; height: 200px; }
     }
   </style>
 </head>
@@ -422,7 +448,7 @@
       <img src="logo2.jpg" alt="Sabian Secondary & Preparatory School Shield" class="school-logo">
       <div class="brand-titles">
         <h1>Sabian Secondary School</h1>
-        <p>ሳ\ሁ\ደ\ት\ቤት</p>
+        <p>ሳ/ሁ/ደ/ት/ቤት</p>
       </div>
     </div>
   </div>
@@ -577,23 +603,78 @@
       </div>
     </section>
 
-    <div class="container content-section">
-      <h2 class="section-title">Latest Institutional Notices</h2>
-      
-      <div class="announcements-grid">
-        <article class="card">
-          <div class="card-date">OCTOBER 24, 2025</div>
-          <h3 class="card-title">Admission Process Protocol Window</h3>
-          <p>Official registration parameters have launched. Please check tracking workflows via our main Telegram portal channel logs.</p>
-          <a href="https://t.me/DireSabian2011/6311" target="_blank" style="color:#1066b7; font-weight:bold;">View Telegram Attachment →</a>
-        </article>
+   <div class="container content-section">
+      <div class="dashboard-layout">
+        
+        <aside class="dashboard-column-left">
+          <h2 class="section-title">Quick Portals</h2>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <a href="#" class="resource-link">
+                <span>Useful Links</span>
+                <span class="arrow-icon">&#10142;</span>
+              </a>
+            </li>
+            <li class="resource-item">
+              <a href="library.html" class="resource-link">
+                <span>Digital Library</span>
+                <span class="arrow-icon">&#10142;</span>
+              </a>
+            </li>
+            <li class="resource-item">
+              <a href="#" class="resource-link">
+                <span>Official Forms</span>
+                <span class="arrow-icon">&#10142;</span>
+              </a>
+            </li>
+            <li class="resource-item">
+              <a href="#" class="resource-link">
+                <span>Media Archive Files</span>
+                <span class="arrow-icon">&#10142;</span>
+              </a>
+            </li>
+            <li class="resource-item">
+              <a href="#" class="resource-link">
+                <span>Study Materials</span>
+                <span class="arrow-icon">&#10142;</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
 
-        <article class="card">
-          <div class="card-date">OCTOBER 29, 2025</div>
-          <h3 class="card-title">National Examination Matrix Block</h3>
-          <p>The matrix schedules for regional testing boundaries are compiled. Students are requested to review rules before entering exam cells.</p>
-          <a href="https://t.me/DireSabian2011/6313" target="_blank" style="color:#1066b7; font-weight:bold;">View Telegram Attachment →</a>
-        </article>
+        <section class="dashboard-column-right">
+          <h2 class="section-title">Latest News & Updates</h2>
+          <div class="news-stack">
+            
+            <article class="news-card">
+              <div class="news-img-frame">
+                <img src="mes1.jpg" alt="Sabian School Event Update View">
+              </div>
+              <div class="news-detail-pane">
+                <div class="news-meta-date">MAY 19, 2026</div>
+                <h3 class="news-headline">የ2018 ዓ.ም የ12ኛ ክፍል ሀገር አቀፍ መልቀቂያ ፈተና በ667 የፈተና ማዕከላት ይሰጣል፡፡</h3>
+                <p class="news-desc">
+                  የትምህርት ምዘናና ፈተናዎች አገልግሎት የ2018 ዓ.ም የዩኒቨርሲቲ መግቢያ ፈተናን በ97 ዩኒቨርሲቲዎች እና በ570 የክልል ማዕከላት ለመስጠት ዝግጅት እየተደረገ እንደሚገኝ አስታውቋል። ከሰኔ 24 እስከ ሐምሌ 17/2018 ዓ.ም የሚሰጠውን ሀገር አቀፍ ፈተና ለመውሰድ በአጠቃላይ 564,219 ተማሪዎች ተመዝግበዋል። ፈተናውን በበይነ መረብ (Online) ለመስጠት ሰፊ ዝግጅት እየተደረገ ይገኛል።
+                </p>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <div class="news-img-frame">
+                <img src="mes2.jpg" alt="Sabian Digital Laboratory Setup">
+              </div>
+              <div class="news-detail-pane">
+                <div class="news-meta-date">MAY 19, 2026</div>
+                <h3 class="news-headline">የ12ኛ ክፍል ሀገር አቀፍ ፈተና ለመስጠት ማዕከላት ተዘጋጁ</h3>
+                <p class="news-desc">
+                  በትምህርት ምዘናና ፈተናዎች አገልግሎት የዘንድሮውን የ12ኛ ክፍል ሀገር አቀፍ የዩኒቨርሲቲ መግቢያ ፈተና ዝግጅት መጠናቀቁ ተገልጿል። ተማሪዎች በዩኒቨርሲቲዎችና በተመረጡ የክልል ማዕከላት ውስጥ በተረጋጋ ሁኔታ ፈተናቸውን እንዲወስዱ የቴክኒክና የደህንነት ስራዎች እየተከናወኑ ይገኛል።
+                </p>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
       </div>
     </div>
   </main>
