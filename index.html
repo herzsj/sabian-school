@@ -28,21 +28,31 @@
       font-family: 'Noto Sans Ethiopic', 'Times New Roman', Inter, system-ui, sans-serif;
     }
 
-    html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text-dark); }
-    a { text-decoration: none; transition: color 0.2s, background 0.2s, padding-left: 0.2s; }
+    html, body { 
+      height: 100%; 
+      margin: 0; 
+      background: #f6f9f7; /* Static fallback */
+      background: var(--bg); 
+      color: #111111; /* Static fallback */
+      color: var(--text-dark); 
+      font-family: 'Noto Sans Ethiopic', 'Times New Roman', Arial, sans-serif;
+    }
+    a { text-decoration: none; transition: color 0.2s, background 0.2s, padding-left 0.2s; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; box-sizing: border-box; }
 
     /* 1. TOP BAR AREA */
     .site-top-bar {
+      background-color: #0d3a24; /* Static fallback */
       background-color: var(--sabian-primary);
       color: #ffffff;
       font-size: 13px;
       padding: 10px 0;
+      border-bottom: 2px solid #e5b455; /* Static fallback */
       border-bottom: 2px solid var(--sabian-accent);
     }
     .top-bar-inner { display: flex; justify-content: space-between; align-items: center; }
     .top-bar-links a { color: #ffffff; margin-right: 16px; font-weight: 600; }
-    .top-bar-links a:hover { color: var(--sabian-accent); }
+    .top-bar-links a:hover { color: #e5b455; color: var(--sabian-accent); }
 
     /* 2. MAIN BRAND IDENTIFIER SECTION */
     .brand-banner-area {
@@ -60,12 +70,13 @@
       border-radius: 50%; 
     }
     
-    .brand-titles h1 { margin: 0; font-size: 32px; color: var(--sabian-primary); font-weight: 700; letter-spacing: -0.5px; }
-    .brand-titles p { margin: 4px 0 0; font-size: 22px; color: var(--sabian-primary); font-weight: 600; }
+    .brand-titles h1 { margin: 0; font-size: 32px; color: #0d3a24; color: var(--sabian-primary); font-weight: 700; letter-spacing: -0.5px; }
+    .brand-titles p { margin: 4px 0 0; font-size: 22px; color: #0d3a24; color: var(--sabian-primary); font-weight: 600; }
 
     /* 3. STICKY MENU AREA */
     .menu-area {
       background-color: #ffc61b;
+      position: -webkit-sticky; /* Legacy support */
       position: sticky;
       top: 0;
       z-index: 100;
@@ -80,11 +91,11 @@
     .nav-menu > li > a { 
       display: block; 
       padding: 14px 20px; 
-      color: var(--text-dark); 
+      color: #111111; color: var(--text-dark); 
       font-weight: 700; 
       font-size: 15px;
     }
-    .nav-menu > li:hover > a { background-color: var(--sabian-menu-hover); color: var(--sabian-primary); }
+    .nav-menu > li:hover > a { background-color: #dce7e1; background-color: var(--sabian-menu-hover); color: #0d3a24; color: var(--sabian-primary); }
 
     /* PURE CSS BULLETPROOF DROPDOWN ARROWS FOR LEGACY OS SETUPS */
     .has-dropdown > a {
@@ -99,11 +110,13 @@
       height: 0;
       border-left: 4px solid transparent;
       border-right: 4px solid transparent;
+      border-top: 5px solid #111111;
       border-top: 5px solid var(--text-dark);
       margin-top: 2px;
       transition: transform 0.2s ease, border-top-color 0.2s;
     }
     .has-dropdown:hover > a::after {
+      border-top-color: #0d3a24;
       border-top-color: var(--sabian-primary);
       transform: rotate(180deg);
     }
@@ -119,20 +132,21 @@
       padding: 0;
       margin: 0;
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      border-top: 3px solid #0d3a24;
       border-top: 3px solid var(--sabian-primary);
     }
     .nav-menu ul li a {
       display: block;
       padding: 11px 16px;
-      color: var(--text-dark);
+      color: #111111; color: var(--text-dark);
       font-size: 14px;
       font-weight: 600;
       border-bottom: 1px solid #f0f0f0;
     }
-    .nav-menu ul li a:hover { background-color: var(--sabian-menu-bg); color: var(--sabian-primary); padding-left: 22px; }
+    .nav-menu ul li a:hover { background-color: #f2f6f3; background-color: var(--sabian-menu-bg); color: #0d3a24; color: var(--sabian-primary); padding-left: 22px; }
     .nav-menu li:hover > ul { display: block; }
 
-    .menu-toggle { display: none; background: transparent; border: 0; font-size: 24px; cursor: pointer; padding: 10px; color: var(--sabian-primary); font-family: sans-serif; }
+    .menu-toggle { display: none; background: transparent; border: 0; font-size: 24px; cursor: pointer; padding: 10px; color: #0d3a24; color: var(--sabian-primary); font-family: sans-serif; }
 
     /* AUTOMATED SLIDESHOW HERO CORE WITH INTERACTIVE MANIFOLDS */
     .hero {
@@ -140,12 +154,17 @@
       height: 600px; 
       margin-top: 4px;
       overflow: hidden;
+      background-color: #0d3a24; 
       background-color: var(--sabian-primary); 
     }
     
     .slide {
       position: absolute;
-      inset: 0;
+      /* FIX: Removed 'inset: 0' to protect legacy browsers */
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       opacity: 0;
       transition: opacity 0.8s ease-in-out;
       background-size: cover;
@@ -232,8 +251,8 @@
       top: 50%;
       transform: translateY(-50%);
       background: rgba(13, 58, 36, 0.7); 
-      border: 2px solid var(--sabian-accent); 
-      color: var(--sabian-accent);            
+      border: 2px solid #e5b455; border: 2px solid var(--sabian-accent); 
+      color: #e5b455; color: var(--sabian-accent);            
       font-size: 24px;
       width: 50px;
       height: 50px;
@@ -247,26 +266,40 @@
       font-family: Arial, sans-serif; /* Explicit clean stack to prevent arrow breakage */
     }
     .slider-btn:hover {
-      background: var(--sabian-accent);
-      color: var(--sabian-primary); 
+      background: #e5b455; background: var(--sabian-accent);
+      color: #0d3a24; color: var(--sabian-primary); 
     }
     .slider-btn.prev { left: 20px; }
     .slider-btn.next { right: 20px; }
 
     /* ==========================================================
-       🆕 DDU-STYLE SPLIT ABOUT LAYOUT PROFILE SECTION 
+        🆕 DDU-STYLE SPLIT ABOUT LAYOUT PROFILE SECTION 
        ========================================================== */
     .ddu-about-section {
       background-color: #ffffff;
       padding: 60px 0;
       border-bottom: 1px solid #eef3f0;
     }
+    
+    /* FIX: Added safe flexbox implementation fallback for non-grid engines */
     .about-split-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr; /* Exact equal 50/50 block layout like DDU */
+      display: flex;
+      flex-wrap: wrap;
       gap: 40px;
       align-items: center;
     }
+    .about-image-frame, .about-text-content {
+      flex: 1 1 450px; /* Falls back safely if CSS Grid fails */
+    }
+    
+    /* Modern supporting engines run this cleanly */
+    @supports (display: grid) {
+      .about-split-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
     .about-image-frame {
       position: relative;
       border-radius: 6px;
@@ -280,11 +313,9 @@
       display: block;
     }
     
-    /* 🛠️ FIXXED: Removed the overlay box outline framework border from image stack here */
-    
     .about-text-content h2 {
       font-size: 28px;
-      color: var(--sabian-primary);
+      color: #0d3a24; color: var(--sabian-primary);
       margin: 0 0 18px 0;
       font-weight: 700;
       position: relative;
@@ -294,7 +325,7 @@
       display: block;
       width: 60px;
       height: 3px;
-      background-color: var(--sabian-accent);
+      background-color: #e5b455; background-color: var(--sabian-accent);
       margin-top: 10px;
     }
     .about-text-content p {
@@ -309,16 +340,15 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background-color: var(--sabian-primary);
+      background-color: #0d3a24; background-color: var(--sabian-primary);
       color: #ffffff !important;
       padding: 12px 24px;
       font-weight: 700;
       font-size: 14px;
       border-radius: 4px;
-      border: 1px solid var(--sabian-primary);
+      border: 1px solid #0d3a24; border: 1px solid var(--sabian-primary);
       transition: background-color 0.2s, border-color 0.2s;
     }
-    /* Sharp geometric right-facing custom CSS accent pointer triangle */
     .ddu-readmore-btn::after {
       content: "";
       display: inline-block;
@@ -326,7 +356,7 @@
       height: 0;
       border-top: 4px solid transparent;
       border-bottom: 4px solid transparent;
-      border-left: 6px solid var(--sabian-accent);
+      border-left: 6px solid #e5b455; border-left: 6px solid var(--sabian-accent);
       transition: transform 0.2s ease;
     }
     .ddu-readmore-btn:hover {
@@ -339,21 +369,45 @@
 
     /* LAYOUT PATTERNS */
     .content-section { padding: 50px 0; }
-    .section-title { font-size: 26px; color: var(--sabian-primary); margin-bottom: 25px; border-left: 5px solid var(--sabian-accent); padding-left: 12px; font-weight: 700; }
-    .announcements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-    .card { background: var(--card); border-radius: 8px; padding: 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.03); border-top: 4px solid var(--sabian-primary); border-bottom: 1px solid #e2e8e4; }
-    .card-date { font-size: 12px; color: var(--muted); font-weight: bold; letter-spacing: 0.5px; }
-    .card-title { margin: 10px 0; font-size: 18px; color: var(--sabian-primary); font-weight: 700; }
+    .section-title { font-size: 26px; color: #0d3a24; color: var(--sabian-primary); margin-bottom: 25px; border-left: 5px solid #e5b455; border-left: 5px solid var(--sabian-accent); padding-left: 12px; font-weight: 700; }
+    
+    /* FIX: Fallback structure for announcements column wrapper */
+    .announcements-grid { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 24px; 
+    }
+    .card { 
+      flex: 1 1 320px; 
+      background: #ffffff; background: var(--card); 
+      border-radius: 8px; 
+      padding: 20px; 
+      box-shadow: 0 4px 14px rgba(0,0,0,0.03); 
+      border-top: 4px solid #0d3a24; border-top: 4px solid var(--sabian-primary); 
+      border-bottom: 1px solid #e2e8e4; 
+      box-sizing: border-box;
+    }
+    
+    @supports (display: grid) {
+      .announcements-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      }
+      .card { flex: none; }
+    }
+
+    .card-date { font-size: 12px; color: #556b5c; color: var(--muted); font-weight: bold; letter-spacing: 0.5px; }
+    .card-title { margin: 10px 0; font-size: 18px; color: #0d3a24; color: var(--sabian-primary); font-weight: 700; }
     .card p { color: #333333; line-height: 1.5; }
     
-    footer { background: var(--sabian-primary); color: #d0ded6; padding: 35px 0; text-align: center; font-size: 14px; margin-top: 50px; border-top: 4px solid var(--sabian-accent); }
-    footer a { color: var(--sabian-accent); font-weight: bold; }
+    footer { background: #0d3a24; background: var(--sabian-primary); color: #d0ded6; padding: 35px 0; text-align: center; font-size: 14px; margin-top: 50px; border-top: 4px solid #e5b455; border-top: 4px solid var(--sabian-accent); }
+    footer a { color: #e5b455; color: var(--sabian-accent); font-weight: bold; }
     footer strong { color: white; font-size: 16px; }
 
     /* PHONE INTERFACES */
     @media (max-width: 880px) {
       .menu-toggle { display: block; }
-      .nav-menu { display: none; flex-direction: column; width: 100%; background-color: var(--sabian-menu-bg); position: absolute; top: 100%; left: 0; }
+      .nav-menu { display: none; flex-direction: column; width: 100%; background-color: #f2f6f3; background-color: var(--sabian-menu-bg); position: absolute; top: 100%; left: 0; }
       .nav-menu.show { display: flex; }
       .nav-menu ul { position: relative; width: 100%; box-shadow: none; }
       .brand-flex { flex-direction: column; text-align: center; gap: 10px; }
@@ -363,7 +417,7 @@
       .hero-container { padding: 0 45px; }
       
       /* Mobile stack configuration parameters */
-      .about-split-grid { grid-template-columns: 1fr; gap: 25px; }
+      .about-split-grid { flex-direction: column; }
       .about-image-frame img { height: 280px; }
     }
   </style>
@@ -549,14 +603,14 @@
           <div class="card-date">OCTOBER 24, 2025</div>
           <h3 class="card-title">Admission Process Protocol Window</h3>
           <p>Official registration parameters have launched. Please check tracking workflows via our main Telegram portal channel logs.</p>
-          <a href="https://t.me/DireSabian2011/6311" target="_blank" style="color:var(--accent-link); font-weight:bold;">View Telegram Attachment →</a>
+          <a href="https://t.me/DireSabian2011/6311" target="_blank" style="color:#1066b7; color:var(--accent-link); font-weight:bold;">View Telegram Attachment →</a>
         </article>
 
         <article class="card">
           <div class="card-date">OCTOBER 29, 2025</div>
           <h3 class="card-title">National Examination Matrix Block</h3>
           <p>The matrix schedules for regional testing boundaries are compiled. Students are requested to review rules before entering exam cells.</p>
-          <a href="https://t.me/DireSabian2011/6313" target="_blank" style="color:var(--accent-link); font-weight:bold;">View Telegram Attachment →</a>
+          <a href="https://t.me/DireSabian2011/6313" target="_blank" style="color:#1066b7; color:var(--accent-link); font-weight:bold;">View Telegram Attachment →</a>
         </article>
       </div>
     </div>
@@ -570,29 +624,29 @@
   </footer>
 
   <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const navMenu = document.getElementById('navMenu');
+    var menuToggle = document.getElementById('menuToggle');
+    var navMenu = document.getElementById('navMenu');
 
     if(menuToggle && navMenu) {
-      menuToggle.addEventListener('click', (e) => {
+      menuToggle.addEventListener('click', function(e) {
         e.stopPropagation();
         navMenu.classList.toggle('show');
       });
 
-      document.addEventListener('click', (e) => {
+      document.addEventListener('click', function(e) {
         if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
           navMenu.classList.remove('show');
         }
       });
     }
 
-    const slides = document.querySelectorAll('.slide');
-    const prevBtn = document.getElementById('prevSlideBtn');
-    const nextBtn = document.getElementById('nextSlideBtn');
+    var slides = document.querySelectorAll('.slide');
+    var prevBtn = document.getElementById('prevSlideBtn');
+    var nextBtn = document.getElementById('nextSlideBtn');
     
-    let currentSlideIndex = 0;
-    let slideTimer = null;
-    const changeIntervalTime = 5000; 
+    var currentSlideIndex = 0;
+    var slideTimer = null;
+    var changeIntervalTime = 5000; 
 
     function updateCarouselDisplay(nextIndex) {
       slides[currentSlideIndex].classList.remove('active');
@@ -601,12 +655,12 @@
     }
 
     function navigateForward() {
-      const computedIndex = (currentSlideIndex + 1) % slides.length;
+      var computedIndex = (currentSlideIndex + 1) % slides.length;
       updateCarouselDisplay(computedIndex);
     }
 
     function navigateBackward() {
-      const computedIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+      var computedIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
       updateCarouselDisplay(computedIndex);
     }
 
@@ -618,12 +672,12 @@
     if(slides.length > 1) {
       slideTimer = setInterval(navigateForward, changeIntervalTime);
 
-      nextBtn.addEventListener('click', () => {
+      nextBtn.addEventListener('click', function() {
         navigateForward();
         resetAutomationClock();
       });
 
-      prevBtn.addEventListener('click', () => {
+      prevBtn.addEventListener('click', function() {
         navigateBackward();
         resetAutomationClock();
       });
