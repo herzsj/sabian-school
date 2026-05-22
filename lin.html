@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Sabian Secondary School</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Official external links directory for Sabian Secondary School." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Ethiopic:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* 0. LEGACY HTML5 ELEMENT PATCHING FOR OLD IE ENGINES */
+    main, section, article, header, footer, nav, aside {
+      display: block;
+    }
+
+    :root {
+      --sabian-primary: #0d3a24;     
+      --sabian-accent: #e5b455;      
+      --sabian-menu-bg: #f2f6f3;     
+      --sabian-menu-hover: #dce7e1;  
+      --accent-link: #1066b7;        
+      --bg: #f6f9f7;
+      --card: #ffffff;
+      --text-dark: #111111;          
+      --muted: #556b5c;
+    }
+
+    html, body { 
+      height: 100%; 
+      margin: 0; 
+      background-color: #f6f9f7; 
+      color: #111111; 
+      font-family: 'Noto Sans Ethiopic', 'Nyala', 'Abyssinica SIL', 'Segoe UI', 'Times New Roman', Arial, sans-serif;
+    }
+    a { text-decoration: none; -webkit-transition: color 0.2s, background 0.2s, padding-left 0.2s; transition: color 0.2s, background 0.2s, padding-left 0.2s; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; box-sizing: border-box; }
+    
+    /* Clearfix for older float-based rendering engines */
+    .container::after, .menu-inner::after, .top-bar-inner::after, .brand-flex::after, .category-section::after, .link-item-block::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* 1. TOP BAR AREA */
+    .site-top-bar {
+      background-color: #0d3a24; /* Legacy Fallback */
+      background-color: var(--sabian-primary); 
+      color: #ffffff;
+      font-size: 13px;
+      padding: 10px 0;
+      border-bottom: 2px solid #e5b455; /* Legacy Fallback */
+      border-bottom: 2px solid var(--sabian-accent); 
+    }
+    .top-bar-inner { 
+      display: block;
+      display: -webkit-box; display: -ms-flexbox; display: flex; 
+      -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; 
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center; 
+    }
+    .top-bar-links { float: left; }
+    .top-bar-links a { color: #ffffff; margin-right: 16px; font-weight: 600; display: inline-block; }
+    .top-bar-links a:hover { color: #e5b455; color: var(--sabian-accent); }
+    .top-bar-location { float: right; font-weight: 600; }
+
+    /* 2. MAIN BRAND IDENTIFIER SECTION */
+    .brand-banner-area {
+      background: #ffffff;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .brand-flex { 
+      display: block;
+      display: -webkit-box; display: -ms-flexbox; display: flex; 
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center; 
+    }
+    .school-logo { 
+      float: left;
+      width: 110px; 
+      height: 110px; 
+      object-fit: contain; 
+      border-radius: 50%; 
+      margin-right: 20px;
+    }
+    .brand-titles { float: left; }
+    .brand-titles h1 { margin: 0; font-size: 32px; color: #0d3a24; color: var(--sabian-primary); font-weight: 700; letter-spacing: -0.5px; font-family: 'Noto Sans Ethiopic', 'Nyala', 'Segoe UI', sans-serif; }
+    .brand-titles p { margin: 4px 0 0; font-size: 22px; color: #0d3a24; color: var(--sabian-primary); font-weight: 600; font-family: 'Noto Sans Ethiopic', 'Nyala', sans-serif; }
+
+    /* 3. STICKY MENU AREA */
+    .menu-area {
+      background-color: #ffc61b;
+      position: relative; 
+      position: -webkit-sticky; 
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .menu-inner { 
+      display: block;
+      display: -webkit-box; display: -ms-flexbox; display: flex; 
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center; 
+      -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; 
+      position: relative; 
+    }
+    .nav-menu { display: block; display: -webkit-box; display: -ms-flexbox; display: flex; list-style: none; margin: 0; padding: 0; float: left; }
+    .nav-menu > li { position: relative; float: left; }
+    .nav-menu > li > a { 
+      display: block; 
+      padding: 14px 20px; 
+      color: #111111; 
+      font-weight: 700; 
+      font-size: 15px;
+    }
+    .nav-menu > li:hover > a { background-color: #dce7e1; background-color: var(--sabian-menu-hover); color: #0d3a24; color: var(--sabian-primary); }
+
+    .has-dropdown > a {
+      display: block;
+      display: -webkit-box !important; display: -ms-flexbox !important; display: flex !important;
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center;
+    }
+    .has-dropdown > a::after {
+      content: "";
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid #111111;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .has-dropdown:hover > a::after { border-top-color: #0d3a24; border-top-color: var(--sabian-primary); }
+
+    .nav-menu ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #ffffff;
+      min-width: 240px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      border-top: 3px solid #0d3a24;
+      border-top: 3px solid var(--sabian-primary);
+      z-index: 9999;
+    }
+    .nav-menu ul li a {
+      display: block;
+      padding: 11px 16px;
+      color: #111111;
+      font-size: 14px;
+      font-weight: 600;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .nav-menu ul li a:hover { background-color: #f2f6f3; background-color: var(--sabian-menu-bg); color: #0d3a24; color: var(--sabian-primary); padding-left: 22px; }
+    .nav-menu li:hover > ul { display: block; }
+
+    .menu-toggle { display: none; background: transparent; border: 0; font-size: 24px; cursor: pointer; padding: 10px; color: #0d3a24; color: var(--sabian-primary); font-family: Arial, sans-serif; float: right; }
+
+    /* 4. SEPARATED LINK CATEGORIES DIRECTORY STYLE */
+    .directory-wrapper {
+      padding: 50px 0;
+      background-color: #ffffff;
+      clear: both;
+    }
+    
+    .category-section {
+      background-color: #ffffff;
+      border: 1px solid #e1e8e4;
+      border-radius: 6px;
+      padding: 25px;
+      margin-bottom: 35px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    /* Distinct header bars for each separate group */
+    .category-title {
+      font-size: 22px;
+      color: #0d3a24;
+      color: var(--sabian-primary);
+      margin: 0 0 20px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e5b455;
+      border-bottom: 2px solid var(--sabian-accent);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Individual link wrapper module inside the sections */
+    .link-item-block {
+      background-color: #f8faf9;
+      border-left: 4px solid #0d3a24;
+      border-left: 4px solid var(--sabian-primary);
+      padding: 14px 18px;
+      margin-bottom: 15px;
+      border-radius: 0 4px 4px 0;
+      display: block; /* Native block layout preservation */
+    }
+    
+    .link-item-block:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Very short descriptive text right above the link anchor */
+    .link-text-above {
+      font-size: 14px;
+      font-weight: 600;
+      color: #444444;
+      margin: 0 0 5px 0;
+      line-height: 1.4;
+    }
+
+    /* Actual link styles to make copy-pasting clean */
+    .actual-clickable-link {
+      font-size: 14px;
+      color: #1066b7;
+      color: var(--accent-link);
+      font-weight: 700;
+      word-break: break-all; /* Prevents container breaking from long text layouts */
+      display: inline-block;
+    }
+
+    .actual-clickable-link:hover {
+      color: #0d3a24;
+      color: var(--sabian-primary);
+      text-decoration: underline;
+    }
+
+    footer { background: #0d3a24; background: var(--sabian-primary); color: #d0ded6; padding: 35px 0; text-align: center; font-size: 14px; margin-top: 50px; border-top: 4px solid #e5b455; border-top: 4px solid var(--sabian-accent); clear: both; }
+
+    /* RESPONSIVE LAYOUTS */
+    @media (max-width: 880px) {
+      .menu-toggle { display: block; }
+      .nav-menu { display: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; width: 100%; background-color: #f2f6f3; position: absolute; top: 100%; left: 0; float: none; }
+      .nav-menu.show { display: block; display: -webkit-box; display: -ms-flexbox; display: flex; }
+      .nav-menu > li { float: none; width: 100%; }
+      .nav-menu ul { position: relative; width: 100%; box-shadow: none; }
+      .brand-flex { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; text-align: center; }
+      .school-logo { margin-right: 0; margin-bottom: 10px; float: none; }
+      .brand-titles { float: none; }
+      .brand-titles h1 { font-size: 26px; }
+      .brand-titles p { font-size: 18px; }
+      .top-bar-inner { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 8px; text-align: center; }
+      .top-bar-links { float: none; }
+      .top-bar-links a { margin: 0 8px; }
+      .top-bar-location { float: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-links">
+        <a href="https://t.me/DireSabian2011" target="_blank">Official Telegram Portal</a>
+        <a href="library.html">Digital Student Library</a>
+        <a href="#">eLearning Platform</a>
+      </div>
+      <div class="top-bar-location">Dire Dawa, Ethiopia</div>
+    </div>
+  </div>
+
+  <div class="brand-banner-area">
+    <div class="container brand-flex">
+      <img src="logo2.jpg" alt="Sabian Secondary & Preparatory School Shield" class="school-logo">
+      <div class="brand-titles">
+        <h1>Sabian Secondary School</h1>
+        <p>ሳ/ሁ/ደ/ት/ቤት</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="strickymenu" class="menu-area">
+    <div class="container menu-inner">
+      <button class="menu-toggle" id="menuToggle" aria-label="Open Navigation Options">☰</button>
+      
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        
+        <li class="has-dropdown">
+          <a href="#">About Us</a>
+          <ul>
+            <li><a href="backg.html">Background</a></li>
+            <li><a href="vimi.html">Vision & Mission</a></li>
+            <li><a href="#">Director's Message</a></li>
+            <li><a href="#">Contact Details</a></li>
+          </ul>
+        </li>
+
+        <li class="has-dropdown">
+          <a href="#">Academics</a>
+          <ul>
+            <li><a href="#">Natural Science</a></li>
+            <li><a href="#">Social Science</a></li>
+            <li><a href="#">Grade 9 & 10 Classrooms</a></li>
+            <li><a href="#">Academic Calendar</a></li>
+            <li><a href="library.html">Digital Student Library</a></li>
+            <li><a href="#">Latest Notice Feed</a></li>    
+          </ul>
+        </li>
+
+        <li class="has-dropdown">
+          <a href="#">Students</a>
+          <ul>
+            <li><a href="#">Clubs & Mini-Media Lab</a></li>
+            <li><a href="#">Top Scorers Wall</a></li>
+          </ul>
+        </li>
+       
+        <li class="has-dropdown">
+          <a href="#">Administration</a>
+          <ul>
+            <li><a href="#">Teachers Association</a></li>
+            <li><a href="#">Staff </a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <main class="directory-wrapper">
+    <div class="container">
+
+      <section class="category-section">
+        <div class="category-title">Telegram</div>
+        
+        <div class="link-item-block">
+          <div class="link-text-above">What is this link? This is the main official informational channel for students.</div>
+          <a href="https://t.me/DireSabian2011" target="_blank" class="actual-clickable-link">https://t.me/DireSabian2011</a>
+        </div>
+
+        <div class="link-item-block">
+          <div class="link-text-above">What is this link? Paste description for your second telegram link here.</div>
+          <a href="#" target="_blank" class="actual-clickable-link">https://t.me/your_second_link_here</a>
+        </div>
+      </section>
+
+      <section class="category-section">
+        <div class="category-title">Gov</div>
+        
+        <div class="link-item-block">
+          <div class="link-text-above">What is this link? Regional announcements page.</div>
+          <a href="#" target="_blank" class="actual-clickable-link">https://example-gov-link.gov.et</a>
+        </div>
+      </section>
+
+      <section class="category-section">
+        <div class="category-title">Edu</div>
+        
+        <div class="link-item-block">
+          <div class="link-text-above">Edu Entrance & Assessment Portal</div>
+          <a href="https://exam2.ethernet.edu.et" target="_blank" class="actual-clickable-link">https://exam2.ethernet.edu.et</a>
+        </div>
+      </section>
+
+      <section class="category-section">
+        <div class="category-title">Fanabc Links</div>
+        
+        <div class="link-item-block">
+          <div class="link-text-above">የ12ኛ ክፍል ሀገር አቀፍ ፈተና ለመስጠት 667 የፈተና ማዕከላት ተዘጋጁ</div>
+          <a href="https://www.fanabc.com/archives/315192" target="_blank" class="actual-clickable-link">https://www.fanabc.com/archives/315192</a>
+        </div>
+
+        <div class="link-item-block">
+          <div class="link-text-above">የዘንድሮ የ12ኛ ክፍል ማጠናቀቂያ ፈተና ከሰኔ 24 እስከ ሐምሌ 17 ድረስ ይሰጣል</div>
+          <a href="https://www.fanabc.com/archives/313611" target="_blank" class="actual-clickable-link">https://www.fanabc.com/archives/313611</a>
+        </div>
+      </section>
+
+      <section class="category-section">
+        <div class="category-title">Facebook</div>
+        
+        <div class="link-item-block">
+          <div class="link-text-above">Sabian Facebook Media Resource Update 1</div>
+          <a href="https://www.facebook.com/share/r/1JEfwksNjg/" target="_blank" class="actual-clickable-link">https://www.facebook.com/share/r/1JEfwksNjg/</a>
+        </div>
+
+        <div class="link-item-block">
+          <div class="link-text-above">Sabian Facebook Media Resource Update 2</div>
+          <a href="https://www.facebook.com/share/1Dvwv1QciY/" target="_blank" class="actual-clickable-link">https://www.facebook.com/share/1Dvwv1QciY/</a>
+        </div>
+
+        <div class="link-item-block">
+          <div class="link-text-above">Sabian Facebook Media Resource Update 3</div>
+          <a href="https://www.facebook.com/share/17iLvzCHS6/" target="_blank" class="actual-clickable-link">https://www.facebook.com/share/17iLvzCHS6/</a>
+        </div>
+      </section>
+
+      <section class="category-section">
+        <div class="category-title">Others Links</div>
+        
+        <div class="link-item-block">
+          <div class="link-text-above">TikuretEntrance - #1 Ethiopian Secondary School Leaving Examination Preparation Platform</div>
+          <a href="https://tikuretentrance.com/" target="_blank" class="actual-clickable-link">https://tikuretentrance.com/</a>
+        </div>
+
+        <div class="link-item-block">
+          <div class="link-text-above">Sabian Secondary TikTok Informational Video Updates Feed</div>
+          <a href="https://vt.tiktok.com/ZS9AH5Vv9/" target="_blank" class="actual-clickable-link">https://vt.tiktok.com/ZS9AH5Vv9/</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Copyright &copy; 2026 Sabian Secondary School. All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    var menuToggle = document.getElementById('menuToggle');
+    var navMenu = document.getElementById('navMenu');
+
+    if(menuToggle && navMenu) {
+      menuToggle.addEventListener('click', function(e) {
+        if (e.stopPropagation) {
+          e.stopPropagation();
+        } else {
+          e.cancelBubble = true;
+        }
+        if (navMenu.className.indexOf('show') === -1) {
+          navMenu.className += ' show';
+        } else {
+          navMenu.className = navMenu.className.replace(' show', '');
+        }
+      });
+
+      document.addEventListener('click', function(e) {
+        var target = e.target || e.srcElement;
+        if (!navMenu.contains(target) && !menuToggle.contains(target)) {
+          navMenu.className = navMenu.className.replace(' show', '');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
