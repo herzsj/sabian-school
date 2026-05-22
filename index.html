@@ -12,47 +12,55 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Ethiopic:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    /* 0. LEGACY HTML5 ELEMENT PATCHING FOR OLD IE ENGINES */
+    main, section, article, header, footer, nav {
+      display: block;
+    }
+
     :root {
-      /* Exact Color Palettes Sampled From Your Updated Shield Emblem */
-      --sabian-primary: #0d3a24;     /* Rich deep forest green from the outer rings */
-      --sabian-accent: #e5b455;      /* Elegant golden yellow from the leaves and stars */
-      --sabian-menu-bg: #f2f6f3;     /* Sophisticated muted cream-green menu belt */
-      --sabian-menu-hover: #dce7e1;  /* Balanced green tint for smooth selection indicators */
-      --accent-link: #1066b7;        /* Clean, high-contrast operational action blue */
+      --sabian-primary: #0d3a24;     
+      --sabian-accent: #e5b455;      
+      --sabian-menu-bg: #f2f6f3;     
+      --sabian-menu-hover: #dce7e1;  
+      --accent-link: #1066b7;        
       --bg: #f6f9f7;
       --card: #ffffff;
-      --text-dark: #111111;          /* Ground zero black value for text tags */
+      --text-dark: #111111;          
       --muted: #556b5c;
       
-      /* Prioritized Noto Sans Ethiopic across the engine for complete system safety */
       font-family: 'Noto Sans Ethiopic', 'Times New Roman', Inter, system-ui, sans-serif;
     }
 
     html, body { 
       height: 100%; 
       margin: 0; 
-      background: #f6f9f7; /* Static fallback */
-      background: var(--bg); 
-      color: #111111; /* Static fallback */
+      background-color: #f6f9f7; 
+      background-color: var(--bg); 
+      color: #111111; 
       color: var(--text-dark); 
       font-family: 'Noto Sans Ethiopic', 'Times New Roman', Arial, sans-serif;
     }
-    a { text-decoration: none; transition: color 0.2s, background 0.2s, padding-left 0.2s; }
+    a { text-decoration: none; -webkit-transition: color 0.2s, background 0.2s, padding-left 0.2s; transition: color 0.2s, background 0.2s, padding-left 0.2s; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; box-sizing: border-box; }
 
     /* 1. TOP BAR AREA */
     .site-top-bar {
-      background-color: #0d3a24; /* Static fallback */
+      background-color: #0d3a24; 
       background-color: var(--sabian-primary);
       color: #ffffff;
       font-size: 13px;
       padding: 10px 0;
-      border-bottom: 2px solid #e5b455; /* Static fallback */
+      border-bottom: 2px solid #e5b455; 
       border-bottom: 2px solid var(--sabian-accent);
     }
-    .top-bar-inner { display: flex; justify-content: space-between; align-items: center; }
+    .top-bar-inner { 
+      display: -webkit-box; display: -ms-flexbox; display: flex; 
+      -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; 
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center; 
+    }
     .top-bar-links a { color: #ffffff; margin-right: 16px; font-weight: 600; }
     .top-bar-links a:hover { color: #e5b455; color: var(--sabian-accent); }
+    .top-bar-location { font-weight: 600; }
 
     /* 2. MAIN BRAND IDENTIFIER SECTION */
     .brand-banner-area {
@@ -60,34 +68,38 @@
       padding: 18px 0;
       border-bottom: 1px solid rgba(0,0,0,0.06);
     }
-
-    .brand-flex { display: flex; align-items: center; gap: 20px; }
-    
+    .brand-flex { 
+      display: -webkit-box; display: -ms-flexbox; display: flex; 
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center; 
+    }
     .school-logo { 
       width: 110px; 
       height: 110px; 
       object-fit: contain; 
       border-radius: 50%; 
+      margin-right: 20px; /* Safe alternative fallback for gap */
     }
-    
     .brand-titles h1 { margin: 0; font-size: 32px; color: #0d3a24; color: var(--sabian-primary); font-weight: 700; letter-spacing: -0.5px; }
     .brand-titles p { margin: 4px 0 0; font-size: 22px; color: #0d3a24; color: var(--sabian-primary); font-weight: 600; }
 
     /* 3. STICKY MENU AREA */
     .menu-area {
       background-color: #ffc61b;
-      position: -webkit-sticky; /* Legacy support */
+      position: -webkit-sticky; 
       position: sticky;
       top: 0;
       z-index: 100;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       border-bottom: 1px solid rgba(0,0,0,0.05);
     }
-    .menu-inner { display: flex; align-items: center; justify-content: space-between; position: relative; }
-    
-    .nav-menu { display: flex; list-style: none; margin: 0; padding: 0; }
+    .menu-inner { 
+      display: -webkit-box; display: -ms-flexbox; display: flex; 
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center; 
+      -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; 
+      position: relative; 
+    }
+    .nav-menu { display: -webkit-box; display: -ms-flexbox; display: flex; list-style: none; margin: 0; padding: 0; }
     .nav-menu > li { position: relative; }
-    
     .nav-menu > li > a { 
       display: block; 
       padding: 14px 20px; 
@@ -99,9 +111,8 @@
 
     /* PURE CSS BULLETPROOF DROPDOWN ARROWS FOR LEGACY OS SETUPS */
     .has-dropdown > a {
-      display: flex !important;
-      align-items: center;
-      gap: 6px;
+      display: -webkit-box !important; display: -ms-flexbox !important; display: flex !important;
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center;
     }
     .has-dropdown > a::after {
       content: "";
@@ -112,13 +123,15 @@
       border-right: 4px solid transparent;
       border-top: 5px solid #111111;
       border-top: 5px solid var(--text-dark);
+      margin-left: 6px;
       margin-top: 2px;
+      -webkit-transition: -webkit-transform 0.2s ease, border-top-color 0.2s;
       transition: transform 0.2s ease, border-top-color 0.2s;
     }
     .has-dropdown:hover > a::after {
       border-top-color: #0d3a24;
       border-top-color: var(--sabian-primary);
-      transform: rotate(180deg);
+      -webkit-transform: rotate(180deg); transform: rotate(180deg);
     }
 
     .nav-menu ul {
@@ -148,7 +161,7 @@
 
     .menu-toggle { display: none; background: transparent; border: 0; font-size: 24px; cursor: pointer; padding: 10px; color: #0d3a24; color: var(--sabian-primary); font-family: sans-serif; }
 
-    /* AUTOMATED SLIDESHOW HERO CORE WITH INTERACTIVE MANIFOLDS */
+    /* CAROUSEL CONTROLS MATRIX */
     .hero {
       position: relative; 
       height: 600px; 
@@ -157,35 +170,28 @@
       background-color: #0d3a24; 
       background-color: var(--sabian-primary); 
     }
-    
     .slide {
       position: absolute;
-      /* FIX: Removed 'inset: 0' to protect legacy browsers */
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       opacity: 0;
+      -webkit-transition: opacity 0.8s ease-in-out;
       transition: opacity 0.8s ease-in-out;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      display: flex;
-      align-items: center;
+      display: -webkit-box; display: -ms-flexbox; display: flex;
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center;
       color: #ffffff;
       z-index: 1;
-      filter: brightness(1.15);
     }
-    
     .slide.active {
       opacity: 1;
       z-index: 2;
     }
     
-    /* Sequential mapping paths for background banners */
     .slide:nth-of-type(1) { background-image: url("header1.jpg"); }
     .slide:nth-of-type(2) { background-image: url("header2.jpg"); }
-    .slide:nth-of-type(3) { background-image: url("header3.jpeg"); }
+    .slide:nth-of-type(3) { background-image: url("header3.jpg"); }
     .slide:nth-of-type(4) { background-image: url("header4.jpg"); }
     .slide:nth-of-type(5) { background-image: url("header5.jpg"); }
     .slide:nth-of-type(6) { background-image: url("header6.jpg"); }
@@ -201,34 +207,31 @@
       padding: 0 60px; 
     }
 
-    /* --- DYNAMIC TEXT ENTRY ANIMATIONS --- */
+    /* TEXT ENTRY REVEALS PRESETS */
     .slide .hero-container h2,
     .slide .hero-container p {
       opacity: 0;
-      transform: translateY(25px);
-      transition: none;
     }
-
-    /* Triggered smooth sequence entries as soon as slide switches */
     .slide.active .hero-container h2 {
-      animation: textRevealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      -webkit-animation: textRevealUp 0.6s ease forwards;
+      animation: textRevealUp 0.6s ease forwards;
+      -webkit-animation-delay: 0.4s;
       animation-delay: 0.4s;
     }
-
     .slide.active .hero-container p {
-      animation: textRevealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      -webkit-animation: textRevealUp 0.6s ease forwards;
+      animation: textRevealUp 0.6s ease forwards;
+      -webkit-animation-delay: 0.6s;
       animation-delay: 0.6s;
     }
 
+    @-webkit-keyframes textRevealUp {
+      from { opacity: 0; -webkit-transform: translateY(25px); }
+      to { opacity: 1; -webkit-transform: translateY(0); }
+    }
     @keyframes textRevealUp {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .hero-container h2 { 
@@ -245,12 +248,11 @@
       text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.85), -1px -1px 0 rgba(0,0,0,0.4), 1px -1px 0 rgba(0,0,0,0.4), -1px 1px 0 rgba(0,0,0,0.4), 1px 1px 0 rgba(0,0,0,0.4);
     }
 
-    /* INTERACTIVE SLIDE DIRECTIONAL CONTROLS */
     .slider-btn {
       position: absolute;
       top: 50%;
-      transform: translateY(-50%);
-      background: rgba(13, 58, 36, 0.7); 
+      -webkit-transform: translateY(-50%); transform: translateY(-50%);
+      background: #0d3a24; background: rgba(13, 58, 36, 0.7); 
       border: 2px solid #e5b455; border: 2px solid var(--sabian-accent); 
       color: #e5b455; color: var(--sabian-accent);            
       font-size: 24px;
@@ -259,11 +261,11 @@
       border-radius: 50%;
       cursor: pointer;
       z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s, color 0.3s;
-      font-family: Arial, sans-serif; /* Explicit clean stack to prevent arrow breakage */
+      display: -webkit-box; display: -ms-flexbox; display: flex;
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center;
+      -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center;
+      -webkit-transition: background 0.3s, color 0.3s; transition: background 0.3s, color 0.3s;
+      font-family: Arial, sans-serif; 
     }
     .slider-btn:hover {
       background: #e5b455; background: var(--sabian-accent);
@@ -272,39 +274,35 @@
     .slider-btn.prev { left: 20px; }
     .slider-btn.next { right: 20px; }
 
-    /* ==========================================================
-        🆕 DDU-STYLE SPLIT ABOUT LAYOUT PROFILE SECTION 
-       ========================================================== */
+    /* SPLIT SECTION WITH SYSTEM FALLBACKS */
     .ddu-about-section {
       background-color: #ffffff;
       padding: 60px 0;
       border-bottom: 1px solid #eef3f0;
     }
-    
-    /* FIX: Added safe flexbox implementation fallback for non-grid engines */
     .about-split-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      align-items: center;
+      display: -webkit-box; display: -ms-flexbox; display: flex;
+      -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row;
+      -ms-flex-wrap: wrap; flex-wrap: wrap;
     }
-    .about-image-frame, .about-text-content {
-      flex: 1 1 450px; /* Falls back safely if CSS Grid fails */
-    }
-    
-    /* Modern supporting engines run this cleanly */
-    @supports (display: grid) {
-      .about-split-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
     .about-image-frame {
+      -webkit-box-flex: 1; -ms-flex: 1 1 450px; flex: 1 1 450px;
       position: relative;
       border-radius: 6px;
       overflow: hidden;
       box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+      margin-right: 20px; 
+    }
+    .about-text-content {
+      -webkit-box-flex: 1; -ms-flex: 1 1 450px; flex: 1 1 450px;
+    }
+    @supports (display: grid) {
+      .about-split-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 40px;
+      }
+      .about-image-frame { margin-right: 0; }
     }
     .about-image-frame img {
       width: 100%;
@@ -312,13 +310,11 @@
       object-fit: cover;
       display: block;
     }
-    
     .about-text-content h2 {
       font-size: 28px;
       color: #0d3a24; color: var(--sabian-primary);
       margin: 0 0 18px 0;
       font-weight: 700;
-      position: relative;
     }
     .about-text-content h2::after {
       content: "";
@@ -335,11 +331,8 @@
       margin: 0 0 24px 0;
     }
     
-    /* SYSTEM-SAFE READ MORE BUTTON BLOCK */
     .ddu-readmore-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
+      display: inline-block;
       background-color: #0d3a24; background-color: var(--sabian-primary);
       color: #ffffff !important;
       padding: 12px 24px;
@@ -347,38 +340,23 @@
       font-size: 14px;
       border-radius: 4px;
       border: 1px solid #0d3a24; border: 1px solid var(--sabian-primary);
-      transition: background-color 0.2s, border-color 0.2s;
-    }
-    .ddu-readmore-btn::after {
-      content: "";
-      display: inline-block;
-      width: 0;
-      height: 0;
-      border-top: 4px solid transparent;
-      border-bottom: 4px solid transparent;
-      border-left: 6px solid #e5b455; border-left: 6px solid var(--sabian-accent);
-      transition: transform 0.2s ease;
+      -webkit-transition: background-color 0.2s, border-color 0.2s; transition: background-color 0.2s, border-color 0.2s;
     }
     .ddu-readmore-btn:hover {
       background-color: #061f13;
       border-color: #061f13;
     }
-    .ddu-readmore-btn:hover::after {
-      transform: translateX(4px);
-    }
 
-    /* LAYOUT PATTERNS */
+    /* GRID ARCHITECTURE FALLBACKS */
     .content-section { padding: 50px 0; }
     .section-title { font-size: 26px; color: #0d3a24; color: var(--sabian-primary); margin-bottom: 25px; border-left: 5px solid #e5b455; border-left: 5px solid var(--sabian-accent); padding-left: 12px; font-weight: 700; }
     
-    /* FIX: Fallback structure for announcements column wrapper */
     .announcements-grid { 
-      display: flex; 
-      flex-wrap: wrap; 
-      gap: 24px; 
+      display: -webkit-box; display: -ms-flexbox; display: flex; 
+      -ms-flex-wrap: wrap; flex-wrap: wrap; 
     }
     .card { 
-      flex: 1 1 320px; 
+      -webkit-box-flex: 1; -ms-flex: 1 1 320px; flex: 1 1 320px; 
       background: #ffffff; background: var(--card); 
       border-radius: 8px; 
       padding: 20px; 
@@ -386,14 +364,16 @@
       border-top: 4px solid #0d3a24; border-top: 4px solid var(--sabian-primary); 
       border-bottom: 1px solid #e2e8e4; 
       box-sizing: border-box;
+      margin: 10px;
     }
-    
     @supports (display: grid) {
       .announcements-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        grid-gap: 24px;
+        margin: 0;
       }
-      .card { flex: none; }
+      .card { flex: none; margin: 0; }
     }
 
     .card-date { font-size: 12px; color: #556b5c; color: var(--muted); font-weight: bold; letter-spacing: 0.5px; }
@@ -404,21 +384,23 @@
     footer a { color: #e5b455; color: var(--sabian-accent); font-weight: bold; }
     footer strong { color: white; font-size: 16px; }
 
-    /* PHONE INTERFACES */
+    /* RESPONSIVE LAYOUTS */
     @media (max-width: 880px) {
       .menu-toggle { display: block; }
-      .nav-menu { display: none; flex-direction: column; width: 100%; background-color: #f2f6f3; background-color: var(--sabian-menu-bg); position: absolute; top: 100%; left: 0; }
-      .nav-menu.show { display: flex; }
+      .nav-menu { display: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; width: 100%; background-color: #f2f6f3; background-color: var(--sabian-menu-bg); position: absolute; top: 100%; left: 0; }
+      .nav-menu.show { display: -webkit-box; display: -ms-flexbox; display: flex; }
       .nav-menu ul { position: relative; width: 100%; box-shadow: none; }
-      .brand-flex { flex-direction: column; text-align: center; gap: 10px; }
+      .brand-flex { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; text-align: center; }
+      .school-logo { margin-right: 0; margin-bottom: 10px; }
       .brand-titles h1 { font-size: 26px; }
       .brand-titles p { font-size: 18px; }
       .slider-btn { width: 40px; height: 40px; font-size: 18px; }
       .hero-container { padding: 0 45px; }
-      
-      /* Mobile stack configuration parameters */
-      .about-split-grid { flex-direction: column; }
+      .about-split-grid { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
+      .about-image-frame { margin-right: 0; margin-bottom: 20px; }
       .about-image-frame img { height: 280px; }
+      .top-bar-inner { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 8px; text-align: center; }
+      .top-bar-links a { margin: 0 8px; }
     }
   </style>
 </head>
@@ -515,7 +497,7 @@
 
       <div class="slide">
         <div class="container hero-container">
-          <h2>ኩረጃን የሚየፍና የታነፀ ትውልድ በመገንባት ሀገራዊ እድገቱን ማሰቀጠል እንደሚገባ ተገለፀ</h2>
+          <h2>የ12ኛ ክፍል ተማሪዎች የዪኒቨርስቲ መግቢያ ማለፊያ ያመጡ</h2>
           <p></p>
         </div>
       </div>
@@ -603,14 +585,14 @@
           <div class="card-date">OCTOBER 24, 2025</div>
           <h3 class="card-title">Admission Process Protocol Window</h3>
           <p>Official registration parameters have launched. Please check tracking workflows via our main Telegram portal channel logs.</p>
-          <a href="https://t.me/DireSabian2011/6311" target="_blank" style="color:#1066b7; color:var(--accent-link); font-weight:bold;">View Telegram Attachment →</a>
+          <a href="https://t.me/DireSabian2011/6311" target="_blank" style="color:#1066b7; font-weight:bold;">View Telegram Attachment →</a>
         </article>
 
         <article class="card">
           <div class="card-date">OCTOBER 29, 2025</div>
           <h3 class="card-title">National Examination Matrix Block</h3>
           <p>The matrix schedules for regional testing boundaries are compiled. Students are requested to review rules before entering exam cells.</p>
-          <a href="https://t.me/DireSabian2011/6313" target="_blank" style="color:#1066b7; color:var(--accent-link); font-weight:bold;">View Telegram Attachment →</a>
+          <a href="https://t.me/DireSabian2011/6313" target="_blank" style="color:#1066b7; font-weight:bold;">View Telegram Attachment →</a>
         </article>
       </div>
     </div>
@@ -629,13 +611,22 @@
 
     if(menuToggle && navMenu) {
       menuToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        navMenu.classList.toggle('show');
+        if (e.stopPropagation) {
+          e.stopPropagation();
+        } else {
+          e.cancelBubble = true;
+        }
+        if (navMenu.className.indexOf('show') === -1) {
+          navMenu.className += ' show';
+        } else {
+          navMenu.className = navMenu.className.replace(' show', '');
+        }
       });
 
       document.addEventListener('click', function(e) {
-        if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-          navMenu.classList.remove('show');
+        var target = e.target || e.srcElement;
+        if (!navMenu.contains(target) && !menuToggle.contains(target)) {
+          navMenu.className = navMenu.className.replace(' show', '');
         }
       });
     }
@@ -649,9 +640,11 @@
     var changeIntervalTime = 5000; 
 
     function updateCarouselDisplay(nextIndex) {
-      slides[currentSlideIndex].classList.remove('active');
+      slides[currentSlideIndex].className = slides[currentSlideIndex].className.replace(' active', '');
       currentSlideIndex = nextIndex;
-      slides[currentSlideIndex].classList.add('active');
+      if (slides[currentSlideIndex].className.indexOf('active') === -1) {
+        slides[currentSlideIndex].className += ' active';
+      }
     }
 
     function navigateForward() {
@@ -672,15 +665,19 @@
     if(slides.length > 1) {
       slideTimer = setInterval(navigateForward, changeIntervalTime);
 
-      nextBtn.addEventListener('click', function() {
-        navigateForward();
-        resetAutomationClock();
-      });
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+          navigateForward();
+          resetAutomationClock();
+        });
+      }
 
-      prevBtn.addEventListener('click', function() {
-        navigateBackward();
-        resetAutomationClock();
-      });
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+          navigateBackward();
+          resetAutomationClock();
+        });
+      }
     } else {
       if(prevBtn && nextBtn) {
         prevBtn.style.display = 'none';
