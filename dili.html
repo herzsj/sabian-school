@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Sabian Secondary School</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Access official textbooks, curriculum materials, and national exam reference documents." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;600;700;800&family=Noto+Sans+Ethiopic:wght=400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* 0. LEGACY HTML5 ELEMENT PATCHING FOR OLD IE ENGINES */
+    main, section, article, header, footer, nav, aside {
+      display: block;
+    }
+
+    :root {
+      --sabian-primary: #0d3a24;     
+      --sabian-accent: #e5b455;      
+      --sabian-menu-bg: #f2f6f3;     
+      --sabian-menu-hover: #dce7e1;  
+      --accent-link: #1066b7;        
+      --bg: #f6f9f7;
+      --card: #ffffff;
+      --text-dark: #111111;          
+      --muted: #556b5c;
+    }
+
+    html, body { 
+      height: 100%; 
+      margin: 0; 
+      background-color: #f6f9f7; 
+      color: #111111; 
+      font-family: 'Noto Sans Ethiopic', 'Nyala', 'Abyssinica SIL', 'Segoe UI', 'Times New Roman', Arial, sans-serif;
+    }
+    a { 
+      text-decoration: none; 
+      -webkit-transition: color 0.2s, background 0.2s; 
+      transition: color 0.2s, background 0.2s; 
+    }
+    
+    /* CLEARFIX FOR OLDER BROWSERS */
+    .container::after, .library-grid::after, .category-row::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    .container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 0 16px; 
+      box-sizing: border-box; 
+    }
+
+    /* 1. TOP BAR AREA */
+    .site-top-bar {
+      background-color: #0d3a24; 
+      color: #ffffff;
+      font-size: 13px;
+      padding: 10px 0;
+      border-bottom: 2px solid #e5b455; 
+    }
+    .top-bar-inner { 
+      display: -webkit-box; display: -ms-flexbox; display: flex; 
+      -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; 
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center; 
+    }
+    .top-bar-links { float: left; }
+    .top-bar-links a { color: #ffffff; margin-right: 16px; font-weight: 600; display: inline-block; }
+    .top-bar-links a:hover { color: #e5b455; }
+    .top-bar-location { font-weight: 600; float: right; }
+
+    /* 2. MAIN BRAND IDENTIFIER SECTION */
+    .brand-banner-area {
+      background: #ffffff;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .brand-flex { 
+      display: -webkit-box; display: -ms-flexbox; display: flex; 
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center; 
+    }
+    .school-logo { 
+      width: 110px; height: 110px; max-width: 110px; max-height: 110px;
+      float: left; border-radius: 50%; margin-right: 20px;
+    }
+    .brand-titles { float: left; }
+    .brand-titles h1 { margin: 0; font-size: 32px; color: #0d3a24; font-weight: 700; letter-spacing: -0.5px; font-family: 'Noto Sans Ethiopic', 'Nyala', 'Segoe UI', sans-serif; }
+    .brand-titles p { margin: 4px 0 0; font-size: 22px; color: #0d3a24; font-weight: 600; font-family: 'Noto Sans Ethiopic', 'Nyala', sans-serif; }
+
+    /* 3. MENU AREA */
+    .menu-area {
+      background-color: #ffc61b;
+      position: -webkit-sticky; position: sticky;
+      top: 0; z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .menu-inner { 
+      display: -webkit-box; display: -ms-flexbox; display: flex; 
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center; 
+      -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; 
+      position: relative; 
+    }
+    .nav-menu { display: -webkit-box; display: -ms-flexbox; display: flex; list-style: none; margin: 0; padding: 0; }
+    .nav-menu > li { position: relative; float: left; }
+    .nav-menu > li > a { display: block; padding: 14px 20px; color: #111111; font-weight: 700; font-size: 15px; }
+    .nav-menu > li:hover > a { background-color: #dce7e1; color: #0d3a24; }
+
+    /* DROPDOWNS */
+    .has-dropdown > a { display: -webkit-box !important; display: -ms-flexbox !important; display: flex !important; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+    .has-dropdown > a::after { content: ""; display: inline-block; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid #111111; margin-left: 6px; margin-top: 2px; }
+    .has-dropdown:hover > a::after { border-top-color: #0d3a24; }
+
+    .nav-menu ul {
+      display: none; position: absolute; top: 100%; left: 0; background: #ffffff; min-width: 240px;
+      list-style: none; padding: 0; margin: 0; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border-top: 3px solid #0d3a24; z-index: 999;
+    }
+    .nav-menu ul li { float: none; width: 100%; }
+    .nav-menu ul li a { display: block; padding: 11px 16px; color: #111111; font-size: 14px; font-weight: 600; border-bottom: 1px solid #f0f0f0; }
+    .nav-menu ul li a:hover { background-color: #f2f6f3; color: #0d3a24; padding-left: 22px; }
+    .nav-menu li:hover > ul { display: block; }
+    .menu-toggle { display: none; background: transparent; border: 0; font-size: 24px; cursor: pointer; padding: 10px; color: #0d3a24; }
+
+    /* 4. LIBRARY HERO */
+    .library-hero {
+      background-color: #0d3a24;
+      color: #ffffff;
+      padding: 40px 0;
+      border-bottom: 4px solid #e5b455;
+    }
+    .library-hero h2 { margin: 0 0 10px 0; font-size: 28px; font-weight: 800; font-family: 'Noto Sans Ethiopic', sans-serif; }
+    .library-hero p { margin: 0; font-size: 16px; color: #d0ded6; }
+
+    /* 5. SEARCH & INTERACTIVE FILTER DECK */
+    .filter-dock {
+      background: #ffffff;
+      padding: 20px;
+      margin: 25px 0;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border: 1px solid #e2e8e4;
+    }
+    .search-input {
+      width: 100%;
+      max-width: 350px;
+      padding: 10px 14px;
+      font-size: 14px;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-family: inherit;
+      float: left;
+    }
+    
+    /* Interactive Filter Controller Switches */
+    .filter-group-container {
+      float: right;
+      display: -webkit-box; display: -ms-flexbox; display: flex;
+      gap: 15px;
+    }
+    .stream-filter-box {
+      display: inline-block;
+      background: #f2f6f3;
+      padding: 4px;
+      border-radius: 6px;
+      border: 1px solid #dce7e1;
+    }
+    .filter-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0d3a24;
+      margin-bottom: 3px;
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .btn-filter {
+      background: transparent;
+      border: 0;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #556b5c;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .btn-filter.active {
+      background-color: #0d3a24;
+      color: #ffffff;
+    }
+
+    /* 6. BOOK ARCHITECTURE LAYOUT */
+    .library-section { padding-bottom: 6px; }
+    .category-block { margin-bottom: 45px; background: #ffffff; padding: 20px; border-radius: 6px; border: 1px solid #e2e8e4; }
+    .category-title { font-size: 22px; color: #0d3a24; margin: 0 0 20px 0; border-left: 5px solid #e5b455; padding-left: 12px; font-weight: 700; }
+    
+    .library-grid {
+      display: -webkit-box; display: -ms-flexbox; display: flex;
+      -ms-flex-wrap: wrap; flex-wrap: wrap;
+      margin: -10px;
+    }
+    
+    /* 4 Column Flex/Float Card Engine Structure */
+    .book-card {
+      -webkit-box-flex: 0; -ms-flex: 0 0 23%; flex: 0 0 23%;
+      width: 23%;
+      float: left;
+      margin: 1%;
+      background: #ffffff;
+      border-radius: 6px;
+      border: 1px solid #e2e8e4;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.02);
+      box-sizing: border-box;
+      overflow: hidden;
+      -webkit-transition: transform 0.2s, opacity 0.3s; transition: transform 0.2s, opacity 0.3s;
+    }
+    .book-card:hover {
+      -webkit-transform: translateY(-4px); transform: translateY(-4px);
+      border-color: #e5b455;
+    }
+    
+    /* Updated for full aspect ratio rendering */
+    .book-cover-placeholder {
+      height: 220px;
+      background: #ffffff;
+      position: relative;
+      overflow: hidden;
+      display: -webkit-box; display: -ms-flexbox; display: flex;
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center;
+      -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+    .book-cover-placeholder img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .badge-stream {
+      position: absolute;
+      top: 8px; left: 8px;
+      background-color: rgba(13, 58, 36, 0.9);
+      color: #ffffff;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      z-index: 10;
+    }
+    
+    .book-details { padding: 14px; }
+    .book-title { margin: 0 0 6px 0; font-size: 14px; color: #0d3a24; font-weight: 700; line-height: 1.4; height: 40px; overflow: hidden; }
+    .book-meta { font-size: 12px; color: #556b5c; margin-bottom: 12px; font-weight: 600; }
+    
+    .download-btn {
+      display: block;
+      text-align: center;
+      background-color: #f2f6f3;
+      color: #0d3a24 !important;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 4px;
+      border: 1px solid #dce7e1;
+    }
+    .download-btn:hover {
+      background-color: #0d3a24;
+      color: #ffffff !important;
+      border-color: #0d3a24;
+    }
+
+    footer { background: #0d3a24; color: #d0ded6; padding: 35px 0; text-align: center; font-size: 14px; margin-top: 50px; border-top: 4px solid #e5b455; clear: both; }
+    footer p { margin: 0; }
+
+    /* RESPONSIVE LAYOUT BREAKPOINTS */
+    @media (max-width: 980px) {
+      .book-card { flex: 0 0 48%; width: 48%; margin: 1%; }
+    }
+
+    @media (max-width: 880px) {
+      .menu-toggle { display: block; }
+      .nav-menu { display: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; width: 100%; background-color: #f2f6f3; position: absolute; top: 100%; left: 0; }
+      .nav-menu.show { display: -webkit-box; display: -ms-flexbox; display: flex; }
+      .nav-menu > li { float: none; width: 100%; }
+      .nav-menu ul { position: relative; width: 100%; box-shadow: none; left: 0; top: 0; }
+      
+      .brand-flex { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; text-align: center; }
+      .school-logo { margin-right: 0; margin-bottom: 10px; float: none; display: inline-block; }
+      .brand-titles { float: none; }
+      
+      .top-bar-inner { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 8px; text-align: center; }
+      .top-bar-links { float: none; display: block; }
+      .top-bar-location { float: none; display: block; margin-top: 5px; }
+
+      .filter-dock { height: auto; }
+      .search-input { width: 100%; max-width: 100%; float: none; margin-bottom: 15px; }
+      .filter-group-container { float: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; width: 100%; }
+    }
+
+    @media (max-width: 480px) {
+      .book-card { flex: 0 0 98%; width: 98%; margin: 1% auto; float: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-links">
+        <a href="https://t.me/DireSabian2011" target="_blank">Official Telegram Portal</a>
+        <a href="index.html">Main Home Portal</a>
+        <a href="#">eLearning Platform</a>
+      </div>
+      <div class="top-bar-location">Dire Dawa, Ethiopia</div>
+    </div>
+  </div>
+
+  <div class="brand-banner-area">
+    <div class="container brand-flex">
+      <img src="logo2.jpg" alt="Sabian Secondary School Shield" class="school-logo">
+      <div class="brand-titles">
+        <h1>Sabian Secondary School</h1>
+        <p>ሳ/ሁ/ደ/ት/ቤት</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="strickymenu" class="menu-area">
+    <div class="container menu-inner">
+      <button class="menu-toggle" id="menuToggle" aria-label="Open Navigation Options">☰</button>
+      
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        
+        <li class="has-dropdown">
+          <a href="#">About Us</a>
+          <ul>
+            <li><a href="backg.html">Background</a></li>
+            <li><a href="vimi.html">Vision & Mission</a></li>
+            <li><a href="#">Director's Message</a></li>
+            <li><a href="#">Contact Details</a></li>
+          </ul>
+        </li>
+
+        <li class="has-dropdown">
+          <a href="#">Academics</a>
+          <ul>
+            <li><a href="#">Natural Science</a></li>
+            <li><a href="#">Social Science</a></li>
+            <li><a href="#">Grade 9 & 10 Classrooms</a></li>
+            <li><a href="#">Academic Calendar</a></li>
+            <li><a href="library.html">Digital Student Library</a></li>
+            <li><a href="#">Latest Notice Feed</a></li>    
+          </ul>
+        </li>
+
+        <li class="has-dropdown">
+          <a href="#">Students</a>
+          <ul>
+            <li><a href="#">Clubs & Mini-Media Lab</a></li>
+            <li><a href="#">Top Scorers Wall</a></li>
+          </ul>
+        </li>
+       
+        <li class="has-dropdown">
+          <a href="#">Administration</a>
+          <ul>
+            <li><a href="#">Teachers Association</a></li>
+            <li><a href="#">Staff </a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="library-hero">
+    <div class="container">
+      <h2>Curriculum Textbooks Library </h2>
+      <p>Quick access to verified national textbook files compiled strictly by academic level and specific learning tracks.</p>
+    </div>
+  </section>
+
+  <main class="container">
+    
+    <div class="filter-dock">
+      <input type="text" id="librarySearch" class="search-input" placeholder="Type text to filter book name..." onkeyup="executeUnifiedFilter()">
+      
+      <div class="filter-group-container">
+        <div>
+          <span class="filter-label">Grade 12 Selection:</span>
+          <div class="stream-filter-box">
+            <button class="btn-filter active" data-grade="12" data-target="all" onclick="setStreamFilter('12', 'all', this)">All</button>
+            <button class="btn-filter" data-grade="12" data-target="natural" onclick="setStreamFilter('12', 'natural', this)">Natural Sci</button>
+            <button class="btn-filter" data-grade="12" data-target="social" onclick="setStreamFilter('12', 'social', this)">Social Sci</button>
+          </div>
+        </div>
+
+        <div>
+          <span class="filter-label">Grade 11 Selection:</span>
+          <div class="stream-filter-box">
+            <button class="btn-filter active" data-grade="11" data-target="all" onclick="setStreamFilter('11', 'all', this)">All</button>
+            <button class="btn-filter" data-grade="11" data-target="natural" onclick="setStreamFilter('11', 'natural', this)">Natural Sci</button>
+            <button class="btn-filter" data-grade="11" data-target="social" onclick="setStreamFilter('11', 'social', this)">Social Sci</button>
+          </div>
+        </div>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+
+    <section class="library-section">
+      
+      <div class="category-block" id="sec-g12">
+        <h3 class="category-title">Grade 12 Curriculum Textbooks</h3>
+        <div class="library-grid">
+          
+          <div class="book-card" data-grade="12" data-stream="natural">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">Natural</span>
+              <img src="https://kehulum.com/ups_asset/b/334/kehulumcom-1759910067c49ce4fbf8.png" alt="Grade 12 Physics Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 12 Physics Student Textbook</h4>
+              <div class="book-meta">Size: 11 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_99/collection/grade-12-physics-new-curriculum--student-textbook-kehulumcom1759910068aff6.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="12" data-stream="natural">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">Natural</span>
+              <img src="https://kehulum.com/up_asset/b/327/kehulum1700126634649d0581b2.png" alt="Grade 12 Chemistry Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 12 Chemistry Student Textbook</h4>
+              <div class="book-meta">Size: 8.8 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_99/collection/grade-12-chemistry-new-curriculum--student-textbook-kehulumcom1759915918b6bd.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="12" data-stream="natural">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">Natural</span>
+              <img src="https://kehulum.com/up_asset/b/325/kehulum17001247543a99d15c8a.png" alt="Grade 12 Chemistry Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 12 Agriculure Student Textbook</h4>
+              <div class="book-meta">Size: 40 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_99/collection/grade-12-agriculure-new-curriculum--student-textbook-kehulumcom175991626076c1.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+           <div class="book-card" data-grade="12" data-stream="natural">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">Natural</span>
+              <img src="https://kehulum.com/up_asset/b/326/kehulum17001262831195680dae.png">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 12 Biology Student Textbook</h4>
+              <div class="book-meta">Size: 172 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_99/collection/grade-12-biology-new-curriculum--student-textbook-kehulumcom17599148324a02.pdf" target="_blank" class="download-btn">Download</a>
+             </div>
+          </div> 
+
+
+           <div class="book-card" data-grade="12" data-stream="natural">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">B/N</span>
+              <img src="https://kehulum.com/ups_asset/b/333/kehulumcom-17599113664d8d5a380a.png">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 12 Mathematics Student Textbook</h4>
+              <div class="book-meta">Size: 117 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_99/collection/grade-12-mathematics-new-curriculum--student-textbook-kehulumcom17599122086bb1.pdf" target="_blank" class="download-btn">Download</a>
+             </div>
+          </div> 
+
+          <div class="book-card" data-grade="12" data-stream="natural">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">B/N</span>
+              <img src="https://kehulum.com/up_asset/b/329/kehulum1700127636c5abe1edc0.png">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 12 English Student Textbook</h4>
+              <div class="book-meta">Size: 15 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_99/collection/grade-12-english-for-ethiopia-new-curriculum--student-textbook-kehulumcom1759915593b3b5.pdf" target="_blank" class="download-btn">Download</a>
+             </div>
+          </div> 
+
+           <div class="book-card" data-grade="12" data-stream="natural">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">B/N</span>
+              <img src="https://kehulum.com/up_asset/b/332/kehulum1700128700850d110616.png">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 12 Information technology (IT) Student Textbook</h4>
+              <div class="book-meta">Size: 10 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_99/collection/grade-12-information-technology-new-curriculum--student-textbook-kehulumcom1759915352faae.pdf" target="_blank" class="download-btn">Download</a>
+             </div>
+          </div>
+
+          <div class="book-card" data-grade="12" data-stream="social">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">Social</span>
+              <img src="https://kehulum.com/up_asset/b/330/kehulum1700128037682eaa7690.png" alt="Grade 12 Geography Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 12 Geography Student Textbook</h4>
+              <div class="book-meta">Size: 10 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_99/collection/grade-12-geography-new-curriculum--student-textbook-kehulumcom17599134797b34.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="12" data-stream="social">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">Social</span>
+              <img src="https://kehulum.com/up_asset/b/331/kehulum17001284034f1ca578a8.png" alt="Grade 12 History Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 12 History Student Textbook</h4>
+              <div class="book-meta">Size: 8 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_99/collection/grade-12-history-new-curriculum--student-textbook-kehulumcom17599097897dd4.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="12" data-stream="social">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">Social</span>
+              <img src="https://kehulum.com/ups_asset/b/328/kehulumcom-1759915781ae11310b01.png" alt="Grade 12 Economics Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 12 Economics Student Textbook</h4>
+              <div class="book-meta">Size: 5 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_99/collection/grade-12-economics-new-curriculum--student-textbook-kehulumcom1759915712056d.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="category-block" id="sec-g11">
+        <h3 class="category-title">Grade 11 Curriculum Textbooks</h3>
+        <div class="library-grid">
+          
+          <div class="book-card" data-grade="11" data-stream="natural">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">Natural</span>
+              <img src="https://kehulum.com/up_asset/b/324/kehulum170012144699c87dbe79.png" alt="Grade 11 Physics Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 11 Physics Student Textbook</h4>
+              <div class="book-meta">Size: PDF, : 11 MB</div>
+              <a href="YOUR_EXTERNAL_URL_HERE" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+
+          <div class="book-card" data-grade="11" data-stream="natural">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">Natural</span>
+              <img src="https://kehulum.com/up_asset/b/315/kehulum170011602717f0c093dd.png" alt="Grade 11 Agriculture Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 11 Agriculture Student Textbook</h4>
+              <div class="book-meta">Size: PDF, : 22 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_98/collection/grade-11-agriculture-new-curriculum--student-textbook-kehulumcom17599249828b69.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+          <div class="book-card" data-grade="11" data-stream="natural">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">Natural</span>
+              <img src="https://kehulum.com/up_asset/b/316/kehulum1700116467aed7867497.png" alt="Grade 11 biology Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title"> Grade 11 Biology Student Textbook</h4>
+              <div class="book-meta">Size: PDF, : 38 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_98/collection/grade-11-biology-new-curriculum--student-textbook-kehulumcom1759924577039e.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+            <div class="book-card" data-grade="11" data-stream="natural">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">Natural</span>
+              <img src="https://kehulum.com/up_asset/b/317/kehulum170011674174ee1b2b18.png"  alt="Grade 11 Chemistry Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 11 Chemistry Student Textbook</h4>
+              <div class="book-meta">Size: PDF, : 10 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_98/collection/grade-11-biology-new-curriculum--student-textbook-kehulumcom1759924577039e.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+            <div class="book-card" data-grade="11" data-stream="natural">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">B/N</span>
+              <img src="https://kehulum.com/up_asset/b/322/kehulum1700118913b7d858f82a.png">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 11 Information technology (IT) Student Textbook</h4>
+              <div class="book-meta">Size: PDF, : 5 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_98/collection/grade-11-information-technology-new-curriculum--student-textbook-kehulumcom17599167591be6.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="11" data-stream="natural">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">B/N</span>
+              <img src="https://kehulum.com/up_asset/b/323/kehulum17001201399d965dcf62.png">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 11 Mathematics Student Textbook</h4>
+              <div class="book-meta">Size: PDF, : 137 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_98/collection/grade-11-mathematics-new-curriculum--student-textbook-kehulumcom1759919088fbdb.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+                  <div class="book-card" data-grade="11" data-stream="natural">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">B/N</span>
+              <img src="https://kehulum.com/up_asset/b/319/kehulum17001180039aa8027c68.png">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 11 English Student Book Textbook</h4>
+              <div class="book-meta">Size: PDF, : 143 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_98/collection/grade-11-english-for-ethiopia-new-curriculum--student-textbook-kehulumcom175992307047b8.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="11" data-stream="social">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">Social</span>
+              <img src="https://kehulum.com/up_asset/b/321/kehulum1700118616884c7ac62d.png" alt="Grade 11 History Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 11 History Student Textbook</h4>
+              <div class="book-meta">Size: 12 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_98/collection/grade-11-history-new-curriculum--student-textbook-kehulumcom17599198807fa3.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="11" data-stream="social">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">Social</span>
+              <img src="https://kehulum.com/up_asset/b/320/kehulum1700118327db25ab5de4.png" alt="Grade 11 Geography Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 11 Geography Student Book Textbook</h4>
+              <div class="book-meta">Size: 11 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_98/collection/grade-11-geography-new-curriculum--student-textbook-kehulumcom1759920987ac44.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+           
+            <div class="book-card" data-grade="11" data-stream="social">
+            <div class="book-cover-placeholder">
+              <span class="badge-stream">Social</span>
+              <img src="https://kehulum.com/up_asset/b/318/kehulum1700117037365f312a63.png">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 11 Economics Student Book Textbook</h4>
+              <div class="book-meta">Size: 7 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_98/collection/grade-11-economics-new-curriculum--student-textbook-kehulumcom17599236035876.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="category-block" id="sec-g10">
+        <h3 class="category-title">Grade 10 Curriculum Textbooks</h3>
+        <div class="library-grid">
+          
+          <div class="book-card" data-grade="10" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/313/kehulum170011282872e2c7d65f.png" alt="Grade 10 Mathematics Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 10 Mathematics Student Book</h4>
+              <div class="book-meta">Size: 20 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_92/collection/grade-10-mathematics-new-curriculum--student-textbook-kehulumcom1759925836e39e.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="10" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/304/kehulum17001085669f7c4581e3.png" alt="Grade 10 Biology Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 10 Biology Student Textbook</h4>
+              <div class="book-meta">Size: 12 MB</div>
+              <a href="https://kehulum.com/books_asset/books_92/collection/grade%2010-biology_kehulumcom_d02c.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="10" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/308/kehulum1700109875b0ff785c5e.png" alt="Grade 10 English Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 10 English Student Textbook</h4>
+              <div class="book-meta">Size: 7 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_92/collection/grade-10-english-for-ethiopia-new-curriculum--student-textbook-kehulumcom1759928736fa82.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="10" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/306/kehulum170010908922db9a8d5a.png" alt="Grade 10 Civics Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 10 Citizenship Education Student Textbook</h4>
+              <div class="book-meta">Size: 12 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_92/collection/grade-10-citizenship-education-new-curriculum--student-textbook-kehulumcom1759929229d024.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="10" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/314/kehulum17001131707d5fa7bd42.png" alt="Grade 10 Civics Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 10 Physics Student Textbook</h4>
+              <div class="book-meta">Size: 10 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_92/collection/grade-10-physics-new-curriculum--student-textbook-kehulumcom17599255229e06.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="10" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/305/kehulum170010881176fee7e1e4.png" alt="Grade 10 Civics Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 10 Chemistry Student Textbook</h4>
+              <div class="book-meta">Size: 7 MB</div>
+              <a href="https://kehulum.com/books_asset/books_92/collection/grade-10-chemistry-new-curriculum--student-textbook-kehulumcom175992936186a3.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="10" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/310/kehulum17001104835147ad834b.png" alt="Grade 10 Civics Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 10 History Student Textbook</h4>
+              <div class="book-meta">Size: 12 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_92/collection/grade-10-history-new-curriculum--student-textbook-kehulumcom1759927358e997.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="10" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/303/kehulum170010827722b512503b.png" alt="Grade 10 Civics Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 10 Amharic Student Textbook</h4>
+              <div class="book-meta">Size: 16 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_92/collection/grade-10-amharic-new-curriculum--student-textbook-kehulumcom1759929798ed19.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="10" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/307/kehulum17001095886ed96b8756.png">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 10 Economics Student Textbook</h4>
+              <div class="book-meta">Size: 5 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_92/collection/grade-10-economics-new-curriculum--student-textbook-kehulumcom1759928992f5b9.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="10" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/311/kehulum1700110725f3fa076415.png">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 10 Health and Physical Education Student Textbook</h4>
+              <div class="book-meta">Size: 10 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_92/collection/grade-10-health-and-physical-education-hpe-new-curriculum--student-textbook-kehulumcom17599270253739.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="10" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/312/kehulum1700112460a96e7c8eae.png">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 10 Student Information technology (IT) Textbook</h4>
+              <div class="book-meta">Size: 12 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_92/collection/grade-10-information-technology-new-curriculum--student-textbook-kehulumcom1759926369d9fc.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="10" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/309/kehulum1700110207b797756a9b.png">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 10 Student Geography Textbook</h4>
+              <div class="book-meta">Size: 12 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_92/collection/grade-10-geography-new-curriculum--student-textbook-kehulumcom17599285581298.pdf " target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+        </div>
+      </div>
+
+      <div class="category-block" id="sec-g9">
+        <h3 class="category-title">Grade 9 Curriculum Textbooks</h3>
+        <div class="library-grid">
+          
+          <div class="book-card" data-grade="9" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/301/kehulum1700104401bc719d0c41.png" alt="Grade 9 Mathematics Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 9 Mathematics Student Book</h4>
+              <div class="book-meta">Size: 18 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_91/collection/grade-9-mathematics-new-curriculum--student-textbook-_kehulum_com_0fa6.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="9" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/296/kehulum17001026849986a7fb61.png" alt="Grade 9 General Science Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 9 English Student Textbook</h4>
+              <div class="book-meta">Size: 78 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_91/collection/grade-9-english-for-ethiopia-new-curriculum--student-textbook-kehulumcom175993262346a1.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="9" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/292/kehulum1700066941b553ce998a.png" alt="Grade 9 Biology Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 9 Biology Student Textbook</h4>
+              <div class="book-meta">Size: 11 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_91/collection/grade-9-biology-new-curriculum--student-textbook-kehulumcom17599334842417.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="9" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/300/kehulum170010415376a86f4221.png" alt="Grade 9 IT Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 9 Information technology (IT) Student Textbook</h4>
+              <div class="book-meta">Size: 14 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_91/collection/grade-9-information-technology-new-curriculum--student-textbook-kehulumcom1759930819ba23.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="9" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/294/kehulum17000736174cd3a40c79.png" alt="Grade 9 Citizenship  Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 9 Citizenship Student Textbook</h4>
+              <div class="book-meta">Size: 7 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_91/collection/grade-9-citizenship-education-new-curriculum--student-textbook-kehulumcom17599329642348.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="9" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/295/kehulum1700073874846cdfbb7d.png" alt="Grade 9 Economics  Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 9 Economics Student Textbook</h4>
+              <div class="book-meta">Size: 5 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_91/collection/grade-9-economics-new-curriculum--student-textbook-kehulumcom1759932804ce76.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+
+         <div class="book-card" data-grade="9" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/ups_asset/b/469/kehulumcom-1742642618010770c948.png" alt="Grade 9   Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 9 Chemistry Student  Textbook</h4>
+              <div class="book-meta">Size: 8 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_91/collection/grade-9-chemistry-new-curriculum--student-textbook-kehulumcom17599332397bc8.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="9" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/302/kehulum1700104626b8ce08725a.png" alt="Grade 9 Physics Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 9 Student Physics Textbook</h4>
+              <div class="book-meta">Size: 8 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_91/collection/grade-9-physics-new-curriculum--student-textbook-kehulumcom1759930084a307.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+
+        <div class="book-card" data-grade="9" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/291/kehulum17000662613aa345e0e0.png" alt="Grade 9 Amharic  Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 9 Amharic Student Textbook</h4>
+              <div class="book-meta">Size: 18 MB</div>
+              <a href="https://kehulum.com/books_asset/books_91/collection/grade-9-amharic-new-curriculum--student-textbook-kehulumcom1759933673b3a1.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="9" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/298/kehulum1700103684e5f04496f8.png" alt="Grade 9 Citizenship  Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 9 History Student Textbook</h4>
+              <div class="book-meta">Size: 10 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_91/collection/grade-9-history-new-curriculum--student-textbook-kehulumcom1759931286d445.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="9" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/299/kehulum170010391438d023fa86.png" alt="Grade 9 Health  Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 9 Health and Physical Education (HPE) Student Textbook</h4>
+              <div class="book-meta">Size: 7 MB</div>
+              <a href="https://kehulum.com/bfile_asset/books_91/collection/grade-9-health-and-physical-education-hpe-new-curriculum--student-textbook-kehulumcom1759931015f4a8.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+          <div class="book-card" data-grade="9" data-stream="general">
+            <div class="book-cover-placeholder">
+              <img src="https://kehulum.com/up_asset/b/297/kehulum1700103242374050debf.png" alt="Grade 9 Citizenship  Cover">
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Grade 9 Geography Student Textbook</h4>
+              <div class="book-meta">Size: 22 MB</div>
+              <a href="https://kehulum.com/books_asset/books_91/collection/grade-9-geography-new-curriculum--student-textbook-kehulumcom1759931498f683.pdf" target="_blank" class="download-btn">Download</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Copyright &copy; 2026 Sabian Secondary School. All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    var activeFilters = {
+      '11': 'all',
+      '12': 'all'
+    };
+
+    function executeUnifiedFilter() {
+      var searchVal = document.getElementById('librarySearch').value.toLowerCase();
+      var bookCards = document.getElementsByClassName('book-card');
+      
+      for (var i = 0; i < bookCards.length; i++) {
+        var card = bookCards[i];
+        var cardGrade = card.getAttribute('data-grade');
+        var cardStream = card.getAttribute('data-stream');
+        var titleText = card.getElementsByClassName('book-title')[0].innerText.toLowerCase();
+        
+        var matchesSearch = (titleText.indexOf(searchVal) > -1);
+        var matchesStream = true;
+        if ((cardGrade === '11' || cardGrade === '12') && activeFilters[cardGrade] !== 'all') {
+          if (cardStream !== activeFilters[cardGrade]) {
+            matchesStream = false;
+          }
+        }
+        
+        if (matchesSearch && matchesStream) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      }
+    }
+
+    function setStreamFilter(grade, targetTrack, element) {
+      activeFilters[grade] = targetTrack;
+      var parentBox = element.parentNode;
+      var buttons = parentBox.getElementsByClassName('btn-filter');
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].className = buttons[i].className.replace(' active', '');
+      }
+      element.className += ' active';
+      executeUnifiedFilter();
+    }
+
+    var menuToggle = document.getElementById('menuToggle');
+    var navMenu = document.getElementById('navMenu');
+
+    if(menuToggle && navMenu) {
+      menuToggle.addEventListener('click', function(e) {
+        if (e && e.stopPropagation) { e.stopPropagation(); } else { window.event.cancelBubble = true; }
+        if (navMenu.className.indexOf('show') === -1) {
+          navMenu.className += ' show';
+        } else {
+          navMenu.className = navMenu.className.replace(' show', '');
+        }
+      });
+
+      document.addEventListener('click', function(e) {
+        var evt = e || window.event;
+        var target = evt.target || evt.srcElement;
+        if (navMenu && menuToggle) {
+          if (!navMenu.contains(target) && !menuToggle.contains(target)) {
+            navMenu.className = navMenu.className.replace(' show', '');
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
