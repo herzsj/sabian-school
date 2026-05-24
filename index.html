@@ -36,8 +36,24 @@
       color: #111111; 
       font-family: 'Noto Sans Ethiopic', 'Nyala', 'Abyssinica SIL', 'Segoe UI', 'Times New Roman', Arial, sans-serif;
     }
-    a { text-decoration: none; -webkit-transition: color 0.2s, background 0.2s, padding-left 0.2s; transition: color 0.2s, background 0.2s, padding-left 0.2s; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; box-sizing: border-box; }
+    a { 
+      text-decoration: none; 
+      -webkit-transition: color 0.2s, background 0.2s, padding-left 0.2s; 
+      transition: color 0.2s, background 0.2s, padding-left 0.2s; 
+    }
+    
+    /* CLEARFIX FOR OLDER BROWSERS */
+    .container::after, .about-split-grid::after, .dashboard-layout::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    .container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 0 16px; 
+      box-sizing: border-box; 
+    }
 
     /* 1. TOP BAR AREA */
     .site-top-bar {
@@ -52,9 +68,12 @@
       -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; 
       -webkit-box-align: center; -ms-flex-align: center; align-items: center; 
     }
-    .top-bar-links a { color: #ffffff; margin-right: 16px; font-weight: 600; }
+    .top-bar-links {
+      float: left;
+    }
+    .top-bar-links a { color: #ffffff; margin-right: 16px; font-weight: 600; display: inline-block; }
     .top-bar-links a:hover { color: #e5b455; }
-    .top-bar-location { font-weight: 600; }
+    .top-bar-location { font-weight: 600; float: right; }
 
     /* 2. MAIN BRAND IDENTIFIER SECTION */
     .brand-banner-area {
@@ -69,9 +88,14 @@
     .school-logo { 
       width: 110px; 
       height: 110px; 
-      object-fit: contain; 
+      max-width: 110px;
+      max-height: 110px;
+      float: left;
       border-radius: 50%; 
       margin-right: 20px;
+    }
+    .brand-titles {
+      float: left;
     }
     .brand-titles h1 { margin: 0; font-size: 32px; color: #0d3a24; font-weight: 700; letter-spacing: -0.5px; font-family: 'Noto Sans Ethiopic', 'Nyala', 'Segoe UI', sans-serif; }
     .brand-titles p { margin: 4px 0 0; font-size: 22px; color: #0d3a24; font-weight: 600; font-family: 'Noto Sans Ethiopic', 'Nyala', sans-serif; }
@@ -93,7 +117,7 @@
       position: relative; 
     }
     .nav-menu { display: -webkit-box; display: -ms-flexbox; display: flex; list-style: none; margin: 0; padding: 0; }
-    .nav-menu > li { position: relative; }
+    .nav-menu > li { position: relative; float: left; }
     .nav-menu > li > a { 
       display: block; 
       padding: 14px 20px; 
@@ -138,6 +162,11 @@
       margin: 0;
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
       border-top: 3px solid #0d3a24;
+      z-index: 999;
+    }
+    .nav-menu ul li {
+      float: none;
+      width: 100%;
     }
     .nav-menu ul li a {
       display: block;
@@ -164,6 +193,7 @@
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       opacity: 0;
+      filter: alpha(opacity=0); /* IE8-9 Fallback */
       -webkit-transition: opacity 0.8s ease-in-out;
       transition: opacity 0.8s ease-in-out;
       background-size: cover;
@@ -176,6 +206,7 @@
     }
     .slide.active {
       opacity: 1;
+      filter: alpha(opacity=100); /* IE8-9 Fallback */
       z-index: 2;
     }
     
@@ -195,6 +226,7 @@
       z-index: 3; 
       max-width: 700px; 
       padding: 0 60px; 
+      margin-top: 200px; /* IE Dynamic vertical centering safe strategy */
     }
 
     .slide .hero-container h2,
@@ -206,12 +238,14 @@
       animation: textRevealUp 0.6s ease forwards;
       -webkit-animation-delay: 0.4s;
       animation-delay: 0.4s;
+      opacity: 1;
     }
     .slide.active .hero-container p {
       -webkit-animation: textRevealUp 0.6s ease forwards;
       animation: textRevealUp 0.6s ease forwards;
       -webkit-animation-delay: 0.6s;
       animation-delay: 0.6s;
+      opacity: 1;
     }
 
     @-webkit-keyframes textRevealUp {
@@ -244,7 +278,7 @@
       -webkit-transform: translateY(-50%); transform: translateY(-50%);
       background: #0d3a24; background: rgba(13, 58, 36, 0.7); 
       border: 2px solid #e5b455; 
-      color: #e5b455;             
+      color: #e5b455;               
       font-size: 24px;
       width: 50px;
       height: 50px;
@@ -256,6 +290,7 @@
       -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center;
       -webkit-transition: background 0.3s, color 0.3s; transition: background 0.3s, color 0.3s;
       font-family: Arial, sans-serif; 
+      margin-top: -25px;
     }
     .slider-btn:hover {
       background: #e5b455; 
@@ -264,7 +299,7 @@
     .slider-btn.prev { left: 20px; }
     .slider-btn.next { right: 20px; }
 
-    /* SPLIT SECTION */
+    /* SPLIT SECTION WITH ROBUST FALLBACK */
     .ddu-about-section {
       background-color: #ffffff;
       padding: 60px 0;
@@ -277,14 +312,18 @@
     }
     .about-image-frame {
       -webkit-box-flex: 1; -ms-flex: 1 1 450px; flex: 1 1 450px;
+      width: 48%;
+      float: left;
       position: relative;
       border-radius: 6px;
       overflow: hidden;
       box-shadow: 0 8px 25px rgba(0,0,0,0.07);
-      margin-right: 20px; 
+      margin-right: 4%; 
     }
     .about-text-content {
       -webkit-box-flex: 1; -ms-flex: 1 1 450px; flex: 1 1 450px;
+      width: 48%;
+      float: right;
     }
     @supports (display: grid) {
       .about-split-grid {
@@ -292,7 +331,8 @@
         grid-template-columns: 1fr 1fr;
         grid-gap: 40px;
       }
-      .about-image-frame { margin-right: 0; }
+      .about-image-frame { margin-right: 0; width: auto; float: none; }
+      .about-text-content { width: auto; float: none; }
     }
     .about-image-frame img {
       width: 100%;
@@ -347,11 +387,13 @@
     }
     .dashboard-column-left {
       -webkit-box-flex: 1; -ms-flex: 1 1 280px; flex: 1 1 280px;
-      margin: 10px;
+      width: 25%;
+      float: left;
     }
     .dashboard-column-right {
       -webkit-box-flex: 2; -ms-flex: 2 1 600px; flex: 2 1 600px;
-      margin: 10px;
+      width: 70%;
+      float: right;
     }
     @supports (display: grid) {
       .dashboard-layout {
@@ -359,7 +401,7 @@
         grid-template-columns: 300px 1fr;
         grid-gap: 30px;
       }
-      .dashboard-column-left, .dashboard-column-right { flex: none; margin: 0; }
+      .dashboard-column-left, .dashboard-column-right { flex: none; margin: 0; width: auto; float: none; }
     }
 
     /* PORTALS / QUICK LINKS VIEWSET */
@@ -376,7 +418,10 @@
       font-weight: 600;
       box-shadow: 0 2px 8px rgba(0,0,0,0.03);
       border-left: 4px solid #e5b455; 
+      display: block; /* Fallback for layout tracking */
     }
+    .resource-link span { display: inline-block; }
+    .resource-link .arrow-icon { float: right; }
     .resource-link:hover {
       background: #0d3a24; 
       color: #ffffff;
@@ -394,15 +439,16 @@
       overflow: hidden;
       box-shadow: 0 4px 15px rgba(0,0,0,0.03);
       border-bottom: 1px solid #e2e8e4;
+      margin-bottom: 20px;
     }
-    .news-img-frame { -webkit-box-flex: 0; -ms-flex: 0 0 220px; flex: 0 0 220px; background-color: #eaeaea; }
-    .news-img-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .news-img-frame { -webkit-box-flex: 0; -ms-flex: 0 0 220px; flex: 0 0 220px; width: 220px; float: left; background-color: #eaeaea; }
+    .news-img-frame img { width: 100%; height: 100%; min-height: 180px; object-fit: cover; display: block; }
     .news-detail-pane { padding: 20px; -webkit-box-flex: 1; -ms-flex: 1; flex: 1; }
     .news-meta-date { font-size: 11px; color: #556b5c; font-weight: bold; letter-spacing: 0.5px; margin-bottom: 6px; }
     .news-headline { margin: 0 0 10px 0; font-size: 18px; color: #0d3a24; font-weight: 700; line-height: 1.4; font-family: 'Noto Sans Ethiopic', 'Nyala', 'Segoe UI', sans-serif; }
     .news-desc { color: #444444; line-height: 1.6; font-size: 14px; margin: 0; }
 
-    footer { background: #0d3a24; color: #d0ded6; padding: 35px 0; text-align: center; font-size: 14px; margin-top: 50px; border-top: 4px solid #e5b455; }
+    footer { background: #0d3a24; color: #d0ded6; padding: 35px 0; text-align: center; font-size: 14px; margin-top: 50px; border-top: 4px solid #e5b455; clear: both; }
     footer a { color: #e5b455; font-weight: bold; }
     footer strong { color: white; font-size: 16px; }
 
@@ -411,22 +457,28 @@
       .menu-toggle { display: block; }
       .nav-menu { display: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; width: 100%; background-color: #f2f6f3; position: absolute; top: 100%; left: 0; }
       .nav-menu.show { display: -webkit-box; display: -ms-flexbox; display: flex; }
-      .nav-menu ul { position: relative; width: 100%; box-shadow: none; }
+      .nav-menu > li { float: none; width: 100%; }
+      .nav-menu ul { position: relative; width: 100%; box-shadow: none; left: 0; top: 0; }
       .brand-flex { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; text-align: center; }
-      .school-logo { margin-right: 0; margin-bottom: 10px; }
+      .school-logo { margin-right: 0; margin-bottom: 10px; float: none; display: inline-block; }
+      .brand-titles { float: none; }
       .brand-titles h1 { font-size: 26px; }
       .brand-titles p { font-size: 18px; }
       .slider-btn { width: 40px; height: 40px; font-size: 18px; }
-      .hero-container { padding: 0 45px; }
+      .hero-container { padding: 0 45px; margin-top: 140px; }
       .about-split-grid { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
-      .about-image-frame { margin-right: 0; margin-bottom: 20px; }
+      .about-image-frame { margin-right: 0; margin-bottom: 20px; width: 100%; float: none; }
       .about-image-frame img { height: 280px; }
+      .about-text-content { width: 100%; float: none; }
       .top-bar-inner { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 8px; text-align: center; }
+      .top-bar-links { float: none; display: block; }
       .top-bar-links a { margin: 0 8px; }
+      .top-bar-location { float: none; display: block; margin-top: 5px; }
       
       .dashboard-layout { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
+      .dashboard-column-left, .dashboard-column-right { width: 100%; float: none; margin-bottom: 30px; }
       .news-card { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
-      .news-img-frame { -webkit-box-flex: 0; -ms-flex: none; flex: none; height: 200px; }
+      .news-img-frame { -webkit-box-flex: 0; -ms-flex: none; flex: none; width: 100%; height: 200px; float: none; }
     }
   </style>
 </head>
@@ -475,9 +527,9 @@
           <ul>
             <li><a href="#">Natural Science</a></li>
             <li><a href="#">Social Science</a></li>
-            <li><a href="#">Grade 9 & 10 Classrooms</a></li>
+            <li><a href="#">Grade 9 & 10 </a></li>
             <li><a href="#">Academic Calendar</a></li>
-            <li><a href="library.html">Digital Student Library</a></li>
+            <li><a href="dili.html">Digital Curriculum Library</a></li>
             <li><a href="#">Latest Notice Feed</a></li>    
           </ul>
         </li>
@@ -510,70 +562,60 @@
       <div class="slide active">
         <div class="container hero-container">
           <h2>ሳቢያን ሁለተኛ ደረጃ ትምሀርት ቤት</h2>
-          <p></p>
         </div>
       </div>
 
       <div class="slide">
         <div class="container hero-container">
           <h2>የመማር ማስተማር ሂደቱን የተሻለ ለማድረግ እና በስነምግባር የታነፀ ትውልድን ለመፍጠር የጋራ ትብብር እንደሚያስፈልግ ተገለፀ</h2>
-          <p></p>
         </div>
       </div>
 
       <div class="slide">
         <div class="container hero-container">
-          <h2>የ12ኛ ክፍል ተማሪዎች የዪኒቨርስቲ መግቢያ ማለፊያ ያመጡ</h2>
-          <p></p>
+          <h2></h2>
         </div>
       </div>
 
       <div class="slide">
         <div class="container hero-container">
           <h2>ለተሻለ ነገ እንተጋለን</h2>
-          <p></p>
         </div>
       </div>
 
       <div class="slide">
         <div class="container hero-container">
           <h2>የዓለም አቀፍ የሴቶች ቀን በሳቢያን ሁለተኛ ደረጃ ትምህርት ቤት በደመቀ ሁኔታ ተከበረ</h2>
-          <p></p>
         </div>
       </div>
 
       <div class="slide">
         <div class="container hero-container">
           <h2>የድሬዳዋ አሰተዳደር ትምህርት ቤት ቢሮ ምክትል ኃላፈ በ ሳቢያን 2ኛ ደረጃ ት/ቤት እየተሰጠ ያለውን የማጠናከሪያ ትምህርት ምልከታ አደርጉ</h2>
-          <p></p>
         </div>
       </div>
 
       <div class="slide">
         <div class="container hero-container">
           <h2></h2>
-          <p></p>
         </div>
       </div>
 
       <div class="slide">
         <div class="container hero-container">
           <h2>ለሀገር እድገት እንተጋለን</h2>
-          <p></p>
-        </div>
-      </div>
-
-      <div class="slide">
-        <div class="container hero-container">
-          <h2></h2>
-          <p></p>
         </div>
       </div>
 
       <div class="slide">
         <div class="container hero-container">
           <h2>ትምህርት ቤቱ የተማሪዎችን ውጤት ለማሻሻል የያዘውን ዕቅድ አፈጻጸም ለመገምገምና ለመምህራንና ተማሪዎች ሞራል ለመስጠት ያለመ ነው</h2>
-          <p></p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="container hero-container">
+          <h2></h2>
         </div>
       </div>
 
@@ -607,7 +649,7 @@
       <div class="dashboard-layout">
         
         <aside class="dashboard-column-left">
-          <h2 class="section-title">Quick Portals</h2>
+          <h2 class="section-title">Portals</h2>
           <ul class="resource-list">
             <li class="resource-item">
               <a href="lin.html" class="resource-link">
@@ -616,8 +658,8 @@
               </a>
             </li>
             <li class="resource-item">
-              <a href="library.html" class="resource-link">
-                <span>Library</span>
+              <a href="dili.html" class="resource-link">
+                <span>Digital Curriculum Library</span>
                 <span class="arrow-icon">&#10142;</span>
               </a>
             </li>
@@ -652,7 +694,7 @@
               </div>
               <div class="news-detail-pane">
                 <div class="news-meta-date">MAY 19, 2026</div>
-                <h3 class="news-headline">የ2018 ዓ.ም የ12ኛ ክፍል ሀገር አቀፍ መልቀቂያ ፈተና በ667 የፈተና ማዕከላት ይሰጣል፡፡</h3>
+                <h3 class="news-headline">የ2018 ዓ.ም የ12ኛ ክፍል ሀገር አቀፍ መልቀቂያ ፈተና በ667 የፈተና ማዕከላት ይሰጣል</h3>
                 <p class="news-desc">
                   የትምህርት ምዘናና ፈተናዎች አገልግሎት የ2018 ዓ.ም የዩኒቨርሲቲ መግቢያ ፈተናን በ97 ዩኒቨርሲቲዎች እና በ570 የክልል ማዕከላት ለመስጠት ዝግጅት እየተደረገ እንደሚገኝ አስታውቋል። ከሰኔ 24 እስከ ሐምሌ 17/2018 ዓ.ም የሚሰጠውን ሀገር አቀፍ ፈተና ለመውሰድ በአጠቃላይ 564,219 ተማሪዎች ተመዝግበዋል። ፈተናውን በበይነ መረብ (Online) ለመስጠት ሰፊ ዝግጅት እየተደረገ ይገኛል።
                 </p>
@@ -672,6 +714,45 @@
               </div>
             </article>
 
+            <article class="news-card">
+              <div class="news-img-frame">
+                <img src="mes3.jpg" alt="Sabian Digital Laboratory Setup">
+              </div>
+              <div class="news-detail-pane">
+                <div class="news-meta-date">MAY 13, 2026</div>
+                <h3 class="news-headline">‎የ2018 ዓም የ12ኛ ክፍል አገር ከቀፍ ፈተና በአስተዳደሩ ሙሉ በሙሉ በበይነ መረብ እንደሚሰጥ የድሬዳዋ አስተዳደር ትምህርት ቢሮ ገለጸ</h3>
+                <p class="news-desc">
+                  ድሬዳዋ ግንቦት 5 ቀን 2018 ዓ.ም፡- በድሬዳዋ አስተዳድር የሚገኙ የከተማም ሆነ የገጠር ሁለተኛ ደረጃ ትምህርት ቤቶች የ2018 ዓ.ም የ12ኛ ክፍል ማጠቃለያ ፈተናን ሙሉ በሙሉ በበይነ መረብ (ኦንላይን) እንደሚወስዱ የትምህርት ቢሮ አስታወቀ።
+                </p>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <div class="news-img-frame">
+                <img src="mes4.jpg" alt="Sabian Digital Laboratory Setup">
+              </div>
+              <div class="news-detail-pane">
+                <div class="news-meta-date">MAY 10, 2026</div>
+                <h3 class="news-headline">‎በድሬዳዋ አስተዳደር ከ700 በላይ ጥያቄዎች የተስተናገዱበት የጥያቄና መልስ ውድድር ወደ "አሸናፊዎች አሸናፊ" የሚደረገው ጉዞም በተሳካ መንገድ ተጠናቀቀ</h3>
+                <p class="news-desc">
+                  ድሬዳዋ ግንቦት 1 ቀን 2018 ዓ.ም፡- የድሬዳዋ አስተዳደር ትምህርት ቢሮ "ተወዳዳሪ ትውልድ!" በሚል መሪ ቃል ለ12ኛ ክፍል ተማሪዎች ያዘጋጀው የጥያቄና መልስ ውድድር ሁለተኛ ዙር በዛሬው ዕለት በድምቀት ተጠናቀቀ።
+                </p>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <div class="news-img-frame">
+                <img src="mes5.jpg" alt="Sabian Digital Laboratory Setup">
+              </div>
+              <div class="news-detail-pane">
+                <div class="news-meta-date">MAY 2, 2026</div>
+                <h3 class="news-headline">‎12ኛው አስተዳደር አቀፍ የተማሪዎችና የመምህራን የሳይንስና ቴክኖሎጂ ፈጠራ ስራ አውደ ርዕይ ተጠናቀቀ</h3>
+                <p class="news-desc">
+                  ሚያዝያ 24 ቀን 2018 ዓ.ም የድሬዳዋ አስተዳደር ትምህርት ቢሮ ሲያዘጋጀው የቆየው 12ኛው አስተዳደር አቀፍ የሳይንስና ቴክኖሎጂ ፈጠራ አውደ ርዕይ “የፈጠራ ስራ ለሀገር እድገት!” በሚል መሪ ቃል በዛሬው ዕለት በድምቀት ተጠናቀቀ። ላለፉት ሦስት ቀናት በኮንጎ ሜዳ ስፖርት ማዘውተሪያ ማዕከል ሲካሄድ በቆየው በዚህ አውደ ርዕይ ላይ በተማሪዎችና በመምህራን የቀረቡ በርካታ ችግር ፈቺ የፈጠራ ስራዎች ለዕይታ ቀርበዋል።
+                </p>
+              </div>
+            </article>
+
           </div>
         </section>
 
@@ -686,15 +767,26 @@
   </footer>
 
   <script>
+    // DEFENSIVE PROTOTYPE METHOD POLYFILL FOR ANCIENT ENGINES
+    if (!Element.prototype.contains) {
+      Element.prototype.contains = function(el) {
+        while (el) {
+          if (el === this) return true;
+          el = el.parentNode;
+        }
+        return false;
+      };
+    }
+
     var menuToggle = document.getElementById('menuToggle');
     var navMenu = document.getElementById('navMenu');
 
     if(menuToggle && navMenu) {
       menuToggle.addEventListener('click', function(e) {
-        if (e.stopPropagation) {
+        if (e && e.stopPropagation) {
           e.stopPropagation();
         } else {
-          e.cancelBubble = true;
+          window.event.cancelBubble = true;
         }
         if (navMenu.className.indexOf('show') === -1) {
           navMenu.className += ' show';
@@ -704,9 +796,12 @@
       });
 
       document.addEventListener('click', function(e) {
-        var target = e.target || e.srcElement;
-        if (!navMenu.contains(target) && !menuToggle.contains(target)) {
-          navMenu.className = navMenu.className.replace(' show', '');
+        var evt = e || window.event;
+        var target = evt.target || evt.srcElement;
+        if (navMenu && menuToggle) {
+          if (!navMenu.contains(target) && !menuToggle.contains(target)) {
+            navMenu.className = navMenu.className.replace(' show', '');
+          }
         }
       });
     }
@@ -720,6 +815,7 @@
     var changeIntervalTime = 5000; 
 
     function updateCarouselDisplay(nextIndex) {
+      if(!slides[currentSlideIndex] || !slides[nextIndex]) return;
       slides[currentSlideIndex].className = slides[currentSlideIndex].className.replace(' active', '');
       currentSlideIndex = nextIndex;
       if (slides[currentSlideIndex].className.indexOf('active') === -1) {
@@ -728,11 +824,13 @@
     }
 
     function navigateForward() {
+      if(!slides.length) return;
       var computedIndex = (currentSlideIndex + 1) % slides.length;
       updateCarouselDisplay(computedIndex);
     }
 
     function navigateBackward() {
+      if(!slides.length) return;
       var computedIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
       updateCarouselDisplay(computedIndex);
     }
@@ -742,7 +840,7 @@
       slideTimer = setInterval(navigateForward, changeIntervalTime);
     }
 
-    if(slides.length > 1) {
+    if(slides && slides.length > 1) {
       slideTimer = setInterval(navigateForward, changeIntervalTime);
 
       if (nextBtn) {
