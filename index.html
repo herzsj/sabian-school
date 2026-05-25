@@ -10,6 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Ethiopic:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
   <style>
     /* 0. LEGACY HTML5 ELEMENT PATCHING FOR OLD IE ENGINES */
@@ -43,7 +45,7 @@
     }
     
     /* CLEARFIX FOR OLDER BROWSERS */
-    .container::after, .about-split-grid::after, .dashboard-layout::after {
+    .container::after, .about-split-grid::after, .dashboard-layout::after, .footer-row::after {
       content: "";
       display: table;
       clear: both;
@@ -116,7 +118,7 @@
       -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; 
       position: relative; 
     }
-    .nav-menu { display: -webkit-box; display: -ms-flexbox; display: flex; list-style: none; margin: 0; padding: 0; }
+    .nav-menu { display: -webkit-box; display: -ms-flexbox; display: flex; list-style: none; margin: 0; padding: 0; float: left; }
     .nav-menu > li { position: relative; float: left; }
     .nav-menu > li > a { 
       display: block; 
@@ -126,6 +128,38 @@
       font-size: 15px;
     }
     .nav-menu > li:hover > a { background-color: #dce7e1; color: #0d3a24; }
+
+    /* NAV SEARCH BAR (WIN7 SAFE) */
+    .nav-search-container {
+      float: right;
+      padding: 8px 0;
+    }
+    .nav-search-form {
+      display: inline-block;
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #dce7e1;
+    }
+    .nav-search-input {
+      border: none;
+      padding: 6px 12px;
+      font-size: 13px;
+      outline: none;
+      width: 140px;
+      background: transparent;
+    }
+    .nav-search-btn {
+      background: transparent;
+      color: #0d3a24;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .nav-search-btn:hover {
+      color: #1066b7;
+    }
 
     /* DROPDOWN ARROWS WITH WIN7 FALLBACKS */
     .has-dropdown > a {
@@ -184,7 +218,7 @@
     /* CAROUSEL CONTROLS MATRIX */
     .hero {
       position: relative; 
-      height: 600px; 
+      height: 700px; 
       margin-top: 4px;
       overflow: hidden;
       background-color: #0d3a24; 
@@ -206,7 +240,7 @@
     }
     .slide.active {
       opacity: 1;
-      filter: alpha(opacity=100); /* IE8-9 Fallback */
+      filter: alpha(opacity=100);
       z-index: 2;
     }
     
@@ -226,25 +260,12 @@
       z-index: 3; 
       max-width: 700px; 
       padding: 0 60px; 
-      margin-top: 200px; /* IE Dynamic vertical centering safe strategy */
+      margin-top: 200px; 
     }
 
-    .slide .hero-container h2,
-    .slide .hero-container p {
-      opacity: 0;
-    }
     .slide.active .hero-container h2 {
       -webkit-animation: textRevealUp 0.6s ease forwards;
       animation: textRevealUp 0.6s ease forwards;
-      -webkit-animation-delay: 0.4s;
-      animation-delay: 0.4s;
-      opacity: 1;
-    }
-    .slide.active .hero-container p {
-      -webkit-animation: textRevealUp 0.6s ease forwards;
-      animation: textRevealUp 0.6s ease forwards;
-      -webkit-animation-delay: 0.6s;
-      animation-delay: 0.6s;
       opacity: 1;
     }
 
@@ -258,242 +279,420 @@
     }
 
     .hero-container h2 { 
-      font-size: 25px; 
-      margin: 0 0 12px; 
-      font-weight: 800; 
-      color: #ffffff; 
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.85), -1px -1px 0 rgba(0,0,0,0.4), 1px -1px 0 rgba(0,0,0,0.4), -1px 1px 0 rgba(0,0,0,0.4), 1px 1px 0 rgba(0,0,0,0.4);
-      font-family: 'Noto Sans Ethiopic', 'Nyala', 'Segoe UI', sans-serif;
-    }
-    .hero-container p { 
-      font-size: 18px; 
-      line-height: 1.5; 
-      color: #ffffff; 
-      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.85), -1px -1px 0 rgba(0,0,0,0.4), 1px -1px 0 rgba(0,0,0,0.4), -1px 1px 0 rgba(0,0,0,0.4), 1px 1px 0 rgba(0,0,0,0.4);
+      font-size: 25px; margin: 0 0 12px; font-weight: 800; color: #ffffff; 
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.85);
     }
 
     .slider-btn {
-      position: absolute;
-      top: 50%;
+      position: absolute; top: 50%;
       -webkit-transform: translateY(-50%); transform: translateY(-50%);
-      background: #0d3a24; background: rgba(13, 58, 36, 0.7); 
-      border: 2px solid #e5b455; 
-      color: #e5b455;               
-      font-size: 24px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 10;
-      display: -webkit-box; display: -ms-flexbox; display: flex;
-      -webkit-box-align: center; -ms-flex-align: center; align-items: center;
-      -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center;
-      -webkit-transition: background 0.3s, color 0.3s; transition: background 0.3s, color 0.3s;
-      font-family: Arial, sans-serif; 
-      margin-top: -25px;
+      background: rgba(13, 58, 36, 0.7); 
+      border: 2px solid #e5b455; color: #e5b455; 
+      font-size: 24px; width: 50px; height: 50px; border-radius: 50%;
+      cursor: pointer; z-index: 10; margin-top: -25px;
     }
-    .slider-btn:hover {
-      background: #e5b455; 
-      color: #0d3a24; 
-    }
+    .slider-btn:hover { background: #e5b455; color: #0d3a24; }
     .slider-btn.prev { left: 20px; }
     .slider-btn.next { right: 20px; }
 
-    /* SPLIT SECTION WITH ROBUST FALLBACK */
-    .ddu-about-section {
-      background-color: #ffffff;
-      padding: 60px 0;
-      border-bottom: 1px solid #eef3f0;
-    }
-    .about-split-grid {
-      display: -webkit-box; display: -ms-flexbox; display: flex;
-      -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row;
-      -ms-flex-wrap: wrap; flex-wrap: wrap;
-    }
-    .about-image-frame {
-      -webkit-box-flex: 1; -ms-flex: 1 1 450px; flex: 1 1 450px;
-      width: 48%;
-      float: left;
-      position: relative;
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
-      margin-right: 4%; 
-    }
-    .about-text-content {
-      -webkit-box-flex: 1; -ms-flex: 1 1 450px; flex: 1 1 450px;
-      width: 48%;
-      float: right;
-    }
-    @supports (display: grid) {
-      .about-split-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 40px;
-      }
-      .about-image-frame { margin-right: 0; width: auto; float: none; }
-      .about-text-content { width: auto; float: none; }
-    }
-    .about-image-frame img {
-      width: 100%;
-      height: 380px;
-      object-fit: cover;
-      display: block;
-    }
-    .about-text-content h2 {
-      font-size: 28px;
-      color: #0d3a24; 
-      margin: 0 0 18px 0;
-      font-weight: 700;
-    }
-    .about-text-content h2::after {
-      content: "";
-      display: block;
-      width: 60px;
-      height: 3px;
-      background-color: #e5b455; 
-      margin-top: 10px;
-    }
-    .about-text-content p {
-      color: #333333;
-      font-size: 16px;
-      line-height: 1.7;
-      margin: 0 0 24px 0;
-    }
+    /* SPLIT SECTION & GRID ARCHITECTURE (Unchanged) */
+    .ddu-about-section { background-color: #ffffff; padding: 60px 0; border-bottom: 1px solid #eef3f0; }
+    .about-split-grid { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; -ms-flex-wrap: wrap; flex-wrap: wrap; }
+    .about-image-frame { -webkit-box-flex: 1; -ms-flex: 1 1 450px; flex: 1 1 450px; width: 48%; float: left; border-radius: 6px; overflow: hidden; margin-right: 4%; }
+    .about-text-content { -webkit-box-flex: 1; -ms-flex: 1 1 450px; flex: 1 1 450px; width: 48%; float: right; }
+    .about-image-frame img { width: 100%; height: 380px; object-fit: cover; display: block; }
+    .about-text-content h2 { font-size: 28px; color: #0d3a24; margin: 0 0 18px 0; font-weight: 700; }
+    .about-text-content h2::after { content: ""; display: block; width: 60px; height: 3px; background-color: #e5b455; margin-top: 10px; }
+    .about-text-content p { color: #333333; font-size: 16px; line-height: 1.7; margin: 0 0 24px 0; }
+    .ddu-readmore-btn { display: inline-block; background-color: #0d3a24; color: #ffffff !important; padding: 12px 24px; font-weight: 700; font-size: 14px; border-radius: 4px; border: 1px solid #0d3a24; }
     
-    .ddu-readmore-btn {
-      display: inline-block;
-      background-color: #0d3a24; 
-      color: #ffffff !important;
-      padding: 12px 24px;
-      font-weight: 700;
-      font-size: 14px;
-      border-radius: 4px;
-      border: 1px solid #0d3a24; 
-      -webkit-transition: background-color 0.2s, border-color 0.2s; transition: background-color 0.2s, border-color 0.2s;
-    }
-    .ddu-readmore-btn:hover {
-      background-color: #061f13;
-      border-color: #061f13;
-    }
-
-    /* GRID ARCHITECTURE AND DASHBOARD LAYOUT */
     .content-section { padding: 50px 0; }
     .section-title { font-size: 26px; color: #0d3a24; margin-bottom: 25px; border-left: 5px solid #e5b455; padding-left: 12px; font-weight: 700; }
+    .dashboard-layout { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; }
+    .dashboard-column-left { -webkit-box-flex: 1; -ms-flex: 1 1 280px; flex: 1 1 280px; width: 25%; float: left; }
+    .dashboard-column-right { -webkit-box-flex: 2; -ms-flex: 2 1 600px; flex: 2 1 600px; width: 70%; float: right; }
     
-    .dashboard-layout {
-      display: -webkit-box; display: -ms-flexbox; display: flex;
-      -ms-flex-wrap: wrap; flex-wrap: wrap;
-    }
-    .dashboard-column-left {
-      -webkit-box-flex: 1; -ms-flex: 1 1 280px; flex: 1 1 280px;
-      width: 25%;
-      float: left;
-    }
-    .dashboard-column-right {
-      -webkit-box-flex: 2; -ms-flex: 2 1 600px; flex: 2 1 600px;
-      width: 70%;
-      float: right;
-    }
-    @supports (display: grid) {
-      .dashboard-layout {
-        display: grid;
-        grid-template-columns: 300px 1fr;
-        grid-gap: 30px;
-      }
-      .dashboard-column-left, .dashboard-column-right { flex: none; margin: 0; width: auto; float: none; }
-    }
-
-    /* PORTALS / QUICK LINKS VIEWSET */
     .resource-list { list-style: none; padding: 0; margin: 0; }
     .resource-item { margin-bottom: 12px; }
-    .resource-link {
-      display: -webkit-box; display: -ms-flexbox; display: flex;
-      -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between;
-      -webkit-box-align: center; -ms-flex-align: center; align-items: center;
-      background: #ffffff; 
-      padding: 14px 18px;
-      border-radius: 6px;
-      color: #111111; 
-      font-weight: 600;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-      border-left: 4px solid #e5b455; 
-      display: block; /* Fallback for layout tracking */
-    }
+    .resource-link { background: #ffffff; padding: 14px 18px; border-radius: 6px; color: #111111; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border-left: 4px solid #e5b455; display: block; }
     .resource-link span { display: inline-block; }
     .resource-link .arrow-icon { float: right; }
-    .resource-link:hover {
-      background: #0d3a24; 
-      color: #ffffff;
-      padding-left: 24px;
-    }
+    .resource-link:hover { background: #0d3a24; color: #ffffff; padding-left: 24px; }
     .resource-link:hover .arrow-icon { color: #e5b455; }
-    .arrow-icon { color: #556b5c; -webkit-transition: color 0.2s; transition: color 0.2s; }
-
-    /* LATEST NEWS DEEP ARCHITECTURE */
+    
     .news-stack { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 20px; }
-    .news-card {
-      display: -webkit-box; display: -ms-flexbox; display: flex;
-      background: #ffffff; 
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-      border-bottom: 1px solid #e2e8e4;
-      margin-bottom: 20px;
-    }
+    .news-card { display: -webkit-box; display: -ms-flexbox; display: flex; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border-bottom: 1px solid #e2e8e4; margin-bottom: 20px; }
     .news-img-frame { -webkit-box-flex: 0; -ms-flex: 0 0 220px; flex: 0 0 220px; width: 220px; float: left; background-color: #eaeaea; }
     .news-img-frame img { width: 100%; height: 100%; min-height: 180px; object-fit: cover; display: block; }
     .news-detail-pane { padding: 20px; -webkit-box-flex: 1; -ms-flex: 1; flex: 1; }
-    .news-meta-date { font-size: 11px; color: #556b5c; font-weight: bold; letter-spacing: 0.5px; margin-bottom: 6px; }
-    .news-headline { margin: 0 0 10px 0; font-size: 18px; color: #0d3a24; font-weight: 700; line-height: 1.4; font-family: 'Noto Sans Ethiopic', 'Nyala', 'Segoe UI', sans-serif; }
+    .news-meta-date { font-size: 11px; color: #556b5c; font-weight: bold; margin-bottom: 6px; }
+    .news-headline { margin: 0 0 10px 0; font-size: 18px; color: #0d3a24; font-weight: 700; line-height: 1.4; }
     .news-desc { color: #444444; line-height: 1.6; font-size: 14px; margin: 0; }
 
-    footer { background: #0d3a24; color: #d0ded6; padding: 35px 0; text-align: center; font-size: 14px; margin-top: 50px; border-top: 4px solid #e5b455; clear: both; }
-    footer a { color: #e5b455; font-weight: bold; }
-    footer strong { color: white; font-size: 16px; }
+    /* ========================================================
+       NEW: BULLETPROOF WIN7 FOOTER ARCHITECTURE
+       ======================================================== */
+    .site-footer {
+      background-color: #212529; /* Dark Bootstrap Equivalent */
+      color: #ffffff;
+      padding: 60px 0 30px 0;
+      font-size: 14px;
+      font-family: Arial, Helvetica, sans-serif;
+      border-top: 4px solid #e5b455; /* Sabian Accent Line */
+      clear: both;
+    }
+    
+    /* Robust legacy grid columns */
+    .footer-row { margin-left: -15px; margin-right: -15px; }
+    .footer-col { float: left; padding: 0 15px; box-sizing: border-box; }
+    .col-lg-4 { width: 33.333333%; }
+    .col-lg-3 { width: 25%; }
+    .col-lg-2 { width: 16.666667%; }
+    
+    /* Typography and links */
+    .site-footer h5 {
+      color: #ffffff;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 16px;
+    }
+    .site-footer p { color: #adb5bd; line-height: 1.6; margin-bottom: 15px; }
+    .site-footer ul { list-style: none; padding: 0; margin: 0; }
+    .site-footer ul li { margin-bottom: 10px; color: #adb5bd; }
+    .site-footer ul li i { margin-right: 8px; color: #adb5bd; }
+    .site-footer a { color: #adb5bd; text-decoration: none; -webkit-transition: 0.2s; transition: 0.2s; }
+    .site-footer a:hover { color: #ffffff; text-decoration: underline; padding-left: 4px; }
+    
+    /* Social Icons Layer */
+    .footer-social-icons a {
+      display: inline-block;
+      color: #ffffff;
+      font-size: 18px;
+      margin-right: 15px;
+      -webkit-transition: 0.2s; transition: 0.2s;
+    }
+    .footer-social-icons a:hover { color: #e5b455; text-decoration: none; padding-left: 0; }
+    
+    /* Copyright bottom border */
+    .footer-copyright {
+      border-top: 1px solid #3b4045;
+      padding-top: 20px;
+      margin-top: 40px;
+      color: #adb5bd;
+      font-size: 13px;
+    }
+    .footer-copy-left { float: left; }
+    .footer-copy-right { float: right; }
+.map-widget-box {
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      border: 1px solid #e2e8e4;
+      box-sizing: border-box;
+      margin-bottom: 25px;
+    }
 
-    /* RESPONSIVE LAYOUTS */
+    .map-image-viewport {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background-color: #eaeaea;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid #dce7e1;
+    }
+
+    /* Base Map Layer rules matching older Win7 styling engines */
+    .map-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      -webkit-transition: opacity 0.3s ease;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Standard map view is on top by default */
+    .standard-view {
+      z-index: 2;
+      opacity: 1;
+    }
+
+    /* Satellite map view sits underneath initially hidden */
+    .satellite-view {
+      z-index: 1;
+      opacity: 0;
+    }
+
+    /* Hide the technical checkbox logic hack away from UI views */
+    .map-toggle-checkbox {
+      display: none !important;
+      visibility: hidden !important;
+    }
+
+    /* CSS CORE TRICK: When user checks the box, swap image opacities smoothly */
+    .map-toggle-checkbox:checked + .map-image-viewport .standard-view {
+      opacity: 0;
+    }
+    .map-toggle-checkbox:checked + .map-image-viewport .satellite-view {
+      opacity: 1;
+      z-index: 3;
+    }
+
+    /* Map Button Control Switcher styling matching Sabian Theme */
+    .map-view-btn {
+      display: block;
+      background-color: #0d3a24;
+      color: #ffffff;
+      text-align: center;
+      padding: 10px 14px;
+      margin-top: 12px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      -webkit-transition: background 0.2s;
+      transition: background 0.2s;
+    }
+    .map-view-btn:hover {
+      background-color: #e5b455;
+      color: #0d3a24;
+    }
+
+    /* Dynamically alter button text string based on active layer choice using CSS content */
+    .map-toggle-checkbox:checked ~ .map-view-btn .btn-text {
+      display: none;
+    }
+    .map-toggle-checkbox:checked ~ .map-view-btn::after {
+      content: "Switch to Standard View";
+    }
+
+    .map-widget-desc {
+      font-size: 13px;
+      color: #556b5c;
+      line-height: 1.5;
+      margin: 12px 0 0 0;
+    }
+    .real-map-box {
+      background: #ffffff;
+      padding: 14px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      border: 1px solid #e2e8e4;
+      box-sizing: border-box;
+      margin-bottom: 25px;
+    }
+
+    .map-embed-viewport {
+      width: 100%;
+      height: 450px; /* Comfortable height for sidebar display */
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid #dce7e1;
+      background-color: #eaeaea;
+    }
+
+    .real-map-desc {
+      font-size: 13px;
+      color: #556b5c;
+      line-height: 1.5;
+      margin: 12px 0 0 0;
+    }
+
+  .nav-search-container {
+      position: relative; /* Context point for the overlay layout layer */
+    }
+
+
+    .nav-search-container {
+      position: relative !important;
+      display: block !important;
+      height: auto !important;
+    }
+
+    /* 2. Global overlay rule: Floats over content on desktop and laptops */
+    .live-search-results {
+      display: none;
+      position: absolute !important;
+      top: 100% !important; /* Locks it precisely to the bottom edge of the input bar */
+      right: 0 !important;
+      width: 280px !important;
+      background: #ffffff !important;
+      border: 1px solid #dce7e1 !important;
+      border-radius: 0 0 6px 6px !important;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+      z-index: 99999999 !important; /* Sits completely on top of headers, menus, and banners */
+      max-height: 280px !important;
+      overflow-y: auto !important;
+      box-sizing: border-box !important;
+      margin-top: 1px !important;
+    }
+
+    /* Typography settings */
+    .search-result-item {
+      display: block !important;
+      padding: 10px 12px !important;
+      color: #222222 !important;
+      border-bottom: 1px solid #f4f7f5 !important;
+      text-align: left !important;
+      text-decoration: none !important;
+      font-size: 13px !important;
+    }
+    .search-result-item:last-child {
+      border-bottom: none !important;
+    }
+    .search-result-item:hover {
+      background-color: #f2f6f3 !important;
+      color: #0d3a24 !important;
+    }
+    .search-result-item strong {
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      color: #111111 !important;
+      display: block !important;
+    }
+    .search-result-desc {
+      display: block !important;
+      font-size: 11px !important;
+      color: #667c6d !important;
+      margin-top: 3px !important;
+      font-weight: normal !important;
+      line-height: 1.3 !important;
+    }
+    .search-highlight {
+      background-color: #fff2cc !important;
+      color: #000000 !important;
+      padding: 0 2px !important;
+      border-radius: 2px !important;
+    }
+    .search-no-result {
+      padding: 12px !important;
+      color: #667c6d !important;
+      font-size: 12px !important;
+      text-align: center !important;
+    }
+
+    /* Mobile adjustments so it sits center inline under search input field box elements */
     @media (max-width: 880px) {
-      .menu-toggle { display: block; }
-      .nav-menu { display: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; width: 100%; background-color: #f2f6f3; position: absolute; top: 100%; left: 0; }
-      .nav-menu.show { display: -webkit-box; display: -ms-flexbox; display: flex; }
-      .nav-menu > li { float: none; width: 100%; }
-      .nav-menu ul { position: relative; width: 100%; box-shadow: none; left: 0; top: 0; }
-      .brand-flex { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; text-align: center; }
-      .school-logo { margin-right: 0; margin-bottom: 10px; float: none; display: inline-block; }
-      .brand-titles { float: none; }
-      .brand-titles h1 { font-size: 26px; }
-      .brand-titles p { font-size: 18px; }
-      .slider-btn { width: 40px; height: 40px; font-size: 18px; }
-      .hero-container { padding: 0 45px; margin-top: 140px; }
-      .about-split-grid { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
-      .about-image-frame { margin-right: 0; margin-bottom: 20px; width: 100%; float: none; }
-      .about-image-frame img { height: 280px; }
-      .about-text-content { width: 100%; float: none; }
-      .top-bar-inner { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 8px; text-align: center; }
-      .top-bar-links { float: none; display: block; }
-      .top-bar-links a { margin: 0 8px; }
-      .top-bar-location { float: none; display: block; margin-top: 5px; }
+     /* Forces full wide layout matching input row while retaining float attributes */
+      .live-search-results {
+        width: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.2) !important;
+      }
+    }  
+@media (max-width: 880px) {
+      /* Force the main sticky bar to sit on top of everything */
+      .menu-area {
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        z-index: 999999 !important;
+      }
+
+      .map-embed-viewport {
+        height: 280px !important; /* Elegant, compact height for smartphones */
+      }
+
+      .menu-toggle { 
+        display: block !important; 
+      }
       
-      .dashboard-layout { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
-      .dashboard-column-left, .dashboard-column-right { width: 100%; float: none; margin-bottom: 30px; }
-      .news-card { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
-      .news-img-frame { -webkit-box-flex: 0; -ms-flex: none; flex: none; width: 100%; height: 200px; float: none; }
+      .nav-search-container { 
+        float: none !important; 
+        width: 100% !important; 
+        text-align: center !important; 
+        padding: 15px !important; 
+        background: #eef3f0 !important; 
+        box-sizing: border-box !important; 
+      }
+      
+      /* Main mobile menu container */
+      .nav-menu { 
+        display: none !important; 
+        -webkit-box-orient: vertical !important; 
+        -webkit-box-direction: normal !important; 
+        -ms-flex-direction: column !important; 
+        flex-direction: column !important; 
+        width: 100% !important; 
+        background-color: #f2f6f3 !important; 
+        position: absolute !important; 
+        top: 100% !important; 
+        left: 0 !important; 
+        z-index: 999999 !important;
+      }
+      
+      /* Opens the main menu when toggled by JavaScript */
+      .nav-menu.show { 
+        display: -webkit-box !important; 
+        display: -ms-flexbox !important; 
+        display: flex !important; 
+      }
+      
+      .nav-menu > li { 
+        float: none !important; 
+        width: 100% !important; 
+        display: block !important;
+      }
+      
+      /* Hide sub-dropdown menus on mobile screens by default */
+      .nav-menu ul { 
+        display: none !important; 
+        position: relative !important; 
+        width: 100% !important; 
+        box-shadow: none !important; 
+        left: 0 !important; 
+        top: 0 !important; 
+        z-index: 999999 !important; 
+      }
+      
+      /* Expand dropdowns cleanly when cursor hovers or item is activated */
+      .nav-menu li:hover > ul,
+      .nav-menu li:active > ul,
+      .nav-menu li:focus-within > ul {
+        display: block !important;
+      }
+      
+      .brand-flex { 
+        -webkit-box-orient: vertical !important; 
+        -webkit-box-direction: normal !important; 
+        -ms-flex-direction: column !important; 
+        flex-direction: column !important; 
+        text-align: center !important; 
+      }
+      
+      .school-logo { 
+        margin-right: 0 !important; 
+        margin-bottom: 10px !important; 
+        float: none !important; 
+        display: inline-block !important; 
+      }
+      
+      /* Footer formatting elements styling */
+      .col-lg-4, .col-lg-3, .col-lg-2 { 
+        width: 100% !important; 
+        float: none !important; 
+        margin-bottom: 30px !important; 
+      }
+      
+      .footer-copy-left, .footer-copy-right { 
+        float: none !important; 
+        text-align: center !important; 
+        width: 100% !important; 
+        display: block !important; 
+        margin-bottom: 10px !important; 
+      }
     }
   </style>
 </head>
 <body>
-
-  <div class="site-top-bar">
-    <div class="container top-bar-inner">
-      <div class="top-bar-links">
-        <a href="https://t.me/DireSabian2011" target="_blank">Official Telegram Portal</a>
-        <a href="library.html">Digital Student Library</a>
-        <a href="#">eLearning Platform</a>
-      </div>
-      <div class="top-bar-location">Dire Dawa, Ethiopia</div>
-    </div>
-  </div>
 
   <div class="brand-banner-area">
     <div class="container brand-flex">
@@ -527,7 +726,6 @@
           <ul>
             <li><a href="#">Natural Science</a></li>
             <li><a href="#">Social Science</a></li>
-            <li><a href="#">Grade 9 & 10 </a></li>
             <li><a href="#">Academic Calendar</a></li>
             <li><a href="dili.html">Digital Curriculum Library</a></li>
             <li><a href="#">Latest Notice Feed</a></li>    
@@ -541,20 +739,37 @@
             <li><a href="#">Top Scorers Wall</a></li>
           </ul>
         </li>
+
+        <li class="has-dropdown">
+          <a href="#">Teachers </a>
+          <ul>
+            <li><a href="#">Notice</a></li>
+            <li><a href="#">Materials</a></li>
+          </ul>
+        </li>
        
         <li class="has-dropdown">
           <a href="#">Administration</a>
           <ul>
             <li><a href="#">Teachers Association</a></li>
             <li><a href="#">Staff </a></li>
+            <li><a href="#">Student Registration</a></li>
           </ul>
         </li>
       </ul>
+
+      <div class="nav-search-container">
+        <form action="#" method="get" class="nav-search-form">
+          <input type="text" placeholder="Search school..." name="q" class="nav-search-input">
+          <button type="submit" class="nav-search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+      
     </div>
   </div>
 
   <main>
-    <section class="hero" aria-label="Welcome Banner Slideshow">
+<section class="hero" aria-label="Welcome Banner Slideshow">
       
       <button class="slider-btn prev" id="prevSlideBtn" aria-label="Previous Slide">❮</button>
       <button class="slider-btn next" id="nextSlideBtn" aria-label="Next Slide">❯</button>
@@ -621,26 +836,23 @@
 
     </section>
 
+
     <section class="ddu-about-section">
       <div class="container">
         <div class="about-split-grid">
-          
           <div class="about-image-frame">
             <img src="sabiansc.jpeg" alt="Sabian Secondary School Main Campus Block">
           </div>
-          
           <div class="about-text-content">
             <h2>Welcome to Sabian Secondary School</h2>
             <p>
-              ሳቢያን ሁለተኛ ደረጃ ትምህርት ቤት በድሬዳዋ አስተዳደር ውስጥ ከሚገኙ ቀዳሚ የትምህርት ተቋማት አንዱ ነው። ተቋማችን ተማሪዎችን በምግባር የታነጹ፣ በዕውቀት የጎለበቱ እና ለሀገር እድገት የበኩላቸውን አስተዋጽኦ የሚያበረክቱ የነገ መሪዎችን ለማፍራት በቁርጠኝነት እየሰራ ይገኛል። በዘመናዊ የዲጂታል ቤተ-መጻሕፍት እና በተሟሉ የሳይንስ ላብራቶሪዎች የታገዘ ጥራት ያለው ትምህርት ለሁሉም ተማሪዎቻችን እናቀርባለን።
+              ሳቢያን ሁለተኛ ደረጃ ትምህርት ቤት በድሬዳዋ አስተዳደር ውስጥ ከሚገኙ ቀዳሚ የትምህርት ተቋማት አንዱ ነው። ተቋማችን ተማሪዎችን በምግባር የታነጹ፣ በዕውቀት የጎለበቱ እና ለሀገር እድገት የበኩላቸውን አስተዋጽኦ የሚያበረክቱ የነገ መሪዎችን ለማፍራት በቁርጠኝነት እየሰራ ይገኛል።
             </p>
             <p>
               Our institution is deeply committed to academic excellence, innovative technological exposure, and nurturing student pathways toward higher achievements within the modern educational horizon.
             </p>
-            
             <a href="backg.html" class="ddu-readmore-btn">Read More</a>
           </div>
-
         </div>
       </div>
     </section>
@@ -649,40 +861,34 @@
       <div class="dashboard-layout">
         
         <aside class="dashboard-column-left">
-          <h2 class="section-title">Portals</h2>
-          <ul class="resource-list">
-            <li class="resource-item">
-              <a href="lin.html" class="resource-link">
-                <span>Links</span>
-                <span class="arrow-icon">&#10142;</span>
-              </a>
-            </li>
-            <li class="resource-item">
-              <a href="dili.html" class="resource-link">
-                <span>Digital Curriculum Library</span>
-                <span class="arrow-icon">&#10142;</span>
-              </a>
-            </li>
-            <li class="resource-item">
-              <a href="#" class="resource-link">
-                <span>Official Forms</span>
-                <span class="arrow-icon">&#10142;</span>
-              </a>
-            </li>
-            <li class="resource-item">
-              <a href="#" class="resource-link">
-                <span>Media Archive Files</span>
-                <span class="arrow-icon">&#10142;</span>
-              </a>
-            </li>
-            <li class="resource-item">
-              <a href="#" class="resource-link">
-                <span>Study Materials</span>
-                <span class="arrow-icon">&#10142;</span>
-              </a>
-            </li>
-          </ul>
-        </aside>
+  <h2 class="section-title">Portals</h2>
+  <ul class="resource-list">
+    <li class="resource-item"><a href="lin.html" class="resource-link"><span>Links</span><span class="arrow-icon">&#10142;</span></a></li>
+    <li class="resource-item"><a href="dili.html" class="resource-link"><span>Digital Curriculum Library</span><span class="arrow-icon">&#10142;</span></a></li>
+    <li class="resource-item"><a href="#" class="resource-link"><span>Official Forms</span><span class="arrow-icon">&#10142;</span></a></li>
+    <li class="resource-item"><a href="#" class="resource-link"><span>Study Materials</span><span class="arrow-icon">&#10142;</span></a></li>
+  </ul>
+
+  <h2 class="section-title" style="margin-top: 30px;">School Location</h2>
+  <div class="real-map-box">
+    
+    <div class="map-embed-viewport">
+      <iframe 
+  src="https://maps.google.com/maps?q=Sabian%20Secondary%20School,%20Dire%20Dawa,%20Ethiopia&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+  width="100%" 
+  height="100%" 
+  style="border:0;" 
+  allowfullscreen="" 
+  loading="lazy" 
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+    </div>
+
+    <p class="real-map-desc">
+      Use the map above to navigate the Sabian campus area natively. You can zoom, pan, or tap the map layers button to toggle direct Satellite Imagery.
+    </p>
+  </div>
+</aside>
 
         <section class="dashboard-column-right">
           <h2 class="section-title">Latest News & Updates</h2>
@@ -696,7 +902,7 @@
                 <div class="news-meta-date">MAY 19, 2026</div>
                 <h3 class="news-headline">የ2018 ዓ.ም የ12ኛ ክፍል ሀገር አቀፍ መልቀቂያ ፈተና በ667 የፈተና ማዕከላት ይሰጣል</h3>
                 <p class="news-desc">
-                  የትምህርት ምዘናና ፈተናዎች አገልግሎት የ2018 ዓ.ም የዩኒቨርሲቲ መግቢያ ፈተናን በ97 ዩኒቨርሲቲዎች እና በ570 የክልል ማዕከላት ለመስጠት ዝግጅት እየተደረገ እንደሚገኝ አስታውቋል። ከሰኔ 24 እስከ ሐምሌ 17/2018 ዓ.ም የሚሰጠውን ሀገር አቀፍ ፈተና ለመውሰድ በአጠቃላይ 564,219 ተማሪዎች ተመዝግበዋል። ፈተናውን በበይነ መረብ (Online) ለመስጠት ሰፊ ዝግጅት እየተደረገ ይገኛል።
+                  የትምህርት ምዘናና ፈተናዎች አገልግሎት የ2018 ዓ.ም የዩኒቨርሲቲ መግቢያ ፈተናን በ97 ዩኒቨርሲቲዎች እና በ570 የክልል ማዕከላት ለመስጠት ዝግጅት እየተደረገ እንደሚገኝ አስታውቋል።
                 </p>
               </div>
             </article>
@@ -753,6 +959,7 @@
               </div>
             </article>
 
+
           </div>
         </section>
 
@@ -760,108 +967,161 @@
     </div>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="container">
-      <p>Copyright &copy; 2026 Sabian Secondary School. All Rights Reserved</p>
+        <div class="footer-row">
+            
+            <div class="footer-col col-lg-4">
+                <h5>Sabian Secondary School</h5>
+                <p>
+                    Ever Forward! Discover academic excellence, exposure, and impactful student pathways at Sabian Secondary School.
+                </p>
+                <div class="footer-social-icons">
+                    <a href="https://web.facebook.com/100077500092689/about/?_rdc=1&_rdr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://youtube.com/" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://t.me/DireSabian2011" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://vm.tiktok.com/ZMAcC6UNP/" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col col-lg-2">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="backg.html">About Us</a></li>
+                    <li><a href="dili.html">Digital Library</a></li>
+                    <li><a href="#">Academic Calendar</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col col-lg-3">
+                <h5>Contact Info</h5>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Dire Dawa, Ethiopia</li>
+                    <li><i class="fas fa-phone-alt"></i> +251 91 123 4567</li>
+                    <li><i class="fas fa-envelope"></i> info@sabianschool.edu.et</li>
+                    <li><i class="fas fa-envelope"></i> admin@sabianschool.edu.et</li>
+                </ul>
+            </div>
+
+            <div class="footer-col col-lg-3">
+                <h5>Portals</h5>
+                <ul>
+                    <li><a href="#">Student Registrar</a></li>
+                    <li><a href="#">Mini-Media Lab</a></li>
+                    <li><a href="#">Teachers </a></li>
+                </ul>
+            </div>
+            
+        </div>
+
+        <div class="footer-row footer-copyright">
+            <div class="footer-copy-left">
+                <span>Copyright &copy; 2026 Sabian Secondary School. All Rights Reserved.</span>
+            </div>
+            <div class="footer-copy-right">
+                <span>Designed for Academic Excellence</span>
+            </div>
+        </div>
     </div>
   </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // 1. Mobile Menu Toggle & Click Outside Handler (Win7 + Mobile Bulletproof)
+      var toggleBtn = document.getElementById('menuToggle');
+      var navMenu = document.getElementById('navMenu');
 
-  <script>
-    // DEFENSIVE PROTOTYPE METHOD POLYFILL FOR ANCIENT ENGINES
-    if (!Element.prototype.contains) {
-      Element.prototype.contains = function(el) {
-        while (el) {
-          if (el === this) return true;
-          el = el.parentNode;
-        }
-        return false;
-      };
-    }
+      if (toggleBtn && navMenu) {
+        // Toggle menu when clicking the hamburger button
+        toggleBtn.onclick = function(event) {
+          // Prevent this click from immediately triggering the "click outside" closer
+          if (event && event.stopPropagation) {
+            event.stopPropagation();
+          } else if (window.event) {
+            window.event.cancelBubble = true; // Legacy Win7 IE Fallback
+          }
 
-    var menuToggle = document.getElementById('menuToggle');
-    var navMenu = document.getElementById('navMenu');
-
-    if(menuToggle && navMenu) {
-      menuToggle.addEventListener('click', function(e) {
-        if (e && e.stopPropagation) {
-          e.stopPropagation();
-        } else {
-          window.event.cancelBubble = true;
-        }
-        if (navMenu.className.indexOf('show') === -1) {
-          navMenu.className += ' show';
-        } else {
-          navMenu.className = navMenu.className.replace(' show', '');
-        }
-      });
-
-      document.addEventListener('click', function(e) {
-        var evt = e || window.event;
-        var target = evt.target || evt.srcElement;
-        if (navMenu && menuToggle) {
-          if (!navMenu.contains(target) && !menuToggle.contains(target)) {
+          if (navMenu.className.indexOf('show') === -1) {
+            navMenu.className += ' show';
+          } else {
             navMenu.className = navMenu.className.replace(' show', '');
           }
-        }
-      });
-    }
+        };
 
-    var slides = document.querySelectorAll('.slide');
-    var prevBtn = document.getElementById('prevSlideBtn');
-    var nextBtn = document.getElementById('nextSlideBtn');
-    
-    var currentSlideIndex = 0;
-    var slideTimer = null;
-    var changeIntervalTime = 5000; 
-
-    function updateCarouselDisplay(nextIndex) {
-      if(!slides[currentSlideIndex] || !slides[nextIndex]) return;
-      slides[currentSlideIndex].className = slides[currentSlideIndex].className.replace(' active', '');
-      currentSlideIndex = nextIndex;
-      if (slides[currentSlideIndex].className.indexOf('active') === -1) {
-        slides[currentSlideIndex].className += ' active';
+        // Close menu when tapping anywhere else outside of the navigation area
+        document.onclick = function(event) {
+          var e = event || window.event;
+          var target = e.target || e.srcElement; // Win7 safe target fetching
+          
+          // Check if the user clicked outside the menu and outside the toggle button
+          if (navMenu.className.indexOf('show') !== -1) {
+            if (target !== navMenu && !navMenu.contains(target) && target !== toggleBtn) {
+              navMenu.className = navMenu.className.replace(' show', '');
+            }
+          }
+        };
       }
-    }
 
-    function navigateForward() {
-      if(!slides.length) return;
-      var computedIndex = (currentSlideIndex + 1) % slides.length;
-      updateCarouselDisplay(computedIndex);
-    }
+      // 2. Image Slider Setup
+      const slides = document.querySelectorAll('.slide');
+      const nextBtn = document.getElementById('nextSlideBtn');
+      const prevBtn = document.getElementById('prevSlideBtn');
+      let currentSlide = 0;
+      let slideInterval;
 
-    function navigateBackward() {
-      if(!slides.length) return;
-      var computedIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
-      updateCarouselDisplay(computedIndex);
-    }
+      function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        
+        if (index >= slides.length) {
+          currentSlide = 0;
+        } else if (index < 0) {
+          currentSlide = slides.length - 1;
+        } else {
+          currentSlide = index;
+        }
+        
+        slides[currentSlide].classList.add('active');
+      }
 
-    function resetAutomationClock() {
-      clearInterval(slideTimer);
-      slideTimer = setInterval(navigateForward, changeIntervalTime);
-    }
+      function nextSlide() {
+        showSlide(currentSlide + 1);
+      }
 
-    if(slides && slides.length > 1) {
-      slideTimer = setInterval(navigateForward, changeIntervalTime);
+      function prevSlide() {
+        showSlide(currentSlide - 1);
+      }
 
       if (nextBtn) {
         nextBtn.addEventListener('click', function() {
-          navigateForward();
-          resetAutomationClock();
+          nextSlide();
+          resetTimer();
         });
       }
 
       if (prevBtn) {
         prevBtn.addEventListener('click', function() {
-          navigateBackward();
-          resetAutomationClock();
+          prevSlide();
+          resetTimer();
         });
       }
-    } else {
-      if(prevBtn && nextBtn) {
-        prevBtn.style.display = 'none';
-        nextBtn.style.display = 'none';
+
+      function startTimer() {
+        slideInterval = setInterval(nextSlide, 5000);
       }
-    }
-  </script>
+
+      function resetTimer() {
+        clearInterval(slideInterval);
+        startTimer();
+      }
+
+      startTimer();
+    });
+</script>
+<script src="search.js"></script>
+</body>
+</html>
+</body>
+</html>
 </body>
 </html>
