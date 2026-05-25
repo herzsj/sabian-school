@@ -5,11 +5,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Sabian Secondary School</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Access official textbooks, curriculum materials, and national exam reference documents." />
+  <meta name="description" content="Sabian Secondary School — official announcements and resources." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;600;700;800&family=Noto+Sans+Ethiopic:wght=400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Ethiopic:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
   <style>
     /* 0. LEGACY HTML5 ELEMENT PATCHING FOR OLD IE ENGINES */
@@ -38,12 +40,12 @@
     }
     a { 
       text-decoration: none; 
-      -webkit-transition: color 0.2s, background 0.2s; 
-      transition: color 0.2s, background 0.2s; 
+      -webkit-transition: color 0.2s, background 0.2s, padding-left 0.2s; 
+      transition: color 0.2s, background 0.2s, padding-left 0.2s; 
     }
     
     /* CLEARFIX FOR OLDER BROWSERS */
-    .container::after, .library-grid::after, .category-row::after {
+    .container::after, .footer-row::after, .page-layout::after {
       content: "";
       display: table;
       clear: both;
@@ -55,25 +57,7 @@
       box-sizing: border-box; 
     }
 
-    /* 1. TOP BAR AREA */
-    .site-top-bar {
-      background-color: #0d3a24; 
-      color: #ffffff;
-      font-size: 13px;
-      padding: 10px 0;
-      border-bottom: 2px solid #e5b455; 
-    }
-    .top-bar-inner { 
-      display: -webkit-box; display: -ms-flexbox; display: flex; 
-      -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; 
-      -webkit-box-align: center; -ms-flex-align: center; align-items: center; 
-    }
-    .top-bar-links { float: left; }
-    .top-bar-links a { color: #ffffff; margin-right: 16px; font-weight: 600; display: inline-block; }
-    .top-bar-links a:hover { color: #e5b455; }
-    .top-bar-location { font-weight: 600; float: right; }
-
-    /* 2. MAIN BRAND IDENTIFIER SECTION */
+    /* 1. MAIN BRAND IDENTIFIER SECTION */
     .brand-banner-area {
       background: #ffffff;
       padding: 18px 0;
@@ -84,18 +68,27 @@
       -webkit-box-align: center; -ms-flex-align: center; align-items: center; 
     }
     .school-logo { 
-      width: 110px; height: 110px; max-width: 110px; max-height: 110px;
-      float: left; border-radius: 50%; margin-right: 20px;
+      width: 110px; 
+      height: 110px; 
+      max-width: 110px;
+      max-height: 110px;
+      float: left;
+      border-radius: 50%; 
+      margin-right: 20px;
     }
-    .brand-titles { float: left; }
+    .brand-titles {
+      float: left;
+    }
     .brand-titles h1 { margin: 0; font-size: 32px; color: #0d3a24; font-weight: 700; letter-spacing: -0.5px; font-family: 'Noto Sans Ethiopic', 'Nyala', 'Segoe UI', sans-serif; }
     .brand-titles p { margin: 4px 0 0; font-size: 22px; color: #0d3a24; font-weight: 600; font-family: 'Noto Sans Ethiopic', 'Nyala', sans-serif; }
 
-    /* 3. MENU AREA */
+    /* 2. STICKY MENU AREA */
     .menu-area {
       background-color: #ffc61b;
-      position: -webkit-sticky; position: sticky;
-      top: 0; z-index: 100;
+      position: -webkit-sticky; 
+      position: sticky;
+      top: 0;
+      z-index: 100;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       border-bottom: 1px solid rgba(0,0,0,0.05);
     }
@@ -105,227 +98,759 @@
       -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; 
       position: relative; 
     }
-    .nav-menu { display: -webkit-box; display: -ms-flexbox; display: flex; list-style: none; margin: 0; padding: 0; }
+    .nav-menu { display: -webkit-box; display: -ms-flexbox; display: flex; list-style: none; margin: 0; padding: 0; float: left; }
     .nav-menu > li { position: relative; float: left; }
-    .nav-menu > li > a { display: block; padding: 14px 20px; color: #111111; font-weight: 700; font-size: 15px; }
+    .nav-menu > li > a { 
+      display: block; 
+      padding: 14px 20px; 
+      color: #111111; 
+      font-weight: 700; 
+      font-size: 15px;
+    }
     .nav-menu > li:hover > a { background-color: #dce7e1; color: #0d3a24; }
 
-    /* DROPDOWNS */
-    .has-dropdown > a { display: -webkit-box !important; display: -ms-flexbox !important; display: flex !important; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
-    .has-dropdown > a::after { content: ""; display: inline-block; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid #111111; margin-left: 6px; margin-top: 2px; }
-    .has-dropdown:hover > a::after { border-top-color: #0d3a24; }
-
-    .nav-menu ul {
-      display: none; position: absolute; top: 100%; left: 0; background: #ffffff; min-width: 240px;
-      list-style: none; padding: 0; margin: 0; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border-top: 3px solid #0d3a24; z-index: 999;
-    }
-    .nav-menu ul li { float: none; width: 100%; }
-    .nav-menu ul li a { display: block; padding: 11px 16px; color: #111111; font-size: 14px; font-weight: 600; border-bottom: 1px solid #f0f0f0; }
-    .nav-menu ul li a:hover { background-color: #f2f6f3; color: #0d3a24; padding-left: 22px; }
-    .nav-menu li:hover > ul { display: block; }
-    .menu-toggle { display: none; background: transparent; border: 0; font-size: 24px; cursor: pointer; padding: 10px; color: #0d3a24; }
-
-    /* 4. LIBRARY HERO */
-    .library-hero {
-      background-color: #0d3a24;
-      color: #ffffff;
-      padding: 40px 0;
-      border-bottom: 4px solid #e5b455;
-    }
-    .library-hero h2 { margin: 0 0 10px 0; font-size: 28px; font-weight: 800; font-family: 'Noto Sans Ethiopic', sans-serif; }
-    .library-hero p { margin: 0; font-size: 16px; color: #d0ded6; }
-
-    /* 5. SEARCH & INTERACTIVE FILTER DECK */
-    .filter-dock {
-      background: #ffffff;
-      padding: 20px;
-      margin: 25px 0;
-      border-radius: 6px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      border: 1px solid #e2e8e4;
-    }
-    .search-input {
-      width: 100%;
-      max-width: 350px;
-      padding: 10px 14px;
-      font-size: 14px;
-      border: 1px solid #cccccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      font-family: inherit;
-      float: left;
-    }
-    
-    /* Interactive Filter Controller Switches */
-    .filter-group-container {
+    /* NAV SEARCH BAR (WIN7 SAFE) */
+    .nav-search-container {
       float: right;
-      display: -webkit-box; display: -ms-flexbox; display: flex;
-      gap: 15px;
+      padding: 8px 0;
     }
-    .stream-filter-box {
+    .nav-search-form {
       display: inline-block;
-      background: #f2f6f3;
-      padding: 4px;
-      border-radius: 6px;
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
       border: 1px solid #dce7e1;
     }
-    .filter-label {
-      font-size: 12px;
-      font-weight: 700;
-      color: #0d3a24;
-      margin-bottom: 3px;
-      display: block;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .btn-filter {
-      background: transparent;
-      border: 0;
+    .nav-search-input {
+      border: none;
       padding: 6px 12px;
       font-size: 13px;
-      font-weight: 700;
-      color: #556b5c;
+      outline: none;
+      width: 140px;
+      background: transparent;
+    }
+    .nav-search-btn {
+      background: transparent;
+      color: #0d3a24;
+      border: none;
+      padding: 6px 12px;
       cursor: pointer;
-      border-radius: 4px;
+      font-size: 14px;
     }
-    .btn-filter.active {
-      background-color: #0d3a24;
-      color: #ffffff;
+    .nav-search-btn:hover {
+      color: #1066b7;
     }
 
-    /* 6. BOOK ARCHITECTURE LAYOUT */
-    .library-section { padding-bottom: 6px; }
-    .category-block { margin-bottom: 45px; background: #ffffff; padding: 20px; border-radius: 6px; border: 1px solid #e2e8e4; }
-    .category-title { font-size: 22px; color: #0d3a24; margin: 0 0 20px 0; border-left: 5px solid #e5b455; padding-left: 12px; font-weight: 700; }
-    
-    .library-grid {
-      display: -webkit-box; display: -ms-flexbox; display: flex;
-      -ms-flex-wrap: wrap; flex-wrap: wrap;
-      margin: -10px;
-    }
-    
-    /* 4 Column Flex/Float Card Engine Structure */
-    .book-card {
-      -webkit-box-flex: 0; -ms-flex: 0 0 23%; flex: 0 0 23%;
-      width: 23%;
-      float: left;
-      margin: 1%;
-      background: #ffffff;
-      border-radius: 6px;
-      border: 1px solid #e2e8e4;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.02);
-      box-sizing: border-box;
-      overflow: hidden;
-      -webkit-transition: transform 0.2s, opacity 0.3s; transition: transform 0.2s, opacity 0.3s;
-    }
-    .book-card:hover {
-      -webkit-transform: translateY(-4px); transform: translateY(-4px);
-      border-color: #e5b455;
-    }
-    
-    /* Updated for full aspect ratio rendering */
-    .book-cover-placeholder {
-      height: 220px;
-      background: #ffffff;
-      position: relative;
-      overflow: hidden;
-      display: -webkit-box; display: -ms-flexbox; display: flex;
+    /* DROPDOWN ARROWS WITH WIN7 FALLBACKS */
+    .has-dropdown > a {
+      display: -webkit-box !important; display: -ms-flexbox !important; display: flex !important;
       -webkit-box-align: center; -ms-flex-align: center; align-items: center;
-      -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center;
+    }
+    .has-dropdown > a::after {
+      content: "";
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid #111111;
+      margin-left: 6px;
+      margin-top: 2px;
+      -webkit-transition: -webkit-transform 0.2s ease, border-top-color 0.2s;
+      transition: transform 0.2s ease, border-top-color 0.2s;
+    }
+    .has-dropdown:hover > a::after {
+      border-top-color: #0d3a24;
+      -webkit-transform: rotate(180deg); transform: rotate(180deg);
+    }
+
+    .nav-menu ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #ffffff;
+      min-width: 240px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      border-top: 3px solid #0d3a24;
+      z-index: 999;
+    }
+    .nav-menu ul li {
+      float: none;
+      width: 100%;
+    }
+    .nav-menu ul li a {
+      display: block;
+      padding: 11px 16px;
+      color: #111111;
+      font-size: 14px;
+      font-weight: 600;
       border-bottom: 1px solid #f0f0f0;
-      padding: 5px;
+    }
+    .nav-menu ul li a:hover { background-color: #f2f6f3; color: #0d3a24; padding-left: 22px; }
+    .nav-menu li:hover > ul { display: block; }
+
+    .menu-toggle { display: none; background: transparent; border: 0; font-size: 24px; cursor: pointer; padding: 10px; color: #0d3a24; font-family: Arial, sans-serif; }
+
+    /* ========================================================
+       3. GENERAL INNER PAGE CONTENT CONTAINER RULES
+       ======================================================== */
+    .page-section {
+      padding: 50px 0;
+    }
+    .page-layout {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      border-bottom: 1px solid #e2e8e4;
       box-sizing: border-box;
     }
-    .book-cover-placeholder img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      display: block;
+    .page-main-title {
+      font-size: 30px;
+      color: #0d3a24;
+      margin: 0 0 12px 0;
+      font-weight: 700;
+    }
+    .page-title-divider {
+      width: 70px;
+      height: 4px;
+      background-color: #e5b455;
+      margin-bottom: 30px;
+      border-radius: 2px;
     }
 
-    .badge-stream {
-      position: absolute;
-      top: 8px; left: 8px;
-      background-color: rgba(13, 58, 36, 0.9);
+    /* ========================================================
+       4. BULLETPROOF WIN7 FOOTER ARCHITECTURE
+       ======================================================== */
+    .site-footer {
+      background-color: #212529; 
       color: #ffffff;
-      font-size: 9px;
+      padding: 60px 0 30px 0;
+      font-size: 14px;
+      font-family: Arial, Helvetica, sans-serif;
+      border-top: 4px solid #e5b455; 
+      clear: both;
+    }
+    
+    .footer-row { margin-left: -15px; margin-right: -15px; }
+    .footer-col { float: left; padding: 0 15px; box-sizing: border-box; }
+    .col-lg-4 { width: 33.333333%; }
+    .col-lg-3 { width: 25%; }
+    .col-lg-2 { width: 16.666667%; }
+    
+    .site-footer h5 {
+      color: #ffffff;
       font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 3px;
       text-transform: uppercase;
-      z-index: 10;
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 16px;
     }
+    .site-footer p { color: #adb5bd; line-height: 1.6; margin-bottom: 15px; }
+    .site-footer ul { list-style: none; padding: 0; margin: 0; }
+    .site-footer ul li { margin-bottom: 10px; color: #adb5bd; }
+    .site-footer ul li i { margin-right: 8px; color: #adb5bd; }
+    .site-footer a { color: #adb5bd; text-decoration: none; -webkit-transition: 0.2s; transition: 0.2s; }
+    .site-footer a:hover { color: #ffffff; text-decoration: underline; padding-left: 4px; }
     
-    .book-details { padding: 14px; }
-    .book-title { margin: 0 0 6px 0; font-size: 14px; color: #0d3a24; font-weight: 700; line-height: 1.4; height: 40px; overflow: hidden; }
-    .book-meta { font-size: 12px; color: #556b5c; margin-bottom: 12px; font-weight: 600; }
+    .footer-social-icons a {
+      display: inline-block;
+      color: #ffffff;
+      font-size: 18px;
+      margin-right: 15px;
+      -webkit-transition: 0.2s; transition: 0.2s;
+    }
+    .footer-social-icons a:hover { color: #e5b455; text-decoration: none; padding-left: 0; }
     
-    .download-btn {
-      display: block;
-      text-align: center;
-      background-color: #f2f6f3;
-      color: #0d3a24 !important;
-      padding: 8px 12px;
+    .footer-copyright {
+      border-top: 1px solid #3b4045;
+      padding-top: 20px;
+      margin-top: 40px;
+      color: #adb5bd;
       font-size: 13px;
-      font-weight: 700;
-      border-radius: 4px;
-      border: 1px solid #dce7e1;
-    }
-    .download-btn:hover {
-      background-color: #0d3a24;
-      color: #ffffff !important;
-      border-color: #0d3a24;
     }
 
-    footer { background: #0d3a24; color: #d0ded6; padding: 35px 0; text-align: center; font-size: 14px; margin-top: 50px; border-top: 4px solid #e5b455; clear: both; }
-    footer p { margin: 0; }
+    /* ========================================================
+   0. LEGACY ENGINE DEEP-PATCH & STATIC FALLBACKS
+   ======================================================== */
+main, section, article, header, footer, nav, aside {
+  display: block;
+}
 
-    /* RESPONSIVE LAYOUT BREAKPOINTS */
-    @media (max-width: 980px) {
-      .book-card { flex: 0 0 48%; width: 48%; margin: 1%; }
-    }
+/* Global resets prioritizing scannability & layout survival */
+html, body { 
+  height: 100%; 
+  margin: 0; 
+  padding: 0;
+  background-color: #f6f9f7; 
+  color: #111111; 
+  font-family: 'Noto Sans Ethiopic', 'Nyala', 'Abyssinica SIL', 'Segoe UI', Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
 
-    @media (max-width: 880px) {
-      .menu-toggle { display: block; }
-      .nav-menu { display: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; width: 100%; background-color: #f2f6f3; position: absolute; top: 100%; left: 0; }
-      .nav-menu.show { display: -webkit-box; display: -ms-flexbox; display: flex; }
-      .nav-menu > li { float: none; width: 100%; }
-      .nav-menu ul { position: relative; width: 100%; box-shadow: none; left: 0; top: 0; }
+a { 
+  text-decoration: none; 
+  color: #1066b7;
+}
+
+/* Bulletproof Clearfix Engine for IE 8-10 */
+.container::after, 
+.footer-row::after, 
+.page-layout::after, 
+.filter-dock::after, 
+.library-grid::after,
+.brand-flex::after,
+.menu-inner::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.container { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 0 16px; 
+  box-sizing: border-box; 
+  position: relative;
+}
+
+/* ========================================================
+   1. MAIN BRAND IDENTIFIER AREA (FLOAT SAFE)
+   ======================================================== */
+.brand-banner-area {
+  background: #ffffff;
+  padding: 18px 0;
+  border-bottom: 1px solid #eef2ef;
+}
+
+.school-logo { 
+  width: 110px; 
+  height: 110px; 
+  max-width: 110px;
+  max-height: 110px;
+  float: left;
+  border-radius: 50%; 
+  margin-right: 20px;
+  display: block;
+}
+
+.brand-titles {
+  float: left;
+  margin-top: 15px;
+}
+
+.brand-titles h1 { 
+  margin: 0; 
+  font-size: 32px; 
+  color: #0d3a24; 
+  font-weight: 700; 
+  letter-spacing: -0.5px; 
+}
+
+.brand-titles p { 
+  margin: 4px 0 0; 
+  font-size: 22px; 
+  color: #0d3a24; 
+  font-weight: 600; 
+}
+
+/* ========================================================
+   2. FIXED NAVIGATION ARCHITECTURE (IE STICKY FALLBACK)
+   ======================================================== */
+.menu-area {
+  background-color: #ffc61b;
+  position: relative; /* Windows 7 Native engine safety */
+  position: -webkit-sticky; 
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  width: 100%;
+}
+
+.nav-menu { 
+  list-style: none; 
+  margin: 0; 
+  padding: 0; 
+  float: left; 
+  display: block;
+}
+
+.nav-menu > li { 
+  position: relative; 
+  float: left; 
+  display: inline-block;
+}
+
+.nav-menu > li > a { 
+  display: block; 
+  padding: 14px 20px; 
+  color: #111111; 
+  font-weight: 700; 
+  font-size: 15px;
+}
+
+.nav-menu > li:hover > a { 
+  background-color: #dce7e1; 
+  color: #0d3a24; 
+}
+
+/* NAVIGATION SEARCH BAR */
+.nav-search-container {
+  float: right;
+  padding: 8px 0;
+}
+
+.nav-search-form {
+  display: inline-block;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #dce7e1;
+}
+
+.nav-search-input {
+  border: none;
+  padding: 6px 12px;
+  font-size: 13px;
+  outline: none;
+  width: 140px;
+  background: transparent;
+  line-height: 1.4;
+  float: left;
+}
+
+.nav-search-btn {
+  background: transparent;
+  color: #0d3a24;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  float: left;
+}
+
+.nav-search-btn:hover {
+  color: #1066b7;
+}
+
+/* DROPDOWN LOGIC VIA STANDARD CSS HOVERS */
+.has-dropdown > a {
+  padding-right: 25px !important;
+}
+
+.has-dropdown > a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #111111;
+}
+
+.nav-menu ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #ffffff;
+  width: 240px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  border-top: 3px solid #0d3a24;
+  z-index: 99999;
+}
+
+.nav-menu ul li {
+  float: none;
+  width: 100%;
+  display: block;
+}
+
+.nav-menu ul li a {
+  display: block;
+  padding: 11px 16px;
+  color: #111111;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.nav-menu ul li a:hover { 
+  background-color: #f2f6f3; 
+  color: #0d3a24; 
+  padding-left: 22px; 
+}
+
+.nav-menu li:hover > ul { 
+  display: block; 
+}
+
+.menu-toggle { 
+  display: none; 
+  background: transparent; 
+  border: 0; 
+  font-size: 24px; 
+  cursor: pointer; 
+  padding: 10px; 
+  color: #0d3a24; 
+}
+
+/* ========================================================
+   3. HERO & FILTER LAYOUT (PREVENTS GRID EXPLOSION)
+   ======================================================== */
+.library-hero {
+  background-color: #0d3a24;
+  color: #ffffff;
+  padding: 40px 0;
+  margin-bottom: 30px;
+}
+.library-hero h2 { margin: 0 0 10px 0; font-size: 28px; color: #e5b455; }
+.library-hero p { margin: 0; font-size: 16px; color: #f6f9f7; }
+
+.filter-dock {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  margin-bottom: 30px;
+  border: 1px solid #e2e8e4;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+.filter-group-container {
+  width: 100%;
+}
+.filter-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #0d3a24;
+  font-size: 13px;
+}
+.stream-filter-box {
+  margin-bottom: 15px;
+}
+.btn-filter {
+  background: #f2f6f3;
+  border: 1px solid #dce7e1;
+  padding: 8px 14px;
+  margin-right: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #0d3a24;
+}
+.btn-filter.active, .btn-filter:hover {
+  background: #0d3a24;
+  color: #ffffff;
+  border-color: #0d3a24;
+}
+
+/* ========================================================
+   4. EXTRA-ROBUST FLOATED GRID (REPLACES BROKEN GRID/FLEX)
+   ======================================================== */
+.category-block {
+  margin-bottom: 40px;
+  clear: both;
+}
+.category-title {
+  font-size: 22px;
+  color: #0d3a24;
+  border-bottom: 2px solid #e5b455;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+/* The wrapper container for float cards */
+.library-grid {
+  margin-left: -12px;
+  margin-right: -12px;
+  display: block;
+}
+
+/* The Matrix: 4 Columns Wide on Desktops */
+.book-card {
+  width: 25%;
+  float: left;
+  padding: 0 12px;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+}
+
+/* Standardized Card Core Structure */
+.book-cover-placeholder {
+  background-color: #eaefe9;
+  border: 1px solid #dcdfdc;
+  border-radius: 4px;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.book-cover-placeholder img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.badge-stream {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #0d3a24;
+  color: #ffffff;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 3px;
+  z-index: 10;
+}
+
+.book-details {
+  background: #ffffff;
+  padding: 12px 0;
+}
+
+.book-title {
+  font-size: 14px;
+  margin: 0 0 6px 0;
+  color: #111111;
+  height: 40px;
+  overflow: hidden;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.book-meta {
+  font-size: 12px;
+  color: #556b5c;
+  margin-bottom: 10px;
+}
+
+.download-btn {
+  display: block;
+  text-align: center;
+  background-color: #717d74;
+  color: #ffffff !important;
+  padding: 8px 0;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 13px;
+}
+.download-btn:hover {
+  background-color: #1d5237;
+}
+
+/* ========================================================
+   5. WIN7 FOOTER ARCHITECTURE
+   ======================================================== */
+.site-footer {
+  background-color: #212529; 
+  color: #ffffff;
+  padding: 60px 0 30px 0;
+  font-size: 14px;
+  border-top: 4px solid #e5b455; 
+  clear: both;
+  margin-top: 50px;
+}
+
+.footer-row { margin-left: -15px; margin-right: -15px; display: block; }
+.footer-col { float: left; padding: 0 15px; box-sizing: border-box; }
+.col-lg-4 { width: 33.3333%; }
+.col-lg-3 { width: 25%; }
+.col-lg-2 { width: 16.6666%; }
+
+.site-footer h5 {
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 18px;
+  font-size: 16px;
+}
+.site-footer p { color: #adb5bd; line-height: 1.6; margin-bottom: 15px; }
+.site-footer ul { list-style: none; padding: 0; margin: 0; }
+.site-footer ul li { margin-bottom: 10px; color: #adb5bd; }
+.site-footer ul li i { margin-right: 8px; color: #adb5bd; }
+
+.site-footer a { color: #adb5bd; text-decoration: none; }
+.site-footer a:hover { color: #ffffff; text-decoration: underline; }
+
+.footer-social-icons a {
+  display: inline-block;
+  color: #ffffff;
+  font-size: 18px;
+  margin-right: 15px;
+}
+.footer-social-icons a:hover { color: #e5b455; text-decoration: none; }
+
+.footer-copyright {
+  border-top: 1px solid #3b4045;
+  padding-top: 20px;
+  margin-top: 40px;
+  color: #adb5bd;
+  font-size: 13px;
+}
+.footer-copy-left { float: left; }
+.footer-copy-right { float: right; }
+
+/* ========================================================
+   6. RESPONSIVE ENGINE MEDIA QUERIES
+   ======================================================== */
+@media (max-width: 1024px) {
+  .book-card { width: 33.3333%; }
+}
+
+@media (max-width: 768px) {
+  .book-card { width: 50%; }
+  .col-lg-4, .col-lg-3, .col-lg-2 { width: 100%; float: none; margin-bottom: 30px; }
+  .menu-toggle { display: block; }
+  .nav-search-container { float: none; width: 100%; text-align: center; padding: 15px; background: #eef3f0; box-sizing: border-box; }
+  .nav-menu { display: none; width: 100%; background-color: #f2f6f3; position: absolute; top: 100%; left: 0; z-index: 99999; }
+  .nav-menu.show { display: block; }
+  .nav-menu > li { float: none; width: 100%; display: block; }
+  .nav-menu ul { position: relative; width: 100%; box-shadow: none; left: 0; top: 0; }
+  .brand-flex { text-align: center; }
+  .school-logo { margin-right: 0; margin-bottom: 10px; float: none; display: inline-block; }
+  .brand-titles { float: none; text-align: center; }
+  .footer-copy-left, .footer-copy-right { float: none; text-align: center; width: 100%; display: block; margin-bottom: 10px; }
+}
+
+@media (max-width: 480px) {
+  .book-card { width: 100%; float: none; }
+}
+    .footer-copy-left { float: left; }
+    .footer-copy-right { float: right; }
+
+    /* RESPONSIVE LAYOUTS */
+     @media (max-width: 880px) {
+      /* Force the main sticky bar to sit on top of everything */
+      .menu-area {
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        z-index: 999999 !important;
+      }
+
+      .menu-toggle { 
+        display: block !important; 
+      }
       
-      .brand-flex { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; text-align: center; }
-      .school-logo { margin-right: 0; margin-bottom: 10px; float: none; display: inline-block; }
-      .brand-titles { float: none; }
+      .nav-search-container { 
+        float: none !important; 
+        width: 100% !important; 
+        text-align: center !important; 
+        padding: 15px !important; 
+        background: #eef3f0 !important; 
+        box-sizing: border-box !important; 
+      }
       
-      .top-bar-inner { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 8px; text-align: center; }
-      .top-bar-links { float: none; display: block; }
-      .top-bar-location { float: none; display: block; margin-top: 5px; }
-
-      .filter-dock { height: auto; }
-      .search-input { width: 100%; max-width: 100%; float: none; margin-bottom: 15px; }
-      .filter-group-container { float: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; width: 100%; }
-    }
-
-    @media (max-width: 480px) {
-      .book-card { flex: 0 0 98%; width: 98%; margin: 1% auto; float: none; }
+      /* Main mobile menu container */
+      .nav-menu { 
+        display: none !important; 
+        -webkit-box-orient: vertical !important; 
+        -webkit-box-direction: normal !important; 
+        -ms-flex-direction: column !important; 
+        flex-direction: column !important; 
+        width: 100% !important; 
+        background-color: #f2f6f3 !important; 
+        position: absolute !important; 
+        top: 100% !important; 
+        left: 0 !important; 
+        z-index: 999999 !important;
+      }
+      
+      /* Opens the main menu when toggled by JavaScript */
+      .nav-menu.show { 
+        display: -webkit-box !important; 
+        display: -ms-flexbox !important; 
+        display: flex !important; 
+      }
+      
+      .nav-menu > li { 
+        float: none !important; 
+        width: 100% !important; 
+        display: block !important;
+      }
+      
+      /* Hide sub-dropdown menus on mobile screens by default */
+      .nav-menu ul { 
+        display: none !important; 
+        position: relative !important; 
+        width: 100% !important; 
+        box-shadow: none !important; 
+        left: 0 !important; 
+        top: 0 !important; 
+        z-index: 999999 !important; 
+      }
+      
+      /* Expand dropdowns cleanly when cursor hovers or item is activated */
+      .nav-menu li:hover > ul,
+      .nav-menu li:active > ul,
+      .nav-menu li:focus-within > ul {
+        display: block !important;
+      }
+      
+      .brand-flex { 
+        -webkit-box-orient: vertical !important; 
+        -webkit-box-direction: normal !important; 
+        -ms-flex-direction: column !important; 
+        flex-direction: column !important; 
+        text-align: center !important; 
+      }
+      
+      .school-logo { 
+        margin-right: 0 !important; 
+        margin-bottom: 10px !important; 
+        float: none !important; 
+        display: inline-block !important; 
+      }
+      
+      /* Footer formatting elements styling */
+      .col-lg-4, .col-lg-3, .col-lg-2 { 
+        width: 100% !important; 
+        float: none !important; 
+        margin-bottom: 30px !important; 
+      }
+      
+      .footer-copy-left, .footer-copy-right { 
+        float: none !important; 
+        text-align: center !important; 
+        width: 100% !important; 
+        display: block !important; 
+        margin-bottom: 10px !important; 
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="site-top-bar">
-    <div class="container top-bar-inner">
-      <div class="top-bar-links">
-        <a href="https://t.me/DireSabian2011" target="_blank">Official Telegram Portal</a>
-        <a href="index.html">Main Home Portal</a>
-        <a href="#">eLearning Platform</a>
-      </div>
-      <div class="top-bar-location">Dire Dawa, Ethiopia</div>
-    </div>
-  </div>
-
   <div class="brand-banner-area">
     <div class="container brand-flex">
-      <img src="logo2.jpg" alt="Sabian Secondary School Shield" class="school-logo">
+      <img src="logo2.jpg" alt="Sabian Secondary & Preparatory School Shield" class="school-logo">
       <div class="brand-titles">
         <h1>Sabian Secondary School</h1>
         <p>ሳ/ሁ/ደ/ት/ቤት</p>
@@ -355,9 +880,8 @@
           <ul>
             <li><a href="#">Natural Science</a></li>
             <li><a href="#">Social Science</a></li>
-            <li><a href="#">Grade 9 & 10 Classrooms</a></li>
             <li><a href="#">Academic Calendar</a></li>
-            <li><a href="library.html">Digital Student Library</a></li>
+            <li><a href="dili.html">Digital Curriculum Library</a></li>
             <li><a href="#">Latest Notice Feed</a></li>    
           </ul>
         </li>
@@ -369,15 +893,32 @@
             <li><a href="#">Top Scorers Wall</a></li>
           </ul>
         </li>
+
+        <li class="has-dropdown">
+          <a href="#">Teachers </a>
+          <ul>
+            <li><a href="#">Notice</a></li>
+            <li><a href="#">Materials</a></li>
+          </ul>
+        </li>
        
         <li class="has-dropdown">
           <a href="#">Administration</a>
           <ul>
             <li><a href="#">Teachers Association</a></li>
             <li><a href="#">Staff </a></li>
+            <li><a href="#">Registration</a></li>
           </ul>
         </li>
       </ul>
+
+      <div class="nav-search-container">
+        <form action="#" method="get" class="nav-search-form">
+          <input type="text" placeholder="Search school..." name="q" class="nav-search-input">
+          <button type="submit" class="nav-search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+      
     </div>
   </div>
 
@@ -557,7 +1098,7 @@
             <div class="book-details">
               <h4 class="book-title">Grade 11 Physics Student Textbook</h4>
               <div class="book-meta">Size: PDF, : 11 MB</div>
-              <a href="YOUR_EXTERNAL_URL_HERE" target="_blank" class="download-btn">Download</a>
+              <a href="https://kehulum.com/books_asset/books_98/collection/grade-11-physics-new-curriculum--student-textbook-kehulumcom17551049158ab7.pdf" target="_blank" class="download-btn">Download</a>
             </div>
           </div>
 
@@ -958,61 +1499,76 @@
     </section>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="container">
-      <p>Copyright &copy; 2026 Sabian Secondary School. All Rights Reserved</p>
+        <div class="footer-row">
+            
+            <div class="footer-col col-lg-4">
+                <h5>Sabian Secondary School</h5>
+                <p>
+                    Ever Forward! Discover academic excellence, innovative technology exposure, and impactful student pathways at Sabian Secondary School.
+                </p>
+                <div class="footer-social-icons">
+                    <a href="https://web.facebook.com/100077500092689/about/?_rdc=1&_rdr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://youtube.com/" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://t.me/DireSabian2011" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://vm.tiktok.com/ZMAcC6UNP/" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col col-lg-2">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="backg.html">About Us</a></li>
+                    <li><a href="dili.html">Digital Library</a></li>
+                    <li><a href="#">Academic Calendar</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col col-lg-3">
+                <h5>Contact Info</h5>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Dire Dawa, Ethiopia</li>
+                    <li><i class="fas fa-phone-alt"></i> +251 91 123 4567</li>
+                    <li><i class="fas fa-envelope"></i> info@sabianschool.edu.et</li>
+                    <li><i class="fas fa-envelope"></i> admin@sabianschool.edu.et</li>
+                </ul>
+            </div>
+
+            <div class="footer-col col-lg-3">
+                <h5>Portals</h5>
+                <ul>
+                    <li><a href="#">Student Registrar</a></li>
+                    <li><a href="#">Mini-Media Lab</a></li>
+                    <li><a href="#">Teachers Portal</a></li>
+                </ul>
+            </div>
+            
+        </div>
+
+        <div class="footer-row footer-copyright">
+            <div class="footer-copy-left">
+                <span>Copyright &copy; 2026 Sabian Secondary School. All Rights Reserved.</span>
+            </div>
+            <div class="footer-copy-right">
+                <span>Designed for Academic Excellence</span>
+            </div>
+        </div>
     </div>
   </footer>
 
   <script>
-    var activeFilters = {
-      '11': 'all',
-      '12': 'all'
-    };
-
-    function executeUnifiedFilter() {
-      var searchVal = document.getElementById('librarySearch').value.toLowerCase();
-      var bookCards = document.getElementsByClassName('book-card');
-      
-      for (var i = 0; i < bookCards.length; i++) {
-        var card = bookCards[i];
-        var cardGrade = card.getAttribute('data-grade');
-        var cardStream = card.getAttribute('data-stream');
-        var titleText = card.getElementsByClassName('book-title')[0].innerText.toLowerCase();
-        
-        var matchesSearch = (titleText.indexOf(searchVal) > -1);
-        var matchesStream = true;
-        if ((cardGrade === '11' || cardGrade === '12') && activeFilters[cardGrade] !== 'all') {
-          if (cardStream !== activeFilters[cardGrade]) {
-            matchesStream = false;
-          }
-        }
-        
-        if (matchesSearch && matchesStream) {
-          card.style.display = "";
-        } else {
-          card.style.display = "none";
-        }
-      }
-    }
-
-    function setStreamFilter(grade, targetTrack, element) {
-      activeFilters[grade] = targetTrack;
-      var parentBox = element.parentNode;
-      var buttons = parentBox.getElementsByClassName('btn-filter');
-      for (var i = 0; i < buttons.length; i++) {
-        buttons[i].className = buttons[i].className.replace(' active', '');
-      }
-      element.className += ' active';
-      executeUnifiedFilter();
-    }
-
     var menuToggle = document.getElementById('menuToggle');
     var navMenu = document.getElementById('navMenu');
 
     if(menuToggle && navMenu) {
       menuToggle.addEventListener('click', function(e) {
-        if (e && e.stopPropagation) { e.stopPropagation(); } else { window.event.cancelBubble = true; }
+        if (e.stopPropagation) {
+          e.stopPropagation();
+        } else {
+          e.cancelBubble = true;
+        }
         if (navMenu.className.indexOf('show') === -1) {
           navMenu.className += ' show';
         } else {
@@ -1021,12 +1577,9 @@
       });
 
       document.addEventListener('click', function(e) {
-        var evt = e || window.event;
-        var target = evt.target || evt.srcElement;
-        if (navMenu && menuToggle) {
-          if (!navMenu.contains(target) && !menuToggle.contains(target)) {
-            navMenu.className = navMenu.className.replace(' show', '');
-          }
+        var target = e.target || e.srcElement;
+        if (!navMenu.contains(target) && !menuToggle.contains(target)) {
+          navMenu.className = navMenu.className.replace(' show', '');
         }
       });
     }
